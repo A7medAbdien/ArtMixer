@@ -2,22 +2,15 @@ import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
-import MyComponent from './cloud'
 import { Image } from '@react-three/drei'
+import UploadImage from './upload'
+import UploadWidget from './components/UploadWidget'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
-    <Canvas
-        camera={{
-            fov: 45,
-            near: 0.1,
-            far: 200,
-            position: [4, - 2, 6]
-        }}
-    >
-        {/* <Experience /> */}
-        <Image url='https://res.cloudinary.com/dcmthd8bn/image/upload/out' />
-        {/* <MyComponent /> */}
-    </Canvas>
+    <>
+        Hello
+        <UploadWidget name="content" />
+    </>
 )
