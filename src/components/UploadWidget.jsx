@@ -5,9 +5,7 @@ const UploadWidget = ({ name }) => {
     const [imageUrl, setImageUrl] = useState('');
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
-    const newDate = new Date()
-    const date = newDate.getTime()
-    const uniqueName = name + date
+
 
     const handleImageUpload = (_, result) => {
         if (result && result.event === 'success') {
@@ -23,7 +21,7 @@ const UploadWidget = ({ name }) => {
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
             cloudName: "dcmthd8bn",
             uploadPreset: "utmds9zl",
-            publicId: uniqueName,
+            publicId: name,
             sources: ['local', 'url', 'image_search'],
         }, handleImageUpload)
     }, [])
