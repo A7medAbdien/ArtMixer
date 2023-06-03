@@ -33,7 +33,7 @@ const UploadWidget = ({ name }) => {
             upload
         </button>
         <br />
-        {imageUrl && <img src={imageUrl} alt="Uploaded Image" />}
+        {imageUrl && <img width={400} height={400} src={imageUrl} alt="Uploaded Image" />}
     </>)
 }
 
