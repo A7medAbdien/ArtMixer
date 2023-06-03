@@ -10,6 +10,11 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 root.render(
     <>
         Hello
+        <br />
+        content
         <UploadWidget name="content" />
+        <br />
+        style
+        <UploadWidget name="style" />
     </>
 )

@@ -9,8 +9,8 @@ const UploadWidget = ({ name }) => {
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
             cloudName: "dcmthd8bn",
             uploadPreset: "utmds9zl",
-            publicId: name
-        }, (error, result) => console.log(result))
+            publicId: name,
+        }, (error, result) => console.log(error))
     }, [])
 
     return (
