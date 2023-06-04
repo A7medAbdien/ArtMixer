@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
-function ImageComponent({ imageUrl }) {
+function ImageComponent({ imageUrl, waitTime }) {
+    const [isValidUrl, setIsValidUrl] = useState(false);
+    console.log(waitTime);
+    function checkImageValidity() {
+        const img = new Image();
+        img.onload = () => {
+            setIsValidUrl(true);
+        };
+        img.onerror = () => {
+            // setTimeout(checkImageValidity, 1000); // try again after 1 second
+            setTimeout(() => {
+                setIsValidUrl(true);
+            }, waitTime);
+        };
+        img.src = imageUrl;
 
-    const [isValid, setIsValid] = useState(true);
-
-    function handleImageError() {
-        setIsValid(false);
     }
 
+    useEffect(() => {
+        checkImageValidity();
+    }, []); // run only once on mount
+    console.log(imageUrl, isValidUrl);
     return (
         <div>
-            {isValid ? (
-                <img src={imageUrl} onError={handleImageError} />
+            {isValidUrl ? (
+                <img src={imageUrl} alt="Image" />
             ) : (
                 <p>Invalid image URL</p>
             )}
         </div>
     );
-
 }
 
 

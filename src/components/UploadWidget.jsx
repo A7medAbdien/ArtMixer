@@ -6,8 +6,9 @@ const UploadWidget = ({ name }) => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
 
-
+    console.log(name);
     const handleImageUpload = (_, result) => {
+
         if (result && result.event === 'success') {
             setImageUrl(result.info.url);
         }
