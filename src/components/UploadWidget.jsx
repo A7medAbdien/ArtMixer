@@ -6,7 +6,7 @@ const UploadWidget = ({ name }) => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
 
-    console.log(name);
+    // console.log(name);
     const handleImageUpload = (_, result) => {
 
         if (result && result.event === 'success') {

@@ -15,7 +15,7 @@ const CheckResources = ({ id }) => {
         const response = await fetch(URL);
         const data = await response.json();
         setRespond(data);
-        console.log(data);
+        // console.log(data);
     };
 
     return (
