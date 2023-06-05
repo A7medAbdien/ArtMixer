@@ -6,7 +6,7 @@ import CheckResources from './CheckResources'
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 root.render(
     <>
-        {/* <App /> */}
-        <CheckResources />
+        <App />
+        {/* <CheckResources id={0} /> */}
     </>
 )
