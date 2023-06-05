@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 function ImageComponent({ imageUrl, waitTime }) {
     const [isValidUrl, setIsValidUrl] = useState(false);
-    console.log(waitTime);
+    // console.log(waitTime);
     function checkImageValidity() {
         const img = new Image();
         img.onload = () => {
@@ -21,8 +21,8 @@ function ImageComponent({ imageUrl, waitTime }) {
 
     useEffect(() => {
         checkImageValidity();
-    }, []); // run only once on mount
-    console.log(imageUrl, isValidUrl);
+    }, []);
+    // console.log(imageUrl, isValidUrl);
     return (
         <div>
             {isValidUrl ? (
