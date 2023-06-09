@@ -6,7 +6,7 @@ export default function BRoom() {
 
     const { nodes } = useGLTF('./model//BRoom/BRoom.glb')
     // const { nodes: jnodes } = useGLTF('./model/BRoom/Vase.glb')
-    // console.log(nodes);
+    console.log(nodes);
     // console.log(nodes);
     // console.log(jnodes);
 
