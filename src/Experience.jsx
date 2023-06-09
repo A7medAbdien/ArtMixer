@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import Model from './Model'
 import GRoom from './GRoom'
+import BRoom from './BRoom'
 
 export default function Experience() {
     return <>
@@ -16,7 +17,8 @@ export default function Experience() {
                 <meshNormalMaterial />
             </mesh> */}
             {/* <Model /> */}
-            <GRoom />
+            {/* <GRoom /> */}
+            <BRoom />
         </Canvas>
     </>
 }
