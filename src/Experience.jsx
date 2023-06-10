@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import { Leva } from 'leva'
 
-import Model from './components/Rooms/Model'
+import Kitchen from './components/Rooms/Kitchen'
 import GRoom from './components/Rooms/GRoom'
 import BRoom from './components/Rooms/BRoom'
 import WRoom from './components/Rooms/WRoom'
@@ -24,8 +24,8 @@ export default function Experience() {
                 <meshNormalMaterial />
             </mesh> */}
 
-            {/* <Model /> */}
-            <GRoom />
+            <Kitchen />
+            {/* <GRoom /> */}
             {/* <BRoom /> */}
             {/* <WRoom /> */}
 
