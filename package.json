@@ -16,9 +16,12 @@
     "@react-three/fiber": "^8.9.2",
     "axios": "^1.4.0",
     "cloudinary-react": "^1.8.1",
+    "leva": "^0.9.34",
+    "maath": "^0.6.0",
     "r3f-perf": "^6.6.3",
     "react": "18.2",
     "react-dom": "18.2",
-    "three": "^0.148.0"
+    "three": "^0.148.0",
+    "wouter": "^2.11.0"
   }
 }
