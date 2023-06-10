@@ -1,4 +1,4 @@
-import { OrbitControls } from '@react-three/drei'
+import { Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import Model from './Model'
@@ -21,6 +21,8 @@ export default function Experience() {
             {/* <GRoom /> */}
             {/* <BRoom /> */}
             <WRoom />
+
+            <Environment preset="city" />
         </Canvas>
     </>
 }

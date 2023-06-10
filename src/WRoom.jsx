@@ -1,17 +1,17 @@
-import { Center, Float, MeshReflectorMaterial, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
+import { Center, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 
 
 export default function WRoom() {
 
 
-    const { nodes } = useGLTF('./model//WRoom/Floor.glb')
-
+    const { nodes } = useGLTF('./model//WRoom/WRoom.glb')
+    // const { nodes: jnodes } = useGLTF('./model/WRoom/Vase.glb')
     console.log(nodes);
     // console.log(nodes);
     // console.log(jnodes);
 
     const bakedTexture = useTexture('./model/WRoom/WRoom.jpg')
-
+    // const jarsTexture = useTexture('./model/WRoom/Vase.jpg')
     bakedTexture.flipY = false
     // jarsTexture.flipY = false
 
@@ -21,25 +21,13 @@ export default function WRoom() {
 
         <Center>
 
-            <mesh geometry={nodes.Floor001.geometry}>
-                <MeshReflectorMaterial
-                    blur={[300, 100]}
-                    resolution={2048 / 4}
-                    mixBlur={1}
-                    mixStrength={50}
-                    roughness={1}
-                    depthScale={1.2}
-                    minDepthThreshold={0.4}
-                    maxDepthThreshold={1.4}
-                    color="Red"
-                    metalness={0.5}
-                />
+            <mesh geometry={nodes.baked.geometry}>
+                <meshBasicMaterial map={bakedTexture} />
             </mesh>
-            <Float>
-                <mesh geometry={nodes.image.geometry}>
-                    <meshStandardMaterial />
-                </mesh>
-            </Float>
+            <mesh geometry={nodes.image.geometry}>
+                <meshBasicMaterial />
+            </mesh>
+
 
 
             {/* <Sparkles
