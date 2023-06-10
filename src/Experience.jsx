@@ -23,8 +23,8 @@ export default function Experience() {
             </mesh> */}
             {/* <Model /> */}
             {/* <GRoom /> */}
-            {/* <BRoom /> */}
-            <WRoom />
+            <BRoom />
+            {/* <WRoom /> */}
 
             <Environment preset="city" />
         </Canvas>

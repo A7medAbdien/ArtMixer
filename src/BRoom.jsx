@@ -1,43 +1,36 @@
-import { Center, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
+import * as THREE from 'three'
+import { Center, useGLTF, useTexture } from '@react-three/drei'
+import { useLoader } from '@react-three/fiber';
 
 
 export default function BRoom() {
 
 
     const { nodes } = useGLTF('./model//BRoom/BRoom.glb')
-    // const { nodes: jnodes } = useGLTF('./model/BRoom/Vase.glb')
     console.log(nodes);
-    // console.log(nodes);
-    // console.log(jnodes);
+
+    const ImageA = useLoader(THREE.TextureLoader, 'https://images.pexels.com/photos/17137556/pexels-photo-17137556/free-photo-of-wood-animal-tree-lizard.jpeg')
+    ImageA.flipY = false
 
     const bakedTexture = useTexture('./model/BRoom/BRoom.jpg')
-    // const jarsTexture = useTexture('./model/BRoom/Vase.jpg')
     bakedTexture.flipY = false
-    // jarsTexture.flipY = false
 
     return <>
         <color args={['#201919']} attach="background" />
 
 
         <Center>
+            <group rotation={[0, Math.PI / 2, 0]}>
+                <mesh geometry={nodes.baked.geometry}>
+                    <meshBasicMaterial map={bakedTexture} />
+                </mesh>
 
-            <mesh geometry={nodes.baked.geometry}>
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
-            {/* <mesh geometry={nodes.baked.geometry}>
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh> */}
+                <mesh
+                    geometry={nodes.ImageA.geometry}>
+                    <meshBasicMaterial attach="material" map={ImageA} toneMapped={false} />
+                </mesh>
 
-
-
-            {/* <Sparkles
-                size={5}
-                scale={[4, 2, 4]}
-                position-y={1}
-                speed={0.5}
-                count={40}
-            /> */}
-
+            </group>
         </Center>
     </>
 }
