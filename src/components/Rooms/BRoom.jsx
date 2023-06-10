@@ -16,7 +16,6 @@ export default function BRoom() {
     bakedTexture.flipY = false
 
     return <>
-        <color args={['#201919']} attach="background" />
 
 
         <Center>
