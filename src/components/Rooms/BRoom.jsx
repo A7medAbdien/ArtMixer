@@ -6,7 +6,7 @@ import { easing } from 'maath';
 import { useControls } from 'leva';
 import { useRoute, useLocation } from 'wouter';
 
-export default function BRoom({ q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
+export default function BRoom() {
 
     const { nodes } = useGLTF('./model/BRoom/BRoom.glb')
     const bakedTexture = useTexture('./model/BRoom/BRoom.jpg')
