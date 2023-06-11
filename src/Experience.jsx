@@ -11,8 +11,9 @@ import WRoom from './components/Rooms/WRoom'
 export default function Experience() {
     return <>
         {/* <Leva hidden /> */}
+        {/* [0, -0.4, 1.3] */}
         <Canvas
-            flat dpr={[1, 1.5]} camera={{ fov: 95, position: [0, 0, 0.25] }}
+            flat dpr={[1, 1.5]} camera={{ fov: 75, position: [0, 1, 10] }}
         >
             <Perf position="top-left" />
             <fog attach="fog" args={['#191920', 0, 15]} />
