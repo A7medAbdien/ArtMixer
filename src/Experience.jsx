@@ -26,8 +26,8 @@ export default function Experience() {
 
 
             {/* <Kitchen /> */}
-            <GRoom />
-            {/* <BRoom /> */}
+            {/* <GRoom /> */}
+            <BRoom />
             {/* <WRoom /> */}
 
         </Canvas>
