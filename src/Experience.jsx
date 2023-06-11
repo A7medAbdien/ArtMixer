@@ -1,4 +1,4 @@
-import { Environment, OrbitControls } from '@react-three/drei'
+import { Environment, OrbitControls, useVideoTexture } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import { Leva } from 'leva'
@@ -24,8 +24,9 @@ export default function Experience() {
                 <meshNormalMaterial />
             </mesh> */}
 
-            <Kitchen />
-            {/* <GRoom /> */}
+
+            {/* <Kitchen /> */}
+            <GRoom />
             {/* <BRoom /> */}
             {/* <WRoom /> */}
 

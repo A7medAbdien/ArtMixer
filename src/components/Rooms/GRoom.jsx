@@ -1,4 +1,4 @@
-import { Center, Html, useGLTF, useTexture } from '@react-three/drei'
+import { Center, Html, useGLTF, useTexture, useVideoTexture } from '@react-three/drei'
 import { useControls } from 'leva';
 
 
@@ -15,7 +15,9 @@ export default function GRoom() {
             // {"position":{"x":0.205600048828125,"y":1.123200004577637}}
             scale:
             {
-                value: { x: -349.2, y: -246.0 },
+
+                value: { x: 2.4, y: 1.5 },
+                // value: { x: -349.2, y: -246.0 },
                 step: 0.1,
                 joystick: 'invertY'
             },
@@ -47,25 +49,12 @@ export default function GRoom() {
             </mesh>
 
             <mesh
-                geometry={nodes.image.geometry}>
-
-                <Html
-                    transform
-                    wrapperClass='htmlScreen'
-                    distanceFactor={1.17}
-                    position={[position.x, position.y, 0.5]}
-                >
-                    <iframe
-                        style={{
-                            width: 1048 + scale.x,
-                            height: 670 + scale.y,
-                        }}
-                        src='https://fluid-threejs.netlify.app/' />
-                </Html>
-                <meshBasicMaterial transparent opacity={0} />
+                scale={[scale.x, scale.y, 0]}
+                position={[position.x, position.y, 0.4]} >
+                <planeGeometry />
+                <VideoMaterial url="10.mp4" />
+                {/* <meshBasicMaterial /> */}
             </mesh>
-
-
 
             {/* <Sparkles
                 size={5}
@@ -77,4 +66,9 @@ export default function GRoom() {
 
         </Center>
     </>
+}
+
+function VideoMaterial({ url }) {
+    const texture = useVideoTexture(url)
+    return <meshBasicMaterial map={texture} toneMapped={false} />
 }
