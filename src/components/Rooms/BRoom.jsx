@@ -10,7 +10,7 @@ export default function BRoom({ q = new THREE.Quaternion(), p = new THREE.Vector
 
     const { nodes } = useGLTF('./model/BRoom/BRoom.glb')
     const bakedTexture = useTexture('./model/BRoom/BRoom.jpg')
-    const ImageA = useLoader(THREE.TextureLoader, 'https://images.pexels.com/photos/17137556/pexels-photo-17137556/free-photo-of-wood-animal-tree-lizard.jpeg')
+    const ImageA = useLoader(THREE.TextureLoader, 'https://images.pexels.com/photos/3934093/pexels-photo-3934093.jpeg')
 
     bakedTexture.flipY = false
 
