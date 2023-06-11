@@ -17,7 +17,7 @@ export default function Experience() {
             <Perf position="top-left" />
             <fog attach="fog" args={['#191920', 0, 15]} />
             <color args={['#201919']} attach="background" />
-            <OrbitControls makeDefault />
+            {/* <OrbitControls makeDefault /> */}
 
             {/* <mesh scale={1.5}>
                 <boxGeometry />
