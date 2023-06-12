@@ -13,20 +13,6 @@ export const Frames = ({ bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [
     const [, params] = useRoute('/:id')
     const [, setLocation] = useLocation()
 
-    /**
-     * Widget Part
-     */
-    const [imageUrl, setImageUrl] = useState('');
-    const cloudinaryRef = useRef()
-    const widgetRef = useRef()
-
-    // console.log(name);
-    const handleImageUpload = (_, result) => {
-
-        if (result && result.event === 'success') {
-            setImageUrl(result.info.url);
-        }
-    };
 
     useEffect(() => {
         clicked.current = ref.current.getObjectByName(params?.id)
@@ -38,14 +24,6 @@ export const Frames = ({ bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [
             p.set(...basePOV)
             q.identity()
         }
-
-        cloudinaryRef.current = window.cloudinary
-        widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: "dcmthd8bn",
-            uploadPreset: "utmds9zl",
-            publicId: "name",
-            sources: ['local', 'url', 'image_search'],
-        }, handleImageUpload)
     })
 
     useFrame((state, dt) => {
@@ -53,25 +31,18 @@ export const Frames = ({ bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [
         easing.dampQ(state.camera.quaternion, q, 0.4, dt)
     })
 
-    const handelClick = (e) => {
-        if (e.object.name == "topImage" || e.object.name == "bottomImage")
-            widgetRef.current.open()
-        else
-            setLocation(clicked.current === e.object ? '/' : '/' + e.object.name)
-    }
-
     return <>
         <group
             ref={ref}
-            onClick={(e) => (e.stopPropagation(), handelClick(e))}
+            onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/' + e.object.name))}
             onPointerMissed={() => setLocation('/')}>
 
-            {images.map((props, i) => <KFrame imageUrl={imageUrl} key={i} {...props} />)}
+            {images.map((props, i) => <KFrame key={i} {...props} />)}
         </group>
     </>
 }
 
-const KFrame = ({ imageUrl, name, position, args, url }) => {
+export const KFrame = ({ imageUrl, name, position, args, url }) => {
 
     /**
      * Default to Uploaded Image Part
@@ -101,7 +72,7 @@ const KFrame = ({ imageUrl, name, position, args, url }) => {
                 <planeGeometry args={args} />
 
                 {imageUrl ? (
-                    <TexturedPlane url={url} />
+                    <TexturedPlane url={imageUrl} />
                 ) : (
                     <TexturedPlane url={defaultImageURL} />
                 )}
