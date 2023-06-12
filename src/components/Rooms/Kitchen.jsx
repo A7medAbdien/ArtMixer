@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Center, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
-import { Frames, KFrame } from '../Frames';
+import { Frames, HoverableFrame, TexturedPlane } from '../Frames';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -39,8 +39,6 @@ export default function Kitchen() {
     ]
 
     return <>
-
-
         <Center>
             <group scale={1.8}>
                 <mesh geometry={canisterNodes.KCanister.geometry}>
@@ -51,13 +49,34 @@ export default function Kitchen() {
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
 
-                <Frames bigImageFocus={0.4} smallImageFocus={0.2} basePOV={[0, -0.44, 1.9]} images={images} />
+                <Frames Children={Frame} bigImageFocus={0.4} basePOV={[0, -0.44, 1.9]} images={images} />
 
                 {buttonFrames.map((props, i) => <ButtonFrame key={i} {...props} />)}
             </group>
         </Center>
     </>
 }
+
+
+const Frame = ({ imageUrl, name, position, args }) => {
+
+    const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
+
+    return <>
+        <HoverableFrame position={position}>
+            <mesh name={name}>
+                <planeGeometry args={args} />
+
+                {imageUrl ? (
+                    <TexturedPlane url={imageUrl} />
+                ) : (
+                    <TexturedPlane url={defaultImageURL} />
+                )}
+            </mesh>
+        </HoverableFrame>
+    </>
+}
+
 
 const ButtonFrame = ({ setImageUrl, ...props }) => {
 
@@ -84,7 +103,7 @@ const ButtonFrame = ({ setImageUrl, ...props }) => {
 
     return <>
         <group onClick={() => widgetRef.current.open()}>
-            <KFrame {...props} />
+            <Frame {...props} />
         </group>
     </>
 }

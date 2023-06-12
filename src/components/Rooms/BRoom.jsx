@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 import { Center, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
-import { Frames } from '../Frames';
+import { Frames, HoverableFrame, TexturedPlane } from '../Frames';
+import { useEffect, useState } from 'react';
 
 export default function BRoom() {
 
@@ -38,9 +39,49 @@ export default function BRoom() {
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
 
-                <Frames images={images} />
+                <Frames Children={Frame} images={images} />
             </Center>
         </group>
     </>
 }
 
+
+const Frame = ({ name, position, args, url, waitingTime }) => {
+    // Default to Waited Image Part
+    const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
+
+    const [isValidUrl, setIsValidUrl] = useState(false)
+    function checkImageValidity() {
+        const img = new Image();
+        img.onload = () => {
+            setIsValidUrl(true);
+        };
+        img.onerror = () => {
+            setTimeout(() => {
+                setIsValidUrl(true);
+            }, waitingTime);
+        };
+        img.src = url;
+    }
+
+    useEffect(() => {
+        // checkImageValidity()
+        setTimeout(() => {
+            setIsValidUrl(true);
+        }, waitingTime);
+    }, []);
+
+    return <>
+        <HoverableFrame position={position}>
+            <mesh name={name}>
+                <planeGeometry args={args} />
+
+                {isValidUrl ? (
+                    <TexturedPlane url={url} />
+                ) : (
+                    <TexturedPlane url={defaultImageURL} />
+                )}
+            </mesh>
+        </HoverableFrame>
+    </>
+}

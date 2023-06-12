@@ -7,7 +7,7 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 
-export const Frames = ({ bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ Children, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
     const ref = useRef()
     const clicked = useRef()
     const [, params] = useRoute('/:id')
@@ -37,103 +37,34 @@ export const Frames = ({ bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [
             onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/' + e.object.name))}
             onPointerMissed={() => setLocation('/')}>
 
-            {images.map((props, i) => <KFrame key={i} {...props} />)}
+            {images.map((props, i) => <Children key={i} {...props} />)}
         </group>
     </>
 }
 
-export const KFrame = ({ imageUrl, name, position, args }) => {
-
-    const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
-
-
-    /**
-     * Hovering Effect Part
-     */
-    const image = useRef()
-    const [hovered, hover] = useState(false)
+export const HoverableFrame = ({ children, position }) => {
+    const meshRef = useRef()
+    const [hovered, setHovered] = useState(false)
 
     useCursor(hovered)
     useFrame((state, dt) => {
-        easing.damp3(image.current.scale, [1 * (hovered ? 0.9 : 1), 1 * (hovered ? 0.9 : 1), 1], 0.1, dt)
+        easing.damp3(meshRef.current.scale, [1 * (hovered ? 0.9 : 1), 1 * (hovered ? 0.9 : 1), 1], 0.1, dt)
     })
 
-    return <>
+    return (
         <mesh
-            ref={image}
-            onPointerOver={(e) => (e.stopPropagation(), hover(true))}
-            onPointerOut={() => hover(false)}
+            ref={meshRef}
+            onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
+            onPointerOut={() => setHovered(false)}
             position={position}
         >
-            <mesh name={name}>
-                <planeGeometry args={args} />
-
-                {imageUrl ? (
-                    <TexturedPlane url={imageUrl} />
-                ) : (
-                    <TexturedPlane url={defaultImageURL} />
-                )}
-            </mesh>
+            {children}
         </mesh>
-    </>
+    )
 }
 
 
-const BFrame = ({ name, position, args, url, waitingTime }) => {
-    // Default to Waited Image Part
-    const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
-
-    const [isValidUrl, setIsValidUrl] = useState(false)
-    function checkImageValidity() {
-        const img = new Image();
-        img.onload = () => {
-            setIsValidUrl(true);
-        };
-        img.onerror = () => {
-            setTimeout(() => {
-                setIsValidUrl(true);
-            }, waitingTime);
-        };
-        img.src = url;
-    }
-
-    useEffect(() => {
-        // checkImageValidity()
-        setTimeout(() => {
-            setIsValidUrl(true);
-        }, waitingTime);
-    }, []);
-
-    // Hovering Effect Part
-    const image = useRef()
-    const [hovered, hover] = useState(false)
-
-    useCursor(hovered)
-    useFrame((state, dt) => {
-        easing.damp3(image.current.scale, [1 * (hovered ? 0.9 : 1), 1 * (hovered ? 0.9 : 1), 1], 0.1, dt)
-    })
-
-    return <>
-        <mesh
-            ref={image}
-            onPointerOver={(e) => (e.stopPropagation(), hover(true))}
-            onPointerOut={() => hover(false)}
-            position={position}
-        >
-            <mesh name={name}>
-                <planeGeometry args={args} />
-
-                {isValidUrl ? (
-                    <TexturedPlane url={url} />
-                ) : (
-                    <TexturedPlane url={defaultImageURL} />
-                )}
-            </mesh>
-        </mesh>
-    </>
-}
-
-const TexturedPlane = ({ url }) => {
+export const TexturedPlane = ({ url }) => {
     const image = useLoader(THREE.TextureLoader, url)
 
     return <>
