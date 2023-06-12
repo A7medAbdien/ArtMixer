@@ -33,9 +33,7 @@ export default function Kitchen() {
 
         <Center>
             <group scale={1.8}>
-                <mesh geometry={canisterNodes.KCanister.geometry}
-                    position={canisterNodes.KCanister.position}
-                >
+                <mesh geometry={canisterNodes.KCanister.geometry}>
                     <meshBasicMaterial map={canisterTexture} />
                 </mesh>
 
