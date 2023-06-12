@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useCursor } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { easing } from 'maath';
 import { useRoute, useLocation } from 'wouter';
@@ -40,15 +40,41 @@ export const Frames = ({ images, q = new THREE.Quaternion(), p = new THREE.Vecto
     </>
 }
 
-const Frame = ({ name, position, args, texture }) => {
+const Frame = ({ name, position, args, url, waitingTime }) => {
+    // Default to Waited Image Part
+    const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
+    const defaultImage = useLoader(THREE.TextureLoader, defaultImageURL)
+
+    const waitedImage = useLoader(THREE.TextureLoader, url)
+
+    const [isValidUrl, setIsValidUrl] = useState(false)
+    function checkImageValidity() {
+        const img = new Image();
+        img.onload = () => {
+            setTimeout(() => {
+                setIsValidUrl(true);
+            }, 2000);
+        };
+        img.onerror = () => {
+            // setTimeout(checkImageValidity, 1000); // try again after 1 second
+            setTimeout(() => {
+                setIsValidUrl(true);
+            }, waitingTime);
+        };
+        img.src = url;
+
+    }
+    useEffect(() => {
+        checkImageValidity()
+    }, []);
+
+    // Hovering Effect Part
     const image = useRef()
     const [hovered, hover] = useState(false)
 
     useCursor(hovered)
     useFrame((state, dt) => {
-
         easing.damp3(image.current.scale, [1 * (hovered ? 0.9 : 1), 1 * (hovered ? 0.9 : 1), 1], 0.1, dt)
-
     })
 
     return <>
@@ -60,7 +86,10 @@ const Frame = ({ name, position, args, texture }) => {
             position={position}
         >
             <planeGeometry args={args} />
-            <meshBasicMaterial attach="material" map={texture} toneMapped={false} />
+            <meshBasicMaterial attach="material" map={defaultImage} toneMapped={false} />
+            {isValidUrl && (
+                <meshBasicMaterial attach="material" map={waitedImage} toneMapped={false} />
+            )}
         </mesh>
     </>
 }
