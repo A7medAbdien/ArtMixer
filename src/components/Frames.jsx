@@ -7,7 +7,7 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 
-export const Frames = ({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
     const ref = useRef()
     const clicked = useRef()
     const [, params] = useRoute('/:id')
@@ -20,7 +20,7 @@ export const Frames = ({ images, q = new THREE.Quaternion(), p = new THREE.Vecto
             clicked.current.localToWorld(p.set(0, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? 0.6 : 0.5))
             clicked.current.getWorldQuaternion(q)
         } else {
-            p.set(0, -0.4, 1.3)
+            p.set(...basePOV)
             q.identity()
         }
     })
