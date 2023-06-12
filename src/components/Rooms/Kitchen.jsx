@@ -41,7 +41,7 @@ export default function Kitchen() {
                     <meshBasicMaterial map={bakedTexture} />
                 </mesh>
 
-                <Frames smallImageFocus={0.2} basePOV={[0, -0.44, 1.9]} images={images} />
+                <Frames bigImageFocus={0.4} smallImageFocus={0.2} basePOV={[0, -0.44, 1.9]} images={images} />
             </group>
         </Center>
     </>
