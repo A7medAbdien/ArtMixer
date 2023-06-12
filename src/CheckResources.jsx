@@ -7,7 +7,7 @@ const CheckResources = ({ id }) => {
     const URL = 'http://ahmedgabdien.pythonanywhere.com/status';
 
     const numbers = [];
-    for (let i = 0; i <= 250; i += 250) {
+    for (let i = 250; i <= 2500; i += 250 * 2) {
         numbers.push(i);
     }
 
@@ -30,8 +30,8 @@ const CheckResources = ({ id }) => {
 
             {/* This will be a separate component*/}
             {(respond.status && respond.status == "free") && numbers.map((i) => (
-                // console.log((((i / 250) * 15000) + 30000) / 60000)
-                <ImageComponent key={i} waitTime={((i / 250) * 15000) + 50000} imageUrl={`https://res.cloudinary.com/dcmthd8bn/image/upload/mix_${id}_${i}.jpg`} />
+                // console.log((((i / 250) * 15000) + 50000))
+                < ImageComponent key={i} waitTime={((i / 250) * 15000) + 50000} imageUrl={`https://res.cloudinary.com/dcmthd8bn/image/upload/mix_${id}_${i}.jpg`} />
 
             ))}
         </>

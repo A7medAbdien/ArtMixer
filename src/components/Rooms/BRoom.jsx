@@ -20,6 +20,15 @@ export default function BRoom() {
         { name: "imageC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
         { name: "imageD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 }
     ]
+    const images_main = [
+        // Big Images
+        { name: "ImageB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 95000 },
+        { name: "ImageE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 185000 },
+        // Small Images
+        { name: "imageA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 65000 },
+        { name: "imageC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 125000 },
+        { name: "imageD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 155000 }
+    ]
 
 
     return <>
