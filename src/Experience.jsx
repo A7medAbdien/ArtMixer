@@ -26,9 +26,9 @@ export default function Experience() {
             </mesh> */}
 
 
-            {/* <Kitchen /> */}
+            <Kitchen />
             {/* <GRoom /> */}
-            <BRoom />
+            {/* <BRoom /> */}
             {/* <WRoom /> */}
 
         </Canvas>
