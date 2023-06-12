@@ -16,9 +16,9 @@ export default function BRoom() {
         { name: "ImageB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], texture: ImageA },
         { name: "ImageE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], texture: ImageA },
         // Small Images
-        { name: "ImageA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], texture: ImageA },
-        { name: "ImageC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], texture: ImageA },
-        { name: "ImageD", position: [0.36, 1, 0.4], args: [0.58, 0.58], texture: ImageA }
+        { name: "imageA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], texture: ImageA },
+        { name: "imageC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], texture: ImageA },
+        { name: "imageD", position: [0.36, 1, 0.4], args: [0.58, 0.58], texture: ImageA }
     ]
 
 

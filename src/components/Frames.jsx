@@ -17,7 +17,7 @@ export const Frames = ({ images, q = new THREE.Quaternion(), p = new THREE.Vecto
         clicked.current = ref.current.getObjectByName(params?.id)
         if (clicked.current) {
             clicked.current.updateWorldMatrix(true, true)
-            clicked.current.localToWorld(p.set(0, 0, (params?.id == "ImageB" || params?.id == "ImageE") ? 0.6 : 0.5))
+            clicked.current.localToWorld(p.set(0, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? 0.6 : 0.5))
             clicked.current.getWorldQuaternion(q)
         } else {
             p.set(0, -0.4, 1.3)
