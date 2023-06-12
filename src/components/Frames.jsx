@@ -42,11 +42,8 @@ export const Frames = ({ bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [
     </>
 }
 
-export const KFrame = ({ imageUrl, name, position, args, url }) => {
+export const KFrame = ({ imageUrl, name, position, args }) => {
 
-    /**
-     * Default to Uploaded Image Part
-     */
     const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
 
 
