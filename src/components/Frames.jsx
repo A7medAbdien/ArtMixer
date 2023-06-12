@@ -35,7 +35,7 @@ export const Frames = ({ images, q = new THREE.Quaternion(), p = new THREE.Vecto
             onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/' + e.object.name))}
             onPointerMissed={() => setLocation('/')}>
 
-            {images.map((props) => <Frame {...props} />)}
+            {images.map((props, i) => <Frame key={i} {...props} />)}
         </group>
     </>
 }
@@ -43,29 +43,26 @@ export const Frames = ({ images, q = new THREE.Quaternion(), p = new THREE.Vecto
 const Frame = ({ name, position, args, url, waitingTime }) => {
     // Default to Waited Image Part
     const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
-    const defaultImage = useLoader(THREE.TextureLoader, defaultImageURL)
-
-    const waitedImage = useLoader(THREE.TextureLoader, url)
 
     const [isValidUrl, setIsValidUrl] = useState(false)
     function checkImageValidity() {
         const img = new Image();
         img.onload = () => {
-            setTimeout(() => {
-                setIsValidUrl(true);
-            }, 2000);
+            setIsValidUrl(true);
         };
         img.onerror = () => {
-            // setTimeout(checkImageValidity, 1000); // try again after 1 second
             setTimeout(() => {
                 setIsValidUrl(true);
             }, waitingTime);
         };
         img.src = url;
-
     }
+
     useEffect(() => {
-        checkImageValidity()
+        // checkImageValidity()
+        setTimeout(() => {
+            setIsValidUrl(true);
+        }, waitingTime);
     }, []);
 
     // Hovering Effect Part
@@ -79,17 +76,29 @@ const Frame = ({ name, position, args, url, waitingTime }) => {
 
     return <>
         <mesh
-            name={name}
             ref={image}
             onPointerOver={(e) => (e.stopPropagation(), hover(true))}
             onPointerOut={() => hover(false)}
             position={position}
         >
-            <planeGeometry args={args} />
-            <meshBasicMaterial attach="material" map={defaultImage} toneMapped={false} />
-            {isValidUrl && (
-                <meshBasicMaterial attach="material" map={waitedImage} toneMapped={false} />
-            )}
+            <mesh name={name}>
+                <planeGeometry args={args} />
+
+                {isValidUrl ? (
+                    <TexturedPlane url={url} />
+                ) : (
+                    <TexturedPlane url={defaultImageURL} />
+                )}
+            </mesh>
         </mesh>
+    </>
+}
+
+const TexturedPlane = ({ url }) => {
+    const image = useLoader(THREE.TextureLoader, url)
+
+    return <>
+
+        <meshBasicMaterial attach="material" map={image} toneMapped={false} />
     </>
 }
