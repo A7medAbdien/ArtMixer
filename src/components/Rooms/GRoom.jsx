@@ -86,7 +86,7 @@ const MassageBubble = ({ textPosition }) => {
                 <div className="talktext">
                     <p>
                         <ol>
-                            <li>Open <a href="https://www.example.com"> ArtMixer Notebook</a></li>
+                            <li>Open <a target="_blank" href="https://www.example.com"> ArtMixer Notebook</a></li>
                             <li>On top left corner, open "Runtime"</li>
                             <li>Choose "Run All"</li>
                         </ol>

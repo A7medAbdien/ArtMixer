@@ -13,6 +13,14 @@ canvas {
     touch-action: none;
 }
 
+a {
+    color: #729c65;
+}
+
+a:hover {
+    color: #556481;
+}
+
 /* CSS talk bubble */
 .talk-bubble {
     margin: 40px;
@@ -21,7 +29,7 @@ canvas {
     position: relative;
     width: 400px;
     height: auto;
-    background-color: lightyellow;
+    background-color: #c3c4c1;
 }
 
 .round {
@@ -41,7 +49,7 @@ canvas {
     top: 0px;
     bottom: auto;
     border: 25px solid;
-    border-color: lightyellow transparent transparent transparent;
+    border-color: #c3c4c1 transparent transparent transparent;
 }
 
 /* talk bubble contents */
