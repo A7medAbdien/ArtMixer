@@ -15,7 +15,7 @@ export default function Experience() {
         <Canvas
             flat dpr={[1, 1.5]} camera={{ fov: 75, position: [0, 1, 10] }}
         >
-            <Perf position="top-left" />
+            {/* <Perf position="top-left" /> */}
             <fog attach="fog" args={['#191920', 0, 15]} />
             <color args={['#201919']} attach="background" />
             {/* <OrbitControls makeDefault /> */}

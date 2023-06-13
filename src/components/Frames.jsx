@@ -7,7 +7,7 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 
-export const Frames = ({ Children, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ Children, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
     const ref = useRef()
     const clicked = useRef()
     const [, params] = useRoute('/:id')
@@ -35,20 +35,21 @@ export const Frames = ({ Children, bigImageFocusX = 0, bigImageFocus = 0.6, smal
         <group
             ref={ref}
             onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/' + e.object.name))}
-            onPointerMissed={() => setLocation('/')}>
+            onPointerMissed={() => (!pointerMissDeactivate && setLocation('/'))}>
 
             {images.map((props, i) => <Children key={i} {...props} />)}
         </group>
     </>
 }
 
-export const HoverableFrame = ({ children, position, shrinkX = 0.9, shrinkY = 0.9 }) => {
+export const HoverableFrame = ({ children, position, shrinkX = 0.9, shrinkY = 0.9, colorNotScale = false }) => {
     const meshRef = useRef()
     const [hovered, setHovered] = useState(false)
 
     useCursor(hovered)
     useFrame((state, dt) => {
-        easing.damp3(meshRef.current.scale, [1 * (hovered ? shrinkX : 1), 1 * (hovered ? shrinkY : 1), 1], 0.1, dt)
+        !colorNotScale && easing.damp3(meshRef.current.scale, [1 * (hovered ? shrinkX : 1), 1 * (hovered ? shrinkY : 1), 1], 0.1, dt)
+        colorNotScale && easing.dampC(meshRef.current.children[0].material.color, hovered ? '#4f75ca' : '#3f3e3c')
     })
 
     return (
