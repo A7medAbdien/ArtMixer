@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useCursor } from '@react-three/drei'
+import { useCursor, useVideoTexture } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { easing } from 'maath';
@@ -7,7 +7,7 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 
-export const Frames = ({ Children, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ Children, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
     const ref = useRef()
     const clicked = useRef()
     const [, params] = useRoute('/:id')
@@ -18,7 +18,7 @@ export const Frames = ({ Children, bigImageFocus = 0.6, smallImageFocus = 0.5, b
         clicked.current = ref.current.getObjectByName(params?.id)
         if (clicked.current) {
             clicked.current.updateWorldMatrix(true, true)
-            clicked.current.localToWorld(p.set(0, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? bigImageFocus : smallImageFocus))
+            clicked.current.localToWorld(p.set(bigImageFocusX, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? bigImageFocus : smallImageFocus))
             clicked.current.getWorldQuaternion(q)
         } else {
             p.set(...basePOV)
@@ -42,13 +42,13 @@ export const Frames = ({ Children, bigImageFocus = 0.6, smallImageFocus = 0.5, b
     </>
 }
 
-export const HoverableFrame = ({ children, position }) => {
+export const HoverableFrame = ({ children, position, shrinkX = 0.9, shrinkY = 0.9 }) => {
     const meshRef = useRef()
     const [hovered, setHovered] = useState(false)
 
     useCursor(hovered)
     useFrame((state, dt) => {
-        easing.damp3(meshRef.current.scale, [1 * (hovered ? 0.9 : 1), 1 * (hovered ? 0.9 : 1), 1], 0.1, dt)
+        easing.damp3(meshRef.current.scale, [1 * (hovered ? shrinkX : 1), 1 * (hovered ? shrinkY : 1), 1], 0.1, dt)
     })
 
     return (
@@ -65,9 +65,10 @@ export const HoverableFrame = ({ children, position }) => {
 
 export const ImageFrame = ({ url }) => {
     const image = useLoader(THREE.TextureLoader, url)
+    return <meshBasicMaterial attach="material" map={image} toneMapped={false} />
+}
 
-    return <>
-
-        <meshBasicMaterial attach="material" map={image} toneMapped={false} />
-    </>
+export const VideoFrame = ({ url }) => {
+    const texture = useVideoTexture(url)
+    return <meshBasicMaterial map={texture} toneMapped={false} />
 }
