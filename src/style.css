@@ -13,8 +13,47 @@ canvas {
     touch-action: none;
 }
 
-.htmlScreen iframe {
-    border: none;
-    /* border-radius: 20px; */
-    background: #000;
+/* CSS talk bubble */
+.talk-bubble {
+    margin: 40px;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    width: 400px;
+    height: auto;
+    background-color: lightyellow;
+}
+
+.round {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+
+/* Right triangle placed top right flush. */
+.tri-right.right-top:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: -20px;
+    top: 0px;
+    bottom: auto;
+    border: 25px solid;
+    border-color: lightyellow transparent transparent transparent;
+}
+
+/* talk bubble contents */
+.talktext {
+    font-size: 2em;
+    padding: 0.05em;
+    text-align: left;
+    line-height: 1.5em;
+}
+
+.talktext p {
+    /* remove webkit p margins */
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
 }
