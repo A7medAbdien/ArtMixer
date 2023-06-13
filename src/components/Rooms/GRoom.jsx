@@ -1,6 +1,8 @@
 import { Center, Html, Text, useGLTF, useTexture, useVideoTexture } from '@react-three/drei'
 import { useControls } from 'leva';
 import { Frames, HoverableFrame, VideoFrame } from '../Frames';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 export default function GRoom() {
@@ -38,8 +40,8 @@ export default function GRoom() {
     bakedTexture.flipY = false
     vaseTexture.flipY = false
 
-    return <>
 
+    return <>
         <group position={[0, 0, 0]}>
             <Center>
 
@@ -76,21 +78,32 @@ const Frame = ({ name, position, args, url }) => {
 
 const MassageBubble = ({ textPosition }) => {
 
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setShow(true);
+        }, 1000);
+        return () => clearTimeout(timeoutId);
+    }, []);
+
+
     return <>
         <Html
             transform
             scale={0.5}
             distanceFactor={1.17}
             position={textPosition}>
-            <div className="talk-bubble tri-right round right-top">
-                <div className="talktext">
-                    <p>
+
+            <div className={`zoom-in ${show ? 'show' : ''}`}>
+                <div className="talk-bubble tri-right round right-top">
+                    <div className="talktext">
                         <ol>
                             <li>Open <a target="_blank" href="https://www.example.com"> ArtMixer Notebook</a></li>
                             <li>On top left corner, open "Runtime"</li>
                             <li>Choose "Run All"</li>
                         </ol>
-                    </p>
+                    </div>
                 </div>
             </div>
         </Html>
