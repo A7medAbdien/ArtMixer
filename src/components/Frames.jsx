@@ -63,8 +63,7 @@ export const HoverableFrame = ({ children, position }) => {
     )
 }
 
-
-export const TexturedPlane = ({ url }) => {
+export const ImageFrame = ({ url }) => {
     const image = useLoader(THREE.TextureLoader, url)
 
     return <>

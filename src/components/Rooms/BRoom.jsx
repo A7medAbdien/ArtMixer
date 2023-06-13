@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Center, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
-import { Frames, HoverableFrame, TexturedPlane } from '../Frames';
+import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useEffect, useState } from 'react';
 
 export default function BRoom() {
@@ -77,9 +77,9 @@ const Frame = ({ name, position, args, url, waitingTime }) => {
                 <planeGeometry args={args} />
 
                 {isValidUrl ? (
-                    <TexturedPlane url={url} />
+                    <ImageFrame url={url} />
                 ) : (
-                    <TexturedPlane url={defaultImageURL} />
+                    <ImageFrame url={defaultImageURL} />
                 )}
             </mesh>
         </HoverableFrame>

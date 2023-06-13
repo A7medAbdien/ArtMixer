@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Center, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
-import { Frames, HoverableFrame, TexturedPlane } from '../Frames';
+import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -68,9 +68,9 @@ const Frame = ({ imageUrl, name, position, args }) => {
                 <planeGeometry args={args} />
 
                 {imageUrl ? (
-                    <TexturedPlane url={imageUrl} />
+                    <ImageFrame url={imageUrl} />
                 ) : (
-                    <TexturedPlane url={defaultImageURL} />
+                    <ImageFrame url={defaultImageURL} />
                 )}
             </mesh>
         </HoverableFrame>
