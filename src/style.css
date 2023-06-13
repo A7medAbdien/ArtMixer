@@ -19,14 +19,21 @@ canvas {
 
 /* Zoom in effect */
 
-.zoom-in {
+.zoom-in-out-fade-example {
     transform: scale(0);
-    transition: transform 0.4s ease-in-out;
+    opacity: 1;
+    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
     transform-origin: top right;
 }
 
-.zoom-in.show {
+.zoom-in-out-fade-example.show {
     transform: scale(1);
+    /* opacity: 1; */
+}
+
+.zoom-in-out-fade-example.hide {
+    transform: scale(0.5);
+    opacity: 0;
 }
 
 /* Link color */

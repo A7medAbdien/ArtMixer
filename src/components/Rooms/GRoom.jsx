@@ -3,6 +3,7 @@ import { useControls } from 'leva';
 import { Frames, HoverableFrame, VideoFrame } from '../Frames';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useRoute } from 'wouter';
 
 
 export default function GRoom() {
@@ -79,13 +80,16 @@ const Frame = ({ name, position, args, url }) => {
 const MassageBubble = ({ textPosition }) => {
 
     const [show, setShow] = useState(false);
+    const [, params] = useRoute('/:id')
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            setShow(true);
+            params && setShow(true);
         }, 1000);
+        !params && setShow(false)
+
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [params]);
 
 
     return <>
@@ -95,7 +99,7 @@ const MassageBubble = ({ textPosition }) => {
             distanceFactor={1.17}
             position={textPosition}>
 
-            <div className={`zoom-in ${show ? 'show' : ''}`}>
+            <div className={`zoom-in-out-fade-example ${show ? 'show' : 'hide'}`}>
                 <div className="talk-bubble tri-right round right-top">
                     <div className="talktext">
                         <ol>
@@ -106,6 +110,7 @@ const MassageBubble = ({ textPosition }) => {
                     </div>
                 </div>
             </div>
+            {/* <ZoomInOutFadeExample /> */}
         </Html>
     </>
 }
