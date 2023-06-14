@@ -5,35 +5,15 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useRoute } from 'wouter';
 
+const ColabURL = 'https://colab.research.google.com/drive/1OXlnwQFJnGY0eFIsFIUDvIn6BwewCDyS'
 
 export default function GRoom() {
 
-    const { position, scale } = useControls('GRoom',
-        {
-            position:
-            {
-                value: { x: -1.33, y: 1.645 },
-                // value: { x: 0, y: 0 },
-                step: 0.01,
-                joystick: 'invertY'
-            },
-            // {"position":{"x":0.205600048828125,"y":1.123200004577637}}
-            scale:
-            {
-
-                value: { x: 0.45, y: 1.5 },
-                // value: { x: -349.2, y: -246.0 },
-                step: 0.001,
-                joystick: 'invertY'
-            },
-            // {"scale":{"x":-349.20000000000016,"y":-246.0599983215332}}
-        })
-
+    const textPosition = [-1.325, 1.645, 0.4]
     const images = [
         { name: "ImageB", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
     ]
 
-    const textPosition = [position.x, position.y, 0.4]
     const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
     const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
     const bakedTexture = useTexture('./model/GRoom/GRoom2.jpg')
@@ -103,14 +83,13 @@ const MassageBubble = ({ textPosition }) => {
                 <div className="talk-bubble tri-right round right-top">
                     <div className="talktext">
                         <ol>
-                            <li>Open <a target="_blank" href="https://www.example.com"> ArtMixer Notebook</a></li>
+                            <li>Open <a target="_blank" href={ColabURL}> ArtMixer Notebook</a></li>
                             <li>On top left corner, open "Runtime"</li>
                             <li>Choose "Run All"</li>
                         </ol>
                     </div>
                 </div>
             </div>
-            {/* <ZoomInOutFadeExample /> */}
         </Html>
     </>
 }
