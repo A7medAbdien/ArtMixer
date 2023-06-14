@@ -35,10 +35,11 @@ export const Frames = ({ Children, pointerMissDeactivate = false, bigImageFocusX
         <group
             ref={ref}
             onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/' + e.object.name))}
-            onPointerMissed={() => (!pointerMissDeactivate && setLocation('/'))}>
+        // onPointerMissed={() => (!pointerMissDeactivate && setLocation('/'))}
+        >
 
             {images.map((props, i) => <Children key={i} {...props} />)}
-        </group>
+        </group >
     </>
 }
 

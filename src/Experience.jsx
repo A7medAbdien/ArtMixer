@@ -1,4 +1,4 @@
-import { Box, Environment, OrbitControls, Text, useVideoTexture } from '@react-three/drei'
+import { Box, Environment, OrbitControls, Text } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import { Leva } from 'leva'
@@ -11,62 +11,83 @@ import Kitchen from './components/Rooms/Kitchen'
 import GRoom from './components/Rooms/GRoom'
 import BRoom from './components/Rooms/BRoom'
 import WRoom from './components/Rooms/WRoom'
+import { useState } from 'react';
+import { useLocation } from 'wouter';
+import { useEffect } from 'react';
 
+
+// base theta shows the room on the right + rolling goes in the oboist direction of theta or i
 const roomList = [
     {
         id: 1,
         name: 'Kitchen',
-        component: <Kitchen />,
-    },
-    {
-        id: 2,
-        name: 'Green Room',
         component: <GRoom />,
     },
     {
+        id: 2,
+        name: 'GreenRoom',
+        component: <Kitchen />,
+    },
+    {
         id: 3,
-        name: 'Blue Room',
+        name: 'Thanks',
         component: <BRoom />,
     },
     {
         id: 4,
-        name: 'White',
+        name: 'WhiteRoom',
         component: <WRoom />,
     },
     {
         id: 5,
-        name: 'Thanks',
+        name: 'BlueRoom',
         component: <Box />,
     },
 ];
 
 export default function Experience() {
+
+    const [, setLocation] = useLocation()
+
     const count = 5
     const baseTheta = 360 / count
-    let boxesTheta = Array.from({ length: count }).map((_, i) => i * baseTheta)
-    let isRolling = false
+    const [boxesTheta, setBoxesTheta] = useState(Array.from({ length: count }).map((_, i) => i * baseTheta))
+    const [isRolling, setRolling] = useState(false)
+    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
 
     const refs = useRef(
         Array.from({ length: count }).map(() => createRef())
     )
 
     const rollAll = (direction) => {
-        // 1. hold rolling action until the first one is done
-        isRolling = true
 
+        // 1. hold rolling action until the first one is done
+        setRolling(true)
+
+        setActiveRoom(direction)
         // 2. rolling
         //if direction is true to right, if false to left
+        const temp = Array.from({ length: count })
         boxesTheta.map((theta, i) =>
-            boxesTheta[i] = direction ? (theta + 360 / 5) % 360 : (theta - 360 / 5) % 360
+            temp[i] = direction ? (theta + 360 / 5) % 360 : (theta - 360 / 5) % 360
         )
-        refs.current.map((ref, i) => roll(boxesTheta[i], ref))
+        setBoxesTheta(temp)
+        refs.current.map((ref, i) => roll(temp[i], ref))
 
         // 3. allow rolling
         setTimeout(() => {
-            isRolling = false
-        }, DURATION * 1000);
+            setRolling(false)
+        }, DURATION * 900);
     }
 
+    const setActiveRoom = (direction) => {
+        const temp = direction ? (activeRoomIndex + 1) % roomList.length : (roomList.length + (activeRoomIndex - 1)) % roomList.length
+        setActiveRoomIndex(temp)
+        setLocation(roomList[temp].name)
+    }
+    useEffect(() => {
+        setLocation(roomList[activeRoomIndex].name)
+    }, [])
 
     return <>
         {/* <Leva hidden /> */}
@@ -96,7 +117,7 @@ export default function Experience() {
 
 
             <Arrows
-                rightAction={(e) => !isRolling && rollAll(true)}
+                rightAction={(e) => (!isRolling && rollAll(true))}
                 leftAction={(e) => !isRolling && rollAll(false)}
             />
 
@@ -110,14 +131,14 @@ export default function Experience() {
                     position={[x, 0, y]}
                     rotation-y={x / 2}
                 >
-                    {/* {roomList[i].component} */}
-                    <mesh>
+                    {roomList[i].component}
+                    {/* <mesh>
                         <boxGeometry args={[2, 2.5, 1]} />
                         <meshBasicMaterial color={`rgb(${i * baseTheta + 100},0,0)`} />
                         <Text scale={5}>
                             {i}
                         </Text>
-                    </mesh>
+                    </mesh> */}
                 </group>
             })}
 
@@ -138,12 +159,7 @@ const getCoordinates = (angle, distance = 6) => {
 
 const roll = (theta, ref) => {
     const { x, y: z } = getCoordinates(theta)
-    ref.current.name = (-1 == Math.floor(x) && -6 == Math.floor(z)) ? "Active" : "Free"
 
-    if (-1 == Math.floor(x) && -6 == Math.floor(z)) {
-        ref.current.name = "Active"
-        console.log("ref.current.name, x, z")
-    }
     gsap.to(
         ref.current.rotation,
         {
