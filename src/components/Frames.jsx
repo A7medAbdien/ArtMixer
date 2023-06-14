@@ -21,7 +21,8 @@ export const Frames = ({ Children, pointerMissDeactivate = false, bigImageFocusX
             clicked.current.localToWorld(p.set(bigImageFocusX, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? bigImageFocus : smallImageFocus))
             clicked.current.getWorldQuaternion(q)
         } else {
-            p.set(...basePOV)
+            // p.set(...basePOV)
+            p.set(...[0, 1, 1.3])
             q.identity()
         }
     })

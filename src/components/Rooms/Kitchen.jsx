@@ -39,21 +39,21 @@ export default function Kitchen() {
     ]
 
     return <>
-        <Center>
-            <group scale={1.8}>
-                <mesh geometry={canisterNodes.KCanister.geometry}>
-                    <meshBasicMaterial map={canisterTexture} />
-                </mesh>
+        {/* <Center> */}
+        <group scale={1.15}>
+            <mesh geometry={canisterNodes.KCanister.geometry}>
+                <meshBasicMaterial map={canisterTexture} />
+            </mesh>
 
-                <mesh geometry={nodes.baked.geometry}>
-                    <meshBasicMaterial map={bakedTexture} />
-                </mesh>
+            <mesh geometry={nodes.baked.geometry}>
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
 
-                <Frames Children={Frame} bigImageFocus={0.4} basePOV={[0, -0.44, 1.9]} images={images} />
+            <Frames Children={Frame} bigImageFocus={0.4} basePOV={[0, -0.44, 1.9]} images={images} />
 
-                {buttonFrames.map((props, i) => <ButtonFrame key={i} {...props} />)}
-            </group>
-        </Center>
+            {buttonFrames.map((props, i) => <ButtonFrame key={i} {...props} />)}
+        </group>
+        {/* </Center> */}
     </>
 }
 

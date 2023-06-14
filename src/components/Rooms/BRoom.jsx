@@ -34,14 +34,14 @@ export default function BRoom() {
 
     return <>
         <group position={[0, 0, 0]}>
-            <Center>
-                <mesh geometry={nodes.baked.geometry}>
-                    <meshBasicMaterial map={bakedTexture} />
-                </mesh>
+            {/* <Center> */}
+            <mesh geometry={nodes.baked.geometry}>
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
 
-                <Frames Children={Frame} images={images} />
-            </Center>
-        </group>
+            <Frames Children={Frame} images={images} />
+            {/* </Center> */}
+        </group >
     </>
 }
 

@@ -34,34 +34,34 @@ export default function WRoom() {
         <color args={['#201919']} attach="background" />
 
 
-        <Center>
+        {/* <Center> */}
 
-            <mesh
-                geometry={nodes.baked.geometry}>
-                <meshBasicMaterial map={bakedTexture} />
-            </mesh>
-            <mesh
-                geometry={nodes.image.geometry}>
+        <mesh
+            geometry={nodes.baked.geometry}>
+            <meshBasicMaterial map={bakedTexture} />
+        </mesh>
+        <mesh
+            geometry={nodes.image.geometry}>
 
-                <Html
-                    transform
-                    wrapperClass='htmlScreen'
-                    distanceFactor={1.17}
-                    position={[position.x, position.y, 0.5]}
-                >
-                    <iframe
-                        style={{
-                            width: 1048 + scale.x,
-                            height: 670 + scale.y,
-                        }}
-                        src='https://fluid-threejs.netlify.app/' />
-                </Html>
-                <meshBasicMaterial transparent opacity={0} />
-            </mesh>
+            <Html
+                transform
+                wrapperClass='htmlScreen'
+                distanceFactor={1.17}
+                position={[position.x, position.y, 0.5]}
+            >
+                <iframe
+                    style={{
+                        width: 1048 + scale.x,
+                        height: 670 + scale.y,
+                    }}
+                    src='https://fluid-threejs.netlify.app/' />
+            </Html>
+            <meshBasicMaterial transparent opacity={0} />
+        </mesh>
 
 
 
-            {/* <Sparkles
+        {/* <Sparkles
                 size={5}
                 scale={[4, 2, 4]}
                 position-y={1}
@@ -69,6 +69,6 @@ export default function WRoom() {
                 count={40}
             /> */}
 
-        </Center >
+        {/* </Center> */}
     </>
 }

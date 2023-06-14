@@ -6,13 +6,14 @@ import { useState } from 'react';
 import { useRoute } from 'wouter';
 
 const ColabURL = 'https://colab.research.google.com/drive/1OXlnwQFJnGY0eFIsFIUDvIn6BwewCDyS'
+const images = [
+    { name: "onlyme", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
+]
 
 export default function GRoom() {
 
     const textPosition = [-1.325, 1.645, 0.4]
-    const images = [
-        { name: "ImageB", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
-    ]
+
 
     const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
     const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
@@ -24,22 +25,22 @@ export default function GRoom() {
 
     return <>
         <group position={[0, 0, 0]}>
-            <Center>
+            {/* <Center> */}
 
-                <mesh geometry={vaseNodes.Modern_White_Vase001.geometry}>
-                    <meshBasicMaterial map={vaseTexture} />
-                </mesh>
+            <mesh geometry={vaseNodes.Modern_White_Vase001.geometry}>
+                <meshBasicMaterial map={vaseTexture} />
+            </mesh>
 
-                <mesh geometry={nodes.baked.geometry}>
-                    <meshBasicMaterial map={bakedTexture} />
-                </mesh>
+            <mesh geometry={nodes.baked.geometry}>
+                <meshBasicMaterial map={bakedTexture} />
+            </mesh>
 
-                <Frames basePOV={[0, -0.33, 1.23]} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
+            <Frames basePOV={[0, -0.33, 1.23]} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
 
-                <MassageBubble textPosition={textPosition} />
+            <MassageBubble textPosition={textPosition} />
 
-            </Center>
-        </group>
+            {/* </Center> */}
+        </group >
     </>
 }
 
@@ -63,8 +64,9 @@ const MassageBubble = ({ textPosition }) => {
     const [, params] = useRoute('/:id')
 
     useEffect(() => {
+        console.log(images[0].name);
         const timeoutId = setTimeout(() => {
-            params && setShow(true);
+            (params.id == images[0].name) && setShow(true);
         }, 1000);
         !params && setShow(false)
 

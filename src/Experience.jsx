@@ -96,7 +96,7 @@ export default function Experience() {
             flat dpr={[1, 1.5]}
             camera={{
                 fov: 75,
-                position: [0, 0, 2]
+                position: [0, 0, 4]
             }}
         >
             <Perf position="top-left" />
