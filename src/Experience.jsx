@@ -1,10 +1,10 @@
-import { Environment, OrbitControls, useVideoTexture } from '@react-three/drei'
+import { Box, Environment, OrbitControls, Text, useVideoTexture } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import { Leva } from 'leva'
 import gsap from 'gsap';
 import { createRef, useRef } from 'react';
-import { Box } from './Boxes'
+// import { Box } from './Boxes'
 import { Arrows } from './Arrows';
 
 import Kitchen from './components/Rooms/Kitchen'
@@ -17,25 +17,26 @@ const roomList = [
         id: 1,
         name: 'Kitchen',
         component: <Kitchen />,
-        ref: null
     },
     {
         id: 2,
         name: 'Green Room',
         component: <GRoom />,
-        ref: null
     },
     {
         id: 3,
         name: 'Blue Room',
         component: <BRoom />,
-        ref: null
     },
     {
         id: 4,
         name: 'White',
         component: <WRoom />,
-        ref: null
+    },
+    {
+        id: 5,
+        name: 'Thanks',
+        component: <Box />,
     },
 ];
 
@@ -77,10 +78,10 @@ export default function Experience() {
                 position: [0, 0, 2]
             }}
         >
-            {/* <Perf position="top-left" /> */}
+            <Perf position="top-left" />
             <fog attach="fog" args={['#191920', 0, 15]} />
             <color args={['#201919']} attach="background" />
-            <OrbitControls makeDefault />
+            {/* <OrbitControls makeDefault /> */}
             <axesHelper args={[2, 2, 2]} />
             {/* <mesh scale={1.5}>
                 <boxGeometry />
@@ -105,12 +106,17 @@ export default function Experience() {
                 return <group
                     key={i}
                     ref={ref}
+                    // name={i}
                     position={[x, 0, y]}
                     rotation-y={x / 2}
                 >
+                    {/* {roomList[i].component} */}
                     <mesh>
                         <boxGeometry args={[2, 2.5, 1]} />
                         <meshBasicMaterial color={`rgb(${i * baseTheta + 100},0,0)`} />
+                        <Text scale={5}>
+                            {i}
+                        </Text>
                     </mesh>
                 </group>
             })}
@@ -132,6 +138,12 @@ const getCoordinates = (angle, distance = 6) => {
 
 const roll = (theta, ref) => {
     const { x, y: z } = getCoordinates(theta)
+    ref.current.name = (-1 == Math.floor(x) && -6 == Math.floor(z)) ? "Active" : "Free"
+
+    if (-1 == Math.floor(x) && -6 == Math.floor(z)) {
+        ref.current.name = "Active"
+        console.log("ref.current.name, x, z")
+    }
     gsap.to(
         ref.current.rotation,
         {
