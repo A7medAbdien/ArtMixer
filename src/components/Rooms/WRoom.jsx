@@ -9,24 +9,6 @@ import { useEffect } from 'react';
 export default function WRoom() {
 
 
-    const { position, scale } = useControls('TF',
-        {
-            position:
-            {
-                value: { x: -0.06879992675781248, y: 1.1583999862670897 },
-                step: 0.001,
-                joystick: 'invertY'
-            },
-            scale:
-            {
-                value: { x: 53.4, y: -52.5 },
-                step: 0.1,
-                joystick: 'invertY'
-            },
-
-        })
-
-
     const url = 'https://fluid-threejs.netlify.app/'
     const image = { name: "WhiteRoom", position: [-0.06879992675781248, 1.1583999862670897, 0.4], args: [53.4, -52.5], url: url, waitingTime: 95000 }
 
@@ -35,9 +17,9 @@ export default function WRoom() {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            (params.id == image.name) && setShow(true);
+            params && (params.id == image.name) && setShow(true);
         }, 1000);
-        !(params.id == image.name) && setShow(false)
+        !params || !(params.id == image.name) && setShow(false)
 
         return () => clearTimeout(timeoutId);
     }, [params]);
@@ -59,7 +41,7 @@ export default function WRoom() {
             geometry={nodes.baked.geometry}>
             <meshBasicMaterial map={bakedTexture} />
         </mesh>
-        <mesh
+        {show && <mesh
             geometry={nodes.image.geometry}>
 
             <Html
@@ -79,7 +61,7 @@ export default function WRoom() {
                 </div>
             </Html>
             <meshBasicMaterial transparent opacity={0} />
-        </mesh>
+        </mesh>}
 
         {/* </Center> */}
     </>

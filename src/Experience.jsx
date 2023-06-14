@@ -99,11 +99,11 @@ export default function Experience() {
                 position: [0, 0, 4]
             }}
         >
-            <Perf position="top-left" />
+            {/* <Perf position="top-left" /> */}
             <fog attach="fog" args={['#191920', 0, 15]} />
             <color args={['#201919']} attach="background" />
             {/* <OrbitControls makeDefault /> */}
-            <axesHelper args={[2, 2, 2]} />
+            {/* <axesHelper args={[2, 2, 2]} /> */}
             {/* <mesh scale={1.5}>
                 <boxGeometry />
                 <meshNormalMaterial />
@@ -117,7 +117,7 @@ export default function Experience() {
 
 
             <Arrows
-                rightAction={(e) => (!isRolling && rollAll(true))}
+                rightAction={(e) => !isRolling && rollAll(true)}
                 leftAction={(e) => !isRolling && rollAll(false)}
             />
 

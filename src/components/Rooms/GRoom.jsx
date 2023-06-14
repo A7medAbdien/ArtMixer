@@ -66,7 +66,7 @@ const MassageBubble = ({ textPosition }) => {
     useEffect(() => {
         console.log(images[0].name);
         const timeoutId = setTimeout(() => {
-            (params.id == images[0].name) && setShow(true);
+            params && (params.id == images[0].name) && setShow(true);
         }, 1000);
         !params && setShow(false)
 
