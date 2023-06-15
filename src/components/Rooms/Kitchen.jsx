@@ -8,6 +8,19 @@ import { useEffect } from 'react';
 
 
 const RoomName = "Kitchen"
+const images = [
+    // Big Images
+    { name: RoomName + "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46] },
+    { name: RoomName + "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46] }
+]
+const buttonFrames = [
+    // Small Images
+    { name: RoomName + "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21] },
+    { name: RoomName + "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21] }
+]
+const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
+const bigImageFocus = 0.5
+const basePOV = [0, -0.44, -4]
 
 export default function Kitchen() {
 
@@ -28,20 +41,13 @@ export default function Kitchen() {
     const [styleImageUrl, setStyleImageUrl] = useState('');
 
 
-    const images = [
-        // Big Images
-        { name: RoomName + "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46], imageUrl: contentImageUrl },
-        { name: RoomName + "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46], imageUrl: styleImageUrl },
-    ]
+    images[0]['imageUrl'] = contentImageUrl
+    images[1]['imageUrl'] = styleImageUrl
+    buttonFrames[0]['setImageUrl'] = setContentImageUrl
+    buttonFrames[1]['setImageUrl'] = setStyleImageUrl
 
-    const buttonFrames = [
-        // Small Images
-        { name: RoomName + "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], setImageUrl: setContentImageUrl },
-        { name: RoomName + "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], setImageUrl: setStyleImageUrl }
-    ]
 
     return <>
-        {/* <Center> */}
         <group scale={1.15}>
             <mesh geometry={canisterNodes.KCanister.geometry}>
                 <meshBasicMaterial map={canisterTexture} />
@@ -51,18 +57,15 @@ export default function Kitchen() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames name={RoomName} Children={Frame} bigImageFocus={0.4} basePOV={[0, -0.44, 1.9]} images={images} />
+            <Frames name={RoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
 
             {buttonFrames.map((props, i) => <ButtonFrame key={i} {...props} />)}
         </group>
-        {/* </Center> */}
     </>
 }
 
 
 const Frame = ({ imageUrl, name, position, args }) => {
-
-    const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
 
     return <>
         <HoverableFrame position={position}>

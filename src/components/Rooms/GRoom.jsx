@@ -6,14 +6,13 @@ import { useState } from 'react';
 import { useRoute } from 'wouter';
 
 const ColabURL = 'https://colab.research.google.com/drive/1OXlnwQFJnGY0eFIsFIUDvIn6BwewCDyS'
+const RoomName = "GreenRoom"
 const images = [
-    { name: "GreenRoomA", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
+    { name: RoomName + "A", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
 ]
+const textPosition = [-1.325, 1.645, 0.4]
 
 export default function GRoom() {
-
-    const textPosition = [-1.325, 1.645, 0.4]
-
 
     const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
     const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
@@ -25,7 +24,6 @@ export default function GRoom() {
 
     return <>
         <group position={[0, 0, 0]}>
-            {/* <Center> */}
 
             <mesh geometry={vaseNodes.Modern_White_Vase001.geometry}>
                 <meshBasicMaterial map={vaseTexture} />
@@ -35,11 +33,10 @@ export default function GRoom() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames name={"GreenRoom"} basePOV={[0, -0.33, 1.23]} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
+            <Frames name={RoomName} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
 
             <MassageBubble textPosition={textPosition} />
 
-            {/* </Center> */}
         </group >
     </>
 }
@@ -65,9 +62,9 @@ const MassageBubble = ({ textPosition }) => {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            params && (params.id == images[0].name) && setShow(true);
+            (params?.id == images[0].name) && setShow(true);
         }, 1000);
-        !params && setShow(false)
+        !(params?.id == images[0].name) && setShow(false)
 
         return () => clearTimeout(timeoutId);
     }, [params]);

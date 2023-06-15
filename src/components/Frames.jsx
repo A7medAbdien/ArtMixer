@@ -6,26 +6,25 @@ import { easing } from 'maath';
 import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
-// DOOR = "BlueRoom"
-export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = -7, smallImageFocus = -10, basePOV = [0, -0.4, 1.3], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+const initRoom = "Kitchen"
+export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.44, -4], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+
     const ref = useRef()
     const clicked = useRef()
     const [, params] = useRoute('/:id')
     const [, setLocation] = useLocation()
     const isActive = (params.id).includes(name)
-    const [activeRoom, setActiveRoom] = useState(null)
+    const [activeRoom, setActiveRoom] = useState(initRoom)
 
     useEffect(() => {
         clicked.current = ref.current.getObjectByName(params?.id)
         if (clicked.current) {
             isActive && setActiveRoom(name)
             clicked.current.updateWorldMatrix(true, true)
-            clicked.current.localToWorld(p.set(bigImageFocusX, 0, 1))
+            clicked.current.localToWorld(p.set(bigImageFocusX, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? bigImageFocus : smallImageFocus))
             clicked.current.getWorldQuaternion(q)
         } else {
-            // p.set(...basePOV)
-            p.set(...[0, 0, -4])
-            // p.set(...[0, 0, 2])
+            p.set(...basePOV)
             q.identity()
         }
     })
@@ -41,7 +40,7 @@ export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImage
         <group
             ref={ref}
             onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? `/${activeRoom}` : '/' + e.object.name))}
-        // onPointerMissed={() => (!pointerMissDeactivate && setLocation('/'))}
+            onPointerMissed={() => (isActive && !pointerMissDeactivate && setLocation(`/${activeRoom}`))}
         >
 
             {images.map((props, i) => <Children key={i} {...props} />)}

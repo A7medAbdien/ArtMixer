@@ -26,8 +26,6 @@ export default function WRoom() {
 
 
     const { nodes } = useGLTF('./model//WRoom/WRoom.glb')
-    console.log(nodes);
-
     const bakedTexture = useTexture('./model/WRoom/WRoom.jpg')
     bakedTexture.flipY = false
 

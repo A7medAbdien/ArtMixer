@@ -153,7 +153,7 @@ export default function Experience() {
 const DURATION = 2.5
 const getCoordinates = (angle, distance = 6) => {
     angle *= Math.PI / 180
-    let x = -distance * Math.cos(angle + 0.01) + 1.75,
+    let x = -distance * Math.cos(angle + 0.02) + 1.75,
         y = -distance * Math.sin(angle)
 
     return { x, y, distance }
