@@ -1,4 +1,4 @@
-import { Box, Environment, OrbitControls, Text } from '@react-three/drei'
+import { Box, Center, Environment, OrbitControls, Text } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Perf } from 'r3f-perf'
 import { Leva } from 'leva'
@@ -53,7 +53,7 @@ export default function Experience() {
     const baseTheta = 360 / count
     const [boxesTheta, setBoxesTheta] = useState(Array.from({ length: count }).map((_, i) => i * baseTheta))
     const [isRolling, setRolling] = useState(false)
-    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
+    const [activeRoomIndex, setActiveRoomIndex] = useState(4)
 
     const refs = useRef(
         Array.from({ length: count }).map(() => createRef())
@@ -111,8 +111,16 @@ export default function Experience() {
 
 
             {/* <Kitchen /> */}
-            {/* <GRoom /> */}
-            {/* <BRoom /> */}
+            <group position={[3, 0, -6]}>
+                <Center>
+                    <BRoom />
+                </Center>
+            </group>
+            <group position={[-3, 0, -6]}>
+                <Center>
+                    <GRoom />
+                </Center>
+            </group>
             {/* <WRoom /> */}
 
 
@@ -120,9 +128,9 @@ export default function Experience() {
                 rightAction={(e) => !isRolling && rollAll(true)}
                 leftAction={(e) => !isRolling && rollAll(false)}
             />
-
-            {refs.current.map((ref, i) => {
+            {/* {refs.current.map((ref, i) => {
                 let { x, y } = getCoordinates(i * baseTheta)
+
 
                 return <group
                     key={i}
@@ -131,18 +139,12 @@ export default function Experience() {
                     position={[x, 0, y]}
                     rotation-y={x / 2}
                 >
-                    {roomList[i].component}
-                    {/* <mesh>
-                        <boxGeometry args={[2, 2.5, 1]} />
-                        <meshBasicMaterial color={`rgb(${i * baseTheta + 100},0,0)`} />
-                        <Text scale={5}>
-                            {i}
-                        </Text>
-                    </mesh> */}
+                    < Center >
+                        {roomList[i].component}
+                    </Center>
                 </group>
-            })}
-
-        </Canvas>
+            })} */}
+        </Canvas >
     </>
 }
 
@@ -151,7 +153,7 @@ export default function Experience() {
 const DURATION = 2.5
 const getCoordinates = (angle, distance = 6) => {
     angle *= Math.PI / 180
-    let x = -distance * Math.cos(angle) + 1.75,
+    let x = -distance * Math.cos(angle + 0.01) + 1.75,
         y = -distance * Math.sin(angle)
 
     return { x, y, distance }

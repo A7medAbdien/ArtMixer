@@ -14,21 +14,21 @@ export default function BRoom() {
 
     const images = [
         // Big Images
-        { name: "ImageB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 1500 },
-        { name: "ImageE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 2000 },
+        { name: "BlueRoomB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 1500 },
+        { name: "BlueRoomE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 2000 },
         // Small Images
-        { name: "imageA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
-        { name: "imageC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
-        { name: "imageD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 }
+        { name: "BlueRoomA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
+        { name: "BlueRoomC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
+        { name: "BlueRoomD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 }
     ]
     const images_main = [
         // Big Images
-        { name: "ImageB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 95000 },
-        { name: "ImageE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 185000 },
+        { name: "BlueRoomB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 95000 },
+        { name: "BlueRoomE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 185000 },
         // Small Images
-        { name: "imageA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 65000 },
-        { name: "imageC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 125000 },
-        { name: "imageD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 155000 }
+        { name: "BlueRoomA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 65000 },
+        { name: "BlueRoomC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 125000 },
+        { name: "BlueRoomD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 155000 }
     ]
 
 
@@ -39,7 +39,7 @@ export default function BRoom() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames Children={Frame} images={images} />
+            <Frames name={"BlueRoom"} Children={Frame} images={images} />
             {/* </Center> */}
         </group >
     </>

@@ -35,7 +35,7 @@ export default function GRoom() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames basePOV={[0, -0.33, 1.23]} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
+            <Frames name={"GreenRoom"} basePOV={[0, -0.33, 1.23]} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
 
             <MassageBubble textPosition={textPosition} />
 
@@ -64,7 +64,6 @@ const MassageBubble = ({ textPosition }) => {
     const [, params] = useRoute('/:id')
 
     useEffect(() => {
-        console.log(images[0].name);
         const timeoutId = setTimeout(() => {
             params && (params.id == images[0].name) && setShow(true);
         }, 1000);
