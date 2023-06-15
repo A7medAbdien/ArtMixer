@@ -5,7 +5,7 @@ import { Leva } from 'leva'
 import gsap from 'gsap';
 import { createRef, useRef } from 'react';
 // import { Box } from './Boxes'
-import { Arrows } from './Arrows';
+import { Arrows } from './components/Arrows';
 
 import Kitchen from './components/Rooms/Kitchen'
 import GRoom from './components/Rooms/GRoom'
