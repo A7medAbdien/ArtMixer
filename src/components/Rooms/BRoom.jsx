@@ -5,7 +5,7 @@ import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useEffect, useState } from 'react';
 
 export default function BRoom() {
-
+    const RoomName = "BlueRoom"
     const { nodes } = useGLTF('./model/BRoom/BRoom.glb')
     const bakedTexture = useTexture('./model/BRoom/BRoom.jpg')
     const url = 'https://images.pexels.com/photos/3934093/pexels-photo-3934093.jpeg'
@@ -14,21 +14,21 @@ export default function BRoom() {
 
     const images = [
         // Big Images
-        { name: "BlueRoomB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 1500 },
-        { name: "BlueRoomE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 2000 },
+        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 1500 },
+        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 2000 },
         // Small Images
-        { name: "BlueRoomA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
-        { name: "BlueRoomC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
-        { name: "BlueRoomD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 }
+        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
+        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 },
+        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 3000 }
     ]
     const images_main = [
         // Big Images
-        { name: "BlueRoomB", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 95000 },
-        { name: "BlueRoomE", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 185000 },
+        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 95000 },
+        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: url, waitingTime: 185000 },
         // Small Images
-        { name: "BlueRoomA", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 65000 },
-        { name: "BlueRoomC", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 125000 },
-        { name: "BlueRoomD", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 155000 }
+        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: url, waitingTime: 65000 },
+        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: url, waitingTime: 125000 },
+        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: url, waitingTime: 155000 }
     ]
 
 
@@ -39,7 +39,7 @@ export default function BRoom() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames name={"BlueRoom"} Children={Frame} images={images} />
+            <Frames name={RoomName} Children={Frame} images={images} />
             {/* </Center> */}
         </group >
     </>

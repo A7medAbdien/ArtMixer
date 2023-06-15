@@ -12,18 +12,13 @@ export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImage
     const clicked = useRef()
     const [, params] = useRoute('/:id')
     const [, setLocation] = useLocation()
-    // const isActive = params.id == name
-    // const isActive = (params.id).includes(name)
-    console.log("ID", params.id);
-    const isActive = name == "BlueRoom"
-    console.log(isActive);
+    const isActive = (params.id).includes(name)
     const [activeRoom, setActiveRoom] = useState(null)
 
     useEffect(() => {
         clicked.current = ref.current.getObjectByName(params?.id)
         if (clicked.current) {
             isActive && setActiveRoom(name)
-            console.log(activeRoom);
             clicked.current.updateWorldMatrix(true, true)
             clicked.current.localToWorld(p.set(bigImageFocusX, 0, 1))
             clicked.current.getWorldQuaternion(q)
@@ -36,8 +31,7 @@ export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImage
     })
 
     useFrame((state, dt) => {
-        if (isActive && activeRoom == "BlueRoom") {
-            // console.log("hi");
+        if (isActive && (params.id).includes(activeRoom)) {
             easing.damp3(state.camera.position, p, 0.4, dt)
             easing.dampQ(state.camera.quaternion, q, 0.4, dt)
         }

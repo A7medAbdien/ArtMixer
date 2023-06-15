@@ -7,7 +7,7 @@ import { useRoute } from 'wouter';
 
 const ColabURL = 'https://colab.research.google.com/drive/1OXlnwQFJnGY0eFIsFIUDvIn6BwewCDyS'
 const images = [
-    { name: "onlyme", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
+    { name: "GreenRoomA", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
 ]
 
 export default function GRoom() {

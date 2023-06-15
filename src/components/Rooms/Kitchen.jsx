@@ -7,6 +7,8 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 
 
+const RoomName = "Kitchen"
+
 export default function Kitchen() {
 
     /**
@@ -28,14 +30,14 @@ export default function Kitchen() {
 
     const images = [
         // Big Images
-        { name: "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46], imageUrl: contentImageUrl },
-        { name: "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46], imageUrl: styleImageUrl },
+        { name: RoomName + "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46], imageUrl: contentImageUrl },
+        { name: RoomName + "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46], imageUrl: styleImageUrl },
     ]
 
     const buttonFrames = [
         // Small Images
-        { name: "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], setImageUrl: setContentImageUrl },
-        { name: "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], setImageUrl: setStyleImageUrl }
+        { name: RoomName + "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], setImageUrl: setContentImageUrl },
+        { name: RoomName + "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], setImageUrl: setStyleImageUrl }
     ]
 
     return <>
@@ -49,7 +51,7 @@ export default function Kitchen() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames Children={Frame} bigImageFocus={0.4} basePOV={[0, -0.44, 1.9]} images={images} />
+            <Frames name={RoomName} Children={Frame} bigImageFocus={0.4} basePOV={[0, -0.44, 1.9]} images={images} />
 
             {buttonFrames.map((props, i) => <ButtonFrame key={i} {...props} />)}
         </group>

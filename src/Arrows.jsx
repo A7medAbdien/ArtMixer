@@ -7,9 +7,9 @@ export const Arrows = ({ rightAction, leftAction }) => {
     const x = width - Math.max(2, width * 0.8)
     const y = -height + height
     // const rightArrowPosition = [x, y, 0]
-    const rightArrowPosition = [0.1666699993484134, 1, 0]
+    const rightArrowPosition = [1.1666699993484134, 0, -5]
     // const leftArrowPosition = [-x, y, 0]
-    const leftArrowPosition = [-0.1666699993484134, 1, 0]
+    const leftArrowPosition = [-1.1666699993484134, 0, -5]
     return <>
         <group>
             <Text

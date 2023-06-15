@@ -53,7 +53,7 @@ export default function Experience() {
     const baseTheta = 360 / count
     const [boxesTheta, setBoxesTheta] = useState(Array.from({ length: count }).map((_, i) => i * baseTheta))
     const [isRolling, setRolling] = useState(false)
-    const [activeRoomIndex, setActiveRoomIndex] = useState(4)
+    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
 
     const refs = useRef(
         Array.from({ length: count }).map(() => createRef())
@@ -111,7 +111,7 @@ export default function Experience() {
 
 
             {/* <Kitchen /> */}
-            <group position={[3, 0, -6]}>
+            {/* <group position={[3, 0, -6]}>
                 <Center>
                     <BRoom />
                 </Center>
@@ -120,7 +120,7 @@ export default function Experience() {
                 <Center>
                     <GRoom />
                 </Center>
-            </group>
+            </group> */}
             {/* <WRoom /> */}
 
 
@@ -128,7 +128,7 @@ export default function Experience() {
                 rightAction={(e) => !isRolling && rollAll(true)}
                 leftAction={(e) => !isRolling && rollAll(false)}
             />
-            {/* {refs.current.map((ref, i) => {
+            {refs.current.map((ref, i) => {
                 let { x, y } = getCoordinates(i * baseTheta)
 
 
@@ -143,7 +143,7 @@ export default function Experience() {
                         {roomList[i].component}
                     </Center>
                 </group>
-            })} */}
+            })}
         </Canvas >
     </>
 }
