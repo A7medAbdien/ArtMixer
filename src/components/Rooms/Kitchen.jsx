@@ -5,20 +5,20 @@ import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { baseURL } from '../../_';
 
 
 const RoomName = "Kitchen"
 const images = [
     // Big Images
-    { name: RoomName + "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46] },
-    { name: RoomName + "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46] }
+    { name: RoomName + "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46], defaultImageURL: baseURL + '/content.jpg' },
+    { name: RoomName + "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46], defaultImageURL: baseURL + '/style.jpg' }
 ]
 const buttonFrames = [
     // Small Images
-    { name: RoomName + "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21] },
-    { name: RoomName + "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21] }
+    { name: RoomName + "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
+    { name: RoomName + "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/style.jpg' }
 ]
-const defaultImageURL = 'https://images.pexels.com/photos/17131288/pexels-photo-17131288/free-photo-of-antelope-canyon-paths.jpeg'
 const bigImageFocus = 0.5
 const basePOV = [0, -0.44, -4]
 
@@ -65,7 +65,7 @@ export default function Kitchen() {
 }
 
 
-const Frame = ({ imageUrl, name, position, args }) => {
+const Frame = ({ imageUrl, name, position, args, defaultImageURL }) => {
 
     return <>
         <HoverableFrame position={position}>
