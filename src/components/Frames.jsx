@@ -7,7 +7,7 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 const initRoom = "Kitchen"
-export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.44, -4], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ Children, name, startTime, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.44, -4], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
 
     const ref = useRef()
     const clicked = useRef()
@@ -43,7 +43,7 @@ export const Frames = ({ Children, name, pointerMissDeactivate = false, bigImage
             onPointerMissed={() => (isActive && !pointerMissDeactivate && setLocation(`/${activeRoom}`))}
         >
 
-            {images.map((props, i) => <Children key={i} {...props} />)}
+            {images.map((props, i) => <Children key={i} startTime={startTime} {...props} />)}
         </group >
     </>
 }
