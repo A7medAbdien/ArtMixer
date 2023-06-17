@@ -90,9 +90,9 @@ export const Rooms = ({ userId }) => {
     }
 
     // Default Room
-    useEffect(() => {
-        setLocation(roomList[activeRoomIndex].name)
-    }, [])
+    // useEffect(() => {
+    // setLocation(roomList[activeRoomIndex].name)
+    // }, [])
 
 
     return <>

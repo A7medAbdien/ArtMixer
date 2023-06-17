@@ -13,7 +13,7 @@ export const Frames = ({ Children, name, startTime, pointerMissDeactivate = fals
     const clicked = useRef()
     const [, params] = useRoute('/:id')
     const [, setLocation] = useLocation()
-    const isActive = (params.id).includes(name)
+    const isActive = params?.id && (params.id).includes(name)
     const [activeRoom, setActiveRoom] = useState(initRoom)
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export const Frames = ({ Children, name, startTime, pointerMissDeactivate = fals
     })
 
     useFrame((state, dt) => {
-        if (isActive && (params.id).includes(activeRoom)) {
+        if ((isActive && (params.id).includes(activeRoom)) || !params?.id) {
             easing.damp3(state.camera.position, p, 0.4, dt)
             easing.dampQ(state.camera.quaternion, q, 0.4, dt)
         }
