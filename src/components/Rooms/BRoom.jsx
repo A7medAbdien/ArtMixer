@@ -72,7 +72,7 @@ const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startT
         img.src = url;
     }
 
-    const isImagesUploaded = true
+    // const isImagesUploaded = true
     // const isNotebookOpened = true
     const isNotebookExecuted = true
     useEffect(() => {

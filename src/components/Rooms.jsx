@@ -70,14 +70,13 @@ export const Rooms = ({ userId }) => {
     const [isStyleImageUploaded, setIsStyleImageUploaded] = useState(false)
     const [isNotebookOpened, setIsNotebookOpened] = useState(false)
 
-
     // base theta shows the room on the right + rolling goes in the oboist direction of theta or i
     const roomList = [
         {
             id: 1,
             name: 'Kitchen',
             component: <GRoom />,
-            props: { isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+            props: { setIsNotebookOpened: setIsNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
         },
         {
             id: 2,
@@ -125,7 +124,6 @@ export const Rooms = ({ userId }) => {
                 rotation-y={x / 2}
             >
                 < Center >
-                    {(i == 0) && < Box onClick={() => setIsNotebookOpened(true)} />}
                     {cloneElement(roomList[i].component, roomList[i].props)}
                 </Center>
             </group>

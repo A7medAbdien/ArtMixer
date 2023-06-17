@@ -12,7 +12,7 @@ const images = [
 ]
 const textPosition = [-1.325, 1.645, 0.4]
 
-export default function GRoom() {
+export default function GRoom({ setIsNotebookOpened }) {
 
     const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
     const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
@@ -33,9 +33,9 @@ export default function GRoom() {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames name={RoomName} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate />
+            <Frames name={RoomName} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate={true} />
 
-            <MassageBubble textPosition={textPosition} />
+            <MassageBubble textPosition={textPosition} setIsNotebookOpened={setIsNotebookOpened} />
 
         </group >
     </>
@@ -55,7 +55,7 @@ const Frame = ({ name, position, args, url }) => {
 }
 
 
-const MassageBubble = ({ textPosition }) => {
+const MassageBubble = ({ textPosition, setIsNotebookOpened }) => {
 
     const [show, setShow] = useState(false);
     const [, params] = useRoute('/:id')
@@ -75,19 +75,19 @@ const MassageBubble = ({ textPosition }) => {
             transform
             scale={0.5}
             distanceFactor={1.17}
-            position={textPosition}>
-
-            <div className={`zoom-in-out-fade-example ${show ? 'show' : 'hide'}`}>
+            position={textPosition}
+        >
+            <div onClick={(e) => (e.stopPropagation())} className={`zoom-in-out-fade-example ${show ? 'show' : 'hide'}`}>
                 <div className="talk-bubble tri-right round right-top">
                     <div className="talktext">
                         <ol>
-                            <li>Open <a target="_blank" href={ColabURL}> ArtMixer Notebook</a></li>
+                            <li>Open <a target="_blank" onClick={() => setIsNotebookOpened(true)} href={ColabURL}> ArtMixer Notebook</a></li>
                             <li>On top left corner, open "Runtime"</li>
                             <li>Choose "Run All"</li>
                         </ol>
                     </div>
                 </div>
             </div>
-        </Html>
+        </Html >
     </>
 }
