@@ -1,8 +1,29 @@
 import { Box, Center, Environment, OrbitControls, Text } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Rooms } from './components/Rooms';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Experience() {
+
+    /**
+     * Set User Identifier
+     */
+    const newDate = new Date()
+    const date = Math.floor(newDate.getTime() / 1000)
+    const [userId, setUserId] = useState(null)
+
+    // Set the value if it does not exist in local storage
+    useEffect(() => {
+        const savedValue = localStorage.getItem("ID");
+        if (!savedValue) {
+            const newValue = date;
+            localStorage.setItem("ID", newValue);
+            setUserId(newValue);
+        } else {
+            setUserId(savedValue);
+        }
+    }, []);
 
     return <>
         {/* <Leva hidden /> */}
@@ -24,7 +45,7 @@ export default function Experience() {
                 <meshNormalMaterial />
             </mesh> */}
 
-            <Rooms />
+            <Rooms userId={userId} />
         </Canvas >
     </>
 }

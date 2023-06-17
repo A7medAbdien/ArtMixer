@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { useEffect } from 'react';
 import { Arrows } from './Arrows';
+import { cloneElement } from 'react';
 
 
 // base theta shows the room on the right + rolling goes in the oboist direction of theta or i
@@ -41,9 +42,14 @@ const roomList = [
     },
 ];
 
-export const Rooms = (params) => {
+export const Rooms = ({ userId }) => {
 
+    // to identify the active room and stop the camera fight
     const [, setLocation] = useLocation()
+
+    /**
+     * Rotation Action
+     */
     const count = 5
     const baseTheta = 360 / count
     const [boxesTheta, setBoxesTheta] = useState(Array.from({ length: count }).map((_, i) => i * baseTheta))
@@ -59,7 +65,9 @@ export const Rooms = (params) => {
         // 1. hold rolling action until the first one is done
         setRolling(true)
 
+        // the active room changes with each roll action
         setActiveRoom(direction)
+
         // 2. rolling
         //if direction is true to right, if false to left
         const temp = Array.from({ length: count })
@@ -80,6 +88,8 @@ export const Rooms = (params) => {
         setActiveRoomIndex(temp)
         setLocation(roomList[temp].name)
     }
+
+    // Default Room
     useEffect(() => {
         setLocation(roomList[activeRoomIndex].name)
     }, [])
@@ -105,7 +115,7 @@ export const Rooms = (params) => {
                 rotation-y={x / 2}
             >
                 < Center >
-                    {roomList[i].component}
+                    {cloneElement(roomList[i].component, { userId: userId })}
                 </Center>
             </group>
         })}

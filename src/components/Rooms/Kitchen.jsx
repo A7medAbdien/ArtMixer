@@ -16,14 +16,13 @@ const images = [
 ]
 const buttonFrames = [
     // Small Images
-    { name: RoomName + "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
-    { name: RoomName + "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/style.jpg' }
+    { name: "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
+    { name: "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/style.jpg' }
 ]
 const bigImageFocus = 0.5
 const basePOV = [0, -0.44, -4]
 
-export default function Kitchen() {
-
+export default function Kitchen({ userId }) {
     /**
      * Loading GLTF models
      */
@@ -59,7 +58,7 @@ export default function Kitchen() {
 
             <Frames name={RoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
 
-            {buttonFrames.map((props, i) => <ButtonFrame key={i} {...props} />)}
+            {buttonFrames.map((props, i) => userId && <ButtonFrame key={i} userId={userId} {...props} />)}
         </group>
     </>
 }
@@ -83,8 +82,7 @@ const Frame = ({ imageUrl, name, position, args, defaultImageURL }) => {
 }
 
 
-const ButtonFrame = ({ setImageUrl, ...props }) => {
-
+const ButtonFrame = ({ setImageUrl, userId, ...props }) => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
 
@@ -101,8 +99,9 @@ const ButtonFrame = ({ setImageUrl, ...props }) => {
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
             cloudName: "dcmthd8bn",
             uploadPreset: "utmds9zl",
-            publicId: props.name,
+            publicId: props.name + userId,
             sources: ['local', 'url', 'image_search'],
+            resourceType: 'image'
         }, handleImageUpload)
     }, [])
 
