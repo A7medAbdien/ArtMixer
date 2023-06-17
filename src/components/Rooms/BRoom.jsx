@@ -9,7 +9,7 @@ import { ID, baseURL, defaultID, resultURL } from '../../_';
 const RoomName = "BlueRoom"
 
 
-export default function BRoom({ userId }) {
+export default function BRoom({ userId, isNotebookOpened }) {
     userId = ID
     const images = [
         // Big Images
@@ -34,28 +34,28 @@ export default function BRoom({ userId }) {
     const bakedTexture = useTexture('./model/BRoom/BRoom.jpg')
     bakedTexture.flipY = false
 
-    const [isClicked, setIsClicked] = useState(false)
+    // const [isClicked, setIsClicked] = useState(false)
 
     return <>
         <group position={[0, 0, 0]}>
 
-            <Text
+            {/* <Text
                 onClick={() => { setIsClicked(true) }}
                 position={[0, 1, 0.5]}>
                 Hi
-            </Text>
+            </Text> */}
 
             <mesh geometry={nodes.baked.geometry}>
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            {<Frames name={RoomName} startTime={isClicked} Children={Frame} images={images} />}
+            {<Frames name={RoomName} startTime={isNotebookOpened} Children={Frame} images={images} />}
         </group >
     </>
 }
 
 
-const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startTime }) => {
+const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startTime: isNotebookOpened }) => {
 
     // Default to Waited Image Part
     const [isValidUrl, setIsValidUrl] = useState(false)
@@ -72,12 +72,16 @@ const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startT
         img.src = url;
     }
 
+    const isImagesUploaded = true
+    // const isNotebookOpened = true
+    const isNotebookExecuted = true
     useEffect(() => {
         // checkImageValidity()
-        startTime && setTimeout(() => {
+        isNotebookOpened && setTimeout(() => {
+            console.log("ST", isNotebookOpened);
             setIsValidUrl(true);
         }, waitingTime);
-    }, [startTime]);
+    }, [isNotebookOpened]);
 
     return <>
         <HoverableFrame position={position}>

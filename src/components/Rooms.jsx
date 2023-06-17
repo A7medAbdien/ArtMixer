@@ -95,6 +95,7 @@ export const Rooms = ({ userId }) => {
     // }, [])
 
 
+    const [isNotebookOpened, setIsNotebookOpened] = useState(false)
     return <>
 
 
@@ -115,7 +116,8 @@ export const Rooms = ({ userId }) => {
                 rotation-y={x / 2}
             >
                 < Center >
-                    {cloneElement(roomList[i].component, { userId: userId })}
+                    {(i == 0) && < Box onClick={() => setIsNotebookOpened(true)} />}
+                    {cloneElement(roomList[i].component, { userId: userId, isNotebookOpened: isNotebookOpened })}
                 </Center>
             </group>
         })}
