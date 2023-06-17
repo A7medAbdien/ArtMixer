@@ -95,6 +95,8 @@ export const Rooms = ({ userId }) => {
     // }, [])
 
 
+    const [isContentImageUploaded, setIsContentImageUploaded] = useState(false)
+    const [isStyleImageUploaded, setIsStyleImageUploaded] = useState(false)
     const [isNotebookOpened, setIsNotebookOpened] = useState(false)
     return <>
 
@@ -117,7 +119,7 @@ export const Rooms = ({ userId }) => {
             >
                 < Center >
                     {(i == 0) && < Box onClick={() => setIsNotebookOpened(true)} />}
-                    {cloneElement(roomList[i].component, { userId: userId, isNotebookOpened: isNotebookOpened })}
+                    {cloneElement(roomList[i].component, { userId: userId, isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded, setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded })}
                 </Center>
             </group>
         })}

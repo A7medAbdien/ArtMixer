@@ -9,7 +9,7 @@ import { ID, baseURL, defaultID, resultURL } from '../../_';
 const RoomName = "BlueRoom"
 
 
-export default function BRoom({ userId, isNotebookOpened }) {
+export default function BRoom({ userId, isNotebookOpened, isStyleImageUploaded, isContentImageUploaded }) {
     userId = ID
     const images = [
         // Big Images

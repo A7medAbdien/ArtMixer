@@ -22,7 +22,7 @@ const buttonFrames = [
 const bigImageFocus = 0.5
 const basePOV = [0, -0.44, -4]
 
-export default function Kitchen({ userId }) {
+export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded }) {
     /**
      * Loading GLTF models
      */
@@ -36,8 +36,8 @@ export default function Kitchen({ userId }) {
     /**
      * Widget Part
      */
-    const [contentImageUrl, setContentImageUrl] = useState('');
-    const [styleImageUrl, setStyleImageUrl] = useState('');
+    const [contentImageUrl, setContentImageUrl] = useState();
+    const [styleImageUrl, setStyleImageUrl] = useState();
 
 
     images[0]['imageUrl'] = contentImageUrl
@@ -45,6 +45,14 @@ export default function Kitchen({ userId }) {
     buttonFrames[0]['setImageUrl'] = setContentImageUrl
     buttonFrames[1]['setImageUrl'] = setStyleImageUrl
 
+
+    /**
+     * isImagesUploaded
+     */
+    useEffect(() => {
+        contentImageUrl && setIsContentImageUploaded(true)
+        styleImageUrl && setIsStyleImageUploaded(true)
+    }, [contentImageUrl, styleImageUrl])
 
     return <>
         <group scale={1.15}>
