@@ -13,35 +13,6 @@ import { Arrows } from './Arrows';
 import { cloneElement } from 'react';
 
 
-// base theta shows the room on the right + rolling goes in the oboist direction of theta or i
-const roomList = [
-    {
-        id: 1,
-        name: 'Kitchen',
-        component: <GRoom />,
-    },
-    {
-        id: 2,
-        name: 'GreenRoom',
-        component: <Kitchen />,
-    },
-    {
-        id: 3,
-        name: 'Thanks',
-        component: <BRoom />,
-    },
-    {
-        id: 4,
-        name: 'WhiteRoom',
-        component: <WRoom />,
-    },
-    {
-        id: 5,
-        name: 'BlueRoom',
-        component: <Box />,
-    },
-];
-
 export const Rooms = ({ userId }) => {
 
     // to identify the active room and stop the camera fight
@@ -98,6 +69,42 @@ export const Rooms = ({ userId }) => {
     const [isContentImageUploaded, setIsContentImageUploaded] = useState(false)
     const [isStyleImageUploaded, setIsStyleImageUploaded] = useState(false)
     const [isNotebookOpened, setIsNotebookOpened] = useState(false)
+
+
+    // base theta shows the room on the right + rolling goes in the oboist direction of theta or i
+    const roomList = [
+        {
+            id: 1,
+            name: 'Kitchen',
+            component: <GRoom />,
+            props: { isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+        },
+        {
+            id: 2,
+            name: 'GreenRoom',
+            component: <Kitchen />,
+            props: { userId: userId, setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded }
+        },
+        {
+            id: 3,
+            name: 'Thanks',
+            component: <BRoom />,
+            props: { userId: userId, isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+        },
+        {
+            id: 4,
+            name: 'WhiteRoom',
+            component: <WRoom />,
+            props: null
+        },
+        {
+            id: 5,
+            name: 'BlueRoom',
+            component: <Box />,
+            props: null
+        },
+    ];
+
     return <>
 
 
@@ -119,7 +126,7 @@ export const Rooms = ({ userId }) => {
             >
                 < Center >
                     {(i == 0) && < Box onClick={() => setIsNotebookOpened(true)} />}
-                    {cloneElement(roomList[i].component, { userId: userId, isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded, setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded })}
+                    {cloneElement(roomList[i].component, roomList[i].props)}
                 </Center>
             </group>
         })}
