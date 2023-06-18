@@ -10,24 +10,24 @@ const RoomName = "BlueRoom"
 
 
 export default function BRoom({ userId, isNotebookOpened, isStyleImageUploaded, isContentImageUploaded }) {
-    userId = ID
-    const images = [
-        // Big Images
-        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750`, waitingTime: 1500, defaultImageURL: `${baseURL}/content` },
-        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250`, waitingTime: 2000, defaultImageURL: `${baseURL}/content` },
-        // Small Images
-        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250`, waitingTime: 3000, defaultImageURL: `${baseURL}/content` },
-        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250`, waitingTime: 3000, defaultImageURL: `${baseURL}/content` },
-        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750`, waitingTime: 3000, defaultImageURL: `${baseURL}/content` }
-    ]
+    // userId = ID
     const images_main = [
         // Big Images
-        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750`, waitingTime: 95000, defaultImageURL: `${baseURL}/content` },
-        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250`, waitingTime: 185000, defaultImageURL: `${baseURL}/content` },
+        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750.jpg`, waitingTime: 1500, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250.jpg`, waitingTime: 2000, defaultImageURL: `${baseURL}/content.jpg` },
         // Small Images
-        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250`, waitingTime: 65000, defaultImageURL: `${baseURL}/content` },
-        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250`, waitingTime: 125000, defaultImageURL: `${baseURL}/content` },
-        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750`, waitingTime: 155000, defaultImageURL: `${baseURL}/content` }
+        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250.jpg`, waitingTime: 3000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250.jpg`, waitingTime: 3000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750.jpg`, waitingTime: 3000, defaultImageURL: `${baseURL}/content.jpg` }
+    ]
+    const images = [
+        // Big Images
+        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750.jpg`, waitingTime: 95000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250.jpg`, waitingTime: 185000, defaultImageURL: `${baseURL}/content.jpg` },
+        // Small Images
+        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250.jpg`, waitingTime: 65000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250.jpg`, waitingTime: 125000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750.jpg`, waitingTime: 155000, defaultImageURL: `${baseURL}/content.jpg` }
     ]
 
     const { nodes } = useGLTF('./model/BRoom/BRoom.glb')
@@ -49,16 +49,17 @@ export default function BRoom({ userId, isNotebookOpened, isStyleImageUploaded, 
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            {<Frames name={RoomName} startTime={isNotebookOpened} Children={Frame} images={images} />}
+            {<Frames name={RoomName} startTime={{ isNotebookOpened, isContentImageUploaded, isStyleImageUploaded }} Children={Frame} images={images} />}
         </group >
     </>
 }
 
 
-const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startTime: isNotebookOpened }) => {
+const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startTime: { isNotebookOpened, isContentImageUploaded, isStyleImageUploaded } }) => {
 
     // Default to Waited Image Part
     const [isValidUrl, setIsValidUrl] = useState(false)
+    const [isSecondRound, setIsSecondRound] = useState(false)
     function checkImageValidity() {
         const img = new Image();
         img.onload = () => {
@@ -66,8 +67,9 @@ const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startT
         };
         img.onerror = () => {
             setTimeout(() => {
-                setIsValidUrl(true);
-            }, waitingTime);
+                setIsSecondRound(true)
+                checkImageValidity()
+            }, isSecondRound ? 2000 : waitingTime);
         };
         img.src = url;
     }
@@ -75,12 +77,13 @@ const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startT
     // const isImagesUploaded = true
     // const isNotebookOpened = true
     const isNotebookExecuted = true
+    // const [startTime, setStartTime]= useState(false)
     useEffect(() => {
-        // checkImageValidity()
-        isNotebookOpened && setTimeout(() => {
-            console.log("ST", isNotebookOpened);
-            setIsValidUrl(true);
-        }, waitingTime);
+        isNotebookOpened && isContentImageUploaded && isStyleImageUploaded && checkImageValidity()
+        // isNotebookOpened && isContentImageUploaded && isStyleImageUploaded && setTimeout(() => {
+        //     console.log("ST", isNotebookOpened);
+        //     setIsValidUrl(true);
+        // }, waitingTime);
     }, [isNotebookOpened]);
 
     return <>
