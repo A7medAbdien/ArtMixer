@@ -69,6 +69,7 @@ export const Rooms = ({ userId }) => {
     const [isContentImageUploaded, setIsContentImageUploaded] = useState(false)
     const [isStyleImageUploaded, setIsStyleImageUploaded] = useState(false)
     const [isNotebookOpened, setIsNotebookOpened] = useState(false)
+    const [isNotebookExecuted, setIsNotebookExecuted] = useState(false)
 
     // base theta shows the room on the right + rolling goes in the oboist direction of theta or i
     const roomList = [
@@ -76,19 +77,30 @@ export const Rooms = ({ userId }) => {
             id: 1,
             name: 'Kitchen',
             component: <GRoom />,
-            props: { activeRoomName: activeRoomName, setIsNotebookOpened: setIsNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+            props: {
+                activeRoomName: activeRoomName,
+                setIsNotebookOpened: setIsNotebookOpened, setIsNotebookExecuted: setIsNotebookExecuted,
+                isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded
+            }
         },
         {
             id: 2,
             name: 'GreenRoom',
             component: <Kitchen />,
-            props: { activeRoomName: activeRoomName, userId: userId, setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded }
+            props: {
+                activeRoomName: activeRoomName, userId: userId,
+                setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded
+            }
         },
         {
             id: 3,
             name: 'Thanks',
             component: <BRoom />,
-            props: { activeRoomName: activeRoomName, userId: userId, isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+            props: {
+                activeRoomName: activeRoomName, userId: userId,
+                isNotebookExecuted: isNotebookExecuted, isNotebookOpened: isNotebookOpened,
+                isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded
+            }
         },
         {
             id: 4,

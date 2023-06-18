@@ -12,7 +12,7 @@ const images = [
 ]
 const textPosition = [-1.325, 1.645, 0.4]
 
-export default function GRoom({ activeRoomName, setIsNotebookOpened }) {
+export default function GRoom({ activeRoomName, setIsNotebookOpened, setIsNotebookExecuted }) {
 
     const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
     const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
@@ -35,7 +35,7 @@ export default function GRoom({ activeRoomName, setIsNotebookOpened }) {
 
             <Frames name={RoomName} activeRoomName={activeRoomName} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate={true} />
 
-            <MassageBubble textPosition={textPosition} setIsNotebookOpened={setIsNotebookOpened} />
+            <MassageBubble textPosition={textPosition} setIsNotebookOpened={setIsNotebookOpened} setIsNotebookExecuted={setIsNotebookExecuted} />
 
         </group >
     </>
@@ -55,7 +55,7 @@ const Frame = ({ name, position, args, url }) => {
 }
 
 
-const MassageBubble = ({ textPosition, setIsNotebookOpened }) => {
+const MassageBubble = ({ textPosition, setIsNotebookOpened, setIsNotebookExecuted }) => {
 
     const [show, setShow] = useState(false);
     const [, params] = useRoute('/:id')
@@ -84,6 +84,7 @@ const MassageBubble = ({ textPosition, setIsNotebookOpened }) => {
                             <li>Open <a target="_blank" onClick={() => setIsNotebookOpened(true)} href={ColabURL}> ArtMixer Notebook</a></li>
                             <li>On top left corner, open "Runtime"</li>
                             <li>Choose "Run All"</li>
+                            <li>When u done <a onClick={() => setIsNotebookExecuted(true)}>Click me 😊</a></li>
                         </ol>
                     </div>
                 </div>

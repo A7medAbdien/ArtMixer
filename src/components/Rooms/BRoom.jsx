@@ -9,7 +9,7 @@ import { ID, baseURL, defaultID, resultURL } from '../../_';
 const RoomName = "BlueRoom"
 
 
-export default function BRoom({ activeRoomName, userId, isNotebookOpened, isStyleImageUploaded, isContentImageUploaded }) {
+export default function BRoom({ activeRoomName, userId, isNotebookExecuted, isNotebookOpened, isStyleImageUploaded, isContentImageUploaded }) {
     // userId = ID
     const images_main = [
         // Big Images
@@ -49,13 +49,13 @@ export default function BRoom({ activeRoomName, userId, isNotebookOpened, isStyl
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            {<Frames name={RoomName} activeRoomName={activeRoomName} startTime={{ isNotebookOpened, isContentImageUploaded, isStyleImageUploaded }} Children={Frame} images={images} />}
+            {<Frames name={RoomName} activeRoomName={activeRoomName} startTime={{ isNotebookOpened, isContentImageUploaded, isStyleImageUploaded, isNotebookExecuted }} Children={Frame} images={images} />}
         </group >
     </>
 }
 
 
-const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startTime: { isNotebookOpened, isContentImageUploaded, isStyleImageUploaded } }) => {
+const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startTime: { isNotebookOpened, isContentImageUploaded, isStyleImageUploaded, isNotebookExecuted } }) => {
 
     // Default to Waited Image Part
     const [isValidUrl, setIsValidUrl] = useState(false)
@@ -76,15 +76,15 @@ const Frame = ({ name, position, args, url, waitingTime, defaultImageURL, startT
 
     // const isImagesUploaded = true
     // const isNotebookOpened = true
-    const isNotebookExecuted = true
+    // const isNotebookExecuted = true
     // const [startTime, setStartTime]= useState(false)
     useEffect(() => {
-        isNotebookOpened && isContentImageUploaded && isStyleImageUploaded && checkImageValidity()
+        isNotebookExecuted && isNotebookOpened && isContentImageUploaded && isStyleImageUploaded && checkImageValidity()
         // isNotebookOpened && isContentImageUploaded && isStyleImageUploaded && setTimeout(() => {
         //     console.log("ST", isNotebookOpened);
         //     setIsValidUrl(true);
         // }, waitingTime);
-    }, [isNotebookOpened]);
+    }, [isNotebookExecuted]);
 
     return <>
         <HoverableFrame position={position}>
