@@ -7,19 +7,17 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 const initRoom = "Kitchen"
-export const Frames = ({ Children, name, startTime, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.44, -4], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, -0.44, -4], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
 
     const ref = useRef()
     const clicked = useRef()
     const [, params] = useRoute('/:id')
     const [, setLocation] = useLocation()
-    const isActive = params?.id && (params.id).includes(name)
-    const [activeRoom, setActiveRoom] = useState(initRoom)
+    const isActive = RoomName == activeRoomName
 
     useEffect(() => {
         clicked.current = ref.current.getObjectByName(params?.id)
         if (clicked.current) {
-            isActive && setActiveRoom(name)
             clicked.current.updateWorldMatrix(true, true)
             clicked.current.localToWorld(p.set(bigImageFocusX, 0, (params?.id[0] == params?.id[0].toUpperCase()) ? bigImageFocus : smallImageFocus))
             clicked.current.getWorldQuaternion(q)
@@ -30,7 +28,7 @@ export const Frames = ({ Children, name, startTime, pointerMissDeactivate = fals
     })
 
     useFrame((state, dt) => {
-        if ((isActive && (params.id).includes(activeRoom)) || !params?.id) {
+        if (isActive || (isActive && params?.id && (params.id).includes(activeRoomName)) || activeRoomName == "init") {
             easing.damp3(state.camera.position, p, 0.4, dt)
             easing.dampQ(state.camera.quaternion, q, 0.4, dt)
         }
@@ -39,8 +37,8 @@ export const Frames = ({ Children, name, startTime, pointerMissDeactivate = fals
     return <>
         <group
             ref={ref}
-            onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? `/${activeRoom}` : '/' + e.object.name))}
-            onPointerMissed={() => (isActive && !pointerMissDeactivate && setLocation(`/${activeRoom}`))}
+            onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? `/` : '/' + e.object.name))}
+            onPointerMissed={() => (isActive && !pointerMissDeactivate && setLocation(`/`))}
         >
 
             {images.map((props, i) => <Children key={i} startTime={startTime} {...props} />)}

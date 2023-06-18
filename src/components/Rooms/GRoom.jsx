@@ -12,7 +12,7 @@ const images = [
 ]
 const textPosition = [-1.325, 1.645, 0.4]
 
-export default function GRoom({ setIsNotebookOpened }) {
+export default function GRoom({ activeRoomName, setIsNotebookOpened }) {
 
     const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
     const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
@@ -33,7 +33,7 @@ export default function GRoom({ setIsNotebookOpened }) {
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames name={RoomName} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate={true} />
+            <Frames name={RoomName} activeRoomName={activeRoomName} bigImageFocus={1.05} bigImageFocusX={-0.31} Children={Frame} images={images} pointerMissDeactivate={true} />
 
             <MassageBubble textPosition={textPosition} setIsNotebookOpened={setIsNotebookOpened} />
 

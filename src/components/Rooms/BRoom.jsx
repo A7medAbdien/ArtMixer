@@ -9,7 +9,7 @@ import { ID, baseURL, defaultID, resultURL } from '../../_';
 const RoomName = "BlueRoom"
 
 
-export default function BRoom({ userId, isNotebookOpened, isStyleImageUploaded, isContentImageUploaded }) {
+export default function BRoom({ activeRoomName, userId, isNotebookOpened, isStyleImageUploaded, isContentImageUploaded }) {
     // userId = ID
     const images_main = [
         // Big Images
@@ -49,7 +49,7 @@ export default function BRoom({ userId, isNotebookOpened, isStyleImageUploaded, 
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            {<Frames name={RoomName} startTime={{ isNotebookOpened, isContentImageUploaded, isStyleImageUploaded }} Children={Frame} images={images} />}
+            {<Frames name={RoomName} activeRoomName={activeRoomName} startTime={{ isNotebookOpened, isContentImageUploaded, isStyleImageUploaded }} Children={Frame} images={images} />}
         </group >
     </>
 }

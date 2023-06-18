@@ -22,7 +22,8 @@ const buttonFrames = [
 const bigImageFocus = 0.5
 const basePOV = [0, -0.44, -4]
 
-export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded }) {
+export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
+
     /**
      * Loading GLTF models
      */
@@ -64,7 +65,7 @@ export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleI
                 <meshBasicMaterial map={bakedTexture} />
             </mesh>
 
-            <Frames name={RoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
+            <Frames name={RoomName} activeRoomName={activeRoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
 
             {buttonFrames.map((props, i) => userId && <ButtonFrame key={i} userId={userId} {...props} />)}
         </group>

@@ -7,16 +7,13 @@ import GRoom from './Rooms/GRoom'
 import BRoom from './Rooms/BRoom'
 import WRoom from './Rooms/WRoom'
 import { useState } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, useRoute } from 'wouter';
 import { useEffect } from 'react';
 import { Arrows } from './Arrows';
 import { cloneElement } from 'react';
 
 
 export const Rooms = ({ userId }) => {
-
-    // to identify the active room and stop the camera fight
-    const [, setLocation] = useLocation()
 
     /**
      * Rotation Action
@@ -26,6 +23,7 @@ export const Rooms = ({ userId }) => {
     const [boxesTheta, setBoxesTheta] = useState(Array.from({ length: count }).map((_, i) => i * baseTheta))
     const [isRolling, setRolling] = useState(false)
     const [activeRoomIndex, setActiveRoomIndex] = useState(0)
+    const [activeRoomName, setActiveRoomName] = useState("init")
 
     const refs = useRef(
         Array.from({ length: count }).map(() => createRef())
@@ -57,13 +55,15 @@ export const Rooms = ({ userId }) => {
     const setActiveRoom = (direction) => {
         const temp = direction ? (activeRoomIndex + 1) % roomList.length : (roomList.length + (activeRoomIndex - 1)) % roomList.length
         setActiveRoomIndex(temp)
-        setLocation(roomList[temp].name)
+        setActiveRoomName(roomList[temp].name)
     }
 
     // Default Room
-    // useEffect(() => {
-    // setLocation(roomList[activeRoomIndex].name)
-    // }, [])
+    useEffect(() => {
+        setTimeout(() => {
+            setActiveRoomName(roomList[0].name)
+        }, 1000);
+    }, [])
 
 
     const [isContentImageUploaded, setIsContentImageUploaded] = useState(false)
@@ -76,31 +76,31 @@ export const Rooms = ({ userId }) => {
             id: 1,
             name: 'Kitchen',
             component: <GRoom />,
-            props: { setIsNotebookOpened: setIsNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+            props: { activeRoomName: activeRoomName, setIsNotebookOpened: setIsNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
         },
         {
             id: 2,
             name: 'GreenRoom',
             component: <Kitchen />,
-            props: { userId: userId, setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded }
+            props: { activeRoomName: activeRoomName, userId: userId, setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded }
         },
         {
             id: 3,
             name: 'Thanks',
             component: <BRoom />,
-            props: { userId: userId, isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
+            props: { activeRoomName: activeRoomName, userId: userId, isNotebookOpened: isNotebookOpened, isContentImageUploaded: isContentImageUploaded, isStyleImageUploaded: isStyleImageUploaded }
         },
         {
             id: 4,
             name: 'WhiteRoom',
             component: <WRoom />,
-            props: null
+            props: { activeRoomName: activeRoomName }
         },
         {
             id: 5,
             name: 'BlueRoom',
             component: <Box />,
-            props: null
+            props: { activeRoomName: activeRoomName }
         },
     ];
 
