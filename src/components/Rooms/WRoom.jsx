@@ -5,24 +5,24 @@ import { useState } from 'react';
 import { useRoute } from 'wouter';
 import { useEffect } from 'react';
 
-
-export default function WRoom() {
+const RoomName = "WhiteRoom"
+export default function WRoom({ activeRoomName }) {
 
 
     const url = 'https://fluid-threejs.netlify.app/'
     const image = { name: "WhiteRoom", position: [-0.06879992675781248, 1.1583999862670897, 0.4], args: [53.4, -52.5], url: url, waitingTime: 95000 }
 
     const [show, setShow] = useState(false);
-    const [, params] = useRoute('/:id')
+    const isActive = activeRoomName == RoomName
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            params && (params.id == image.name) && setShow(true);
+            isActive && setShow(true);
         }, 1000);
-        !params || !(params.id == image.name) && setShow(false)
+        !isActive && setShow(false)
 
         return () => clearTimeout(timeoutId);
-    }, [params]);
+    }, [isActive]);
 
 
     const { nodes } = useGLTF('./model//WRoom/WRoom.glb')
