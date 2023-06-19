@@ -61,7 +61,9 @@ export const Rooms = ({ userId, setColorB }) => {
     const setActiveRoom = (direction) => {
         const temp = direction ? (activeRoomIndex + 1) % roomList.length : (roomList.length + (activeRoomIndex - 1)) % roomList.length
         setActiveRoomIndex(temp)
-        setColorB(RoomColors[temp])
+        setTimeout(() => {
+            setColorB(RoomColors[temp])
+        }, (DURATION * 900) / 2);
         setActiveRoomName(roomList[temp].name)
     }
 
