@@ -52,13 +52,15 @@ export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, po
     </>
 }
 
-export const HoverableFrame = ({ children, position, shrinkX = 0.9, shrinkY = 0.9, colorNotScale = false }) => {
+export const HoverableFrame = ({ children, position, rotation, shrinkX = 0.9, shrinkY = 0.9, colorNotScale = false }) => {
     const meshRef = useRef()
     const [hovered, setHovered] = useState(false)
-
+    const [, params] = useRoute('/:id')
+    const isActive = params?.id != null
+    console.log(isActive);
     useCursor(hovered)
     useFrame((state, dt) => {
-        !colorNotScale && easing.damp3(meshRef.current.scale, [1 * (hovered ? shrinkX : 1), 1 * (hovered ? shrinkY : 1), 1], 0.1, dt)
+        !colorNotScale && easing.damp3(meshRef.current.scale, [1 * (!isActive && hovered ? shrinkX : 1), 1 * (!isActive && hovered ? shrinkY : 1), 1], 0.1, dt)
         colorNotScale && easing.dampC(meshRef.current.children[0].material.color, hovered ? '#4f75ca' : '#3f3e3c')
     })
 
@@ -68,6 +70,7 @@ export const HoverableFrame = ({ children, position, shrinkX = 0.9, shrinkY = 0.
             onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
             onPointerOut={() => setHovered(false)}
             position={position}
+            rotation={rotation}
         >
             {children}
         </mesh>

@@ -6,14 +6,18 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { baseURL } from '../../_';
+import { useControls } from 'leva';
 
 
 const RoomName = "Kitchen"
 const images = [
-    // Big Images
-    { name: RoomName + "ContentImage", position: [-0.45, 1.11, 0.5], args: [0.46, 0.46], defaultImageURL: baseURL + '/content.jpg' },
-    { name: RoomName + "StyleImage", position: [0.32, 1.11, 0.5], args: [0.46, 0.46], defaultImageURL: baseURL + '/style.jpg' }
+    // // Big Images
+    // { name: RoomName + "ContentImage", rotation: [rotation.x, rotation.y, rotation.z], position: [position.x, position.y, position.z], args: [scale.x, scale.y], defaultImageURL: baseURL + '/content.jpg' },
+    { name: RoomName + "ContentImage", rotation: [-0.27, 0.34, 0.09], position: [-0.71, 1.1, 0.81], args: [0.862, 0.856], defaultImageURL: baseURL + '/content.jpg' },
+
+    { name: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [0.85, 1.1, 0.81], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg' }
 ]
+
 const buttonFrames = [
     // Small Images
     { name: "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
@@ -23,6 +27,8 @@ const bigImageFocus = 0.5
 const basePOV = [0, 0, -3.5]
 
 export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
+
+
 
     /**
      * Loading GLTF models
@@ -84,10 +90,10 @@ export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleI
 }
 
 
-const Frame = ({ imageUrl, name, position, args, defaultImageURL }) => {
+const Frame = ({ imageUrl, name, position, rotation, args, defaultImageURL }) => {
 
     return <>
-        <HoverableFrame position={position}>
+        <HoverableFrame position={position} rotation={rotation}>
             <mesh name={name}>
                 <planeGeometry args={args} />
 
