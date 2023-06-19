@@ -20,19 +20,23 @@ const buttonFrames = [
     { name: "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/style.jpg' }
 ]
 const bigImageFocus = 0.5
-const basePOV = [0, -0.44, -4]
+const basePOV = [0, 0, -3.5]
 
 export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
 
     /**
      * Loading GLTF models
      */
-    const { nodes } = useGLTF('./model/Kitchen/MyKitchen2.glb')
-    const { nodes: canisterNodes } = useGLTF('./model/Kitchen/jars.glb')
-    const bakedTexture = useTexture('./model/Kitchen/kBacked.jpg')
-    const canisterTexture = useTexture('./model/Kitchen/jars.jpg')
+    const { nodes } = useGLTF('./model/Kitchen/MRoom.glb')
+    const bakedTexture = useTexture('./model/Kitchen/MRoom.jpg')
+    const Palette = useTexture('./model/Kitchen/Palette.jpg')
+    const FrameLeft = useTexture('./model/Kitchen/FrameLeft.jpg')
+    const FrameRight = useTexture('./model/Kitchen/FrameRight.jpg')
+
     bakedTexture.flipY = false
-    canisterTexture.flipY = false
+    Palette.flipY = false
+    FrameLeft.flipY = false
+    FrameRight.flipY = false
 
     /**
      * Widget Part
@@ -56,13 +60,20 @@ export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleI
     }, [contentImageUrl, styleImageUrl])
 
     return <>
-        <group scale={1.15}>
-            <mesh geometry={canisterNodes.KCanister.geometry}>
-                <meshBasicMaterial map={canisterTexture} />
-            </mesh>
+        <group >
 
             <mesh geometry={nodes.baked.geometry}>
                 <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+
+            <mesh geometry={nodes.Palette001.geometry}>
+                <meshBasicMaterial map={Palette} />
+            </mesh>
+            <mesh geometry={nodes.FrameLeft001.geometry}>
+                <meshBasicMaterial map={FrameLeft} />
+            </mesh>
+            <mesh geometry={nodes.FrameRight001.geometry}>
+                <meshBasicMaterial map={FrameRight} />
             </mesh>
 
             <Frames name={RoomName} activeRoomName={activeRoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
