@@ -12,11 +12,15 @@ import * as THREE from 'three'
 export default function Experience() {
 
     const [perfSucks, degrade] = useState(false)
-    const props = useControls({
-        base: { value: '#201919' },
-        colorA: { value: '#000' },
-        colorB: { value: '#ceaa7c' } // B 27455f - G 275e3f - W 386f7c
-    })
+
+    // const props = useControls({
+    //     base: { value: '#201919' },
+    //     colorA: { value: '#000' },
+    //     colorB: { value: RoomColors[activeRoomIndex] } // B 27455f - G 275e3f - W 386f7c
+    // })
+    const base = '#201919'
+    const colorA = '#000'
+    const [colorB, setColorB] = useState('#937855')
     /**
      * Set User Identifier
      */
@@ -51,9 +55,8 @@ export default function Experience() {
         >
 
             <Perf position="top-left" />
-            {/* <fog attach="fog" args={['#191920', 0, 15]} /> */}
             <PerformanceMonitor onDecline={() => degrade(true)} />
-            {/* <color attach="background" args={['#201919']} /> */}
+            <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="warehouse" />
             {/* <OrbitControls makeDefault /> */}
             {/* <axesHelper args={[2, 2, 2]} /> */}
             {/* <mesh scale={1.5}>
@@ -61,24 +64,27 @@ export default function Experience() {
                 <meshNormalMaterial />
             </mesh> */}
 
-            <Bg {...props} />
-            <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="warehouse" />
-            <Rooms userId={userId} />
+            <Bg base={base} colorA={colorA} colorB={colorB} />
+
+            <Rooms userId={userId} setColorB={setColorB} />
         </Canvas >
     </>
 }
 
 function Bg({ base, colorA, colorB }) {
     const mesh = useRef()
+    const color = useRef()
     useFrame((state, delta) => {
-        mesh.current.rotation.x = mesh.current.rotation.y = mesh.current.rotation.z += delta / 3
+        // console.log(color.current.origin);
+        // color.current.colorB = { isColor: true, r: 0, g: 0, b: 0 }
+        mesh.current.rotation.x = mesh.current.rotation.y = mesh.current.rotation.z += delta / 4.5
     })
     return (
         <mesh ref={mesh} scale={100}>
             <sphereGeometry args={[1, 64, 64]} />
             <LayerMaterial attach="material" side={THREE.BackSide}>
                 <Color color={base} alpha={1} mode="normal" />
-                <Depth colorA={colorB} colorB={colorA} alpha={0.5} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
+                <Depth ref={color} colorA={colorB} colorB={colorA} alpha={0.5} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
             </LayerMaterial>
         </mesh>
     )

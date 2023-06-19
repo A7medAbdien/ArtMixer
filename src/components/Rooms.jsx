@@ -12,8 +12,14 @@ import { useEffect } from 'react';
 import { Arrows } from './Arrows';
 import { cloneElement } from 'react';
 
-
-export const Rooms = ({ userId }) => {
+const RoomColors = [
+    '#937855', // K
+    '#275e3f', // G
+    '#937855', // T
+    '#386f7c', // W
+    '#27455f', // B
+]
+export const Rooms = ({ userId, setColorB }) => {
 
     /**
      * Rotation Action
@@ -55,6 +61,7 @@ export const Rooms = ({ userId }) => {
     const setActiveRoom = (direction) => {
         const temp = direction ? (activeRoomIndex + 1) % roomList.length : (roomList.length + (activeRoomIndex - 1)) % roomList.length
         setActiveRoomIndex(temp)
+        setColorB(RoomColors[temp])
         setActiveRoomName(roomList[temp].name)
     }
 
