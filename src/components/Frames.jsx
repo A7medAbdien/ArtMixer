@@ -36,10 +36,7 @@ export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, po
                     p.z
                 ]
                 , 0.4, dt)
-            // console.log(p.x);
-            // Math.sin(state.pointer.x / 4) * 9
             easing.dampQ(state.camera.quaternion, q, 0.4, dt)
-            // console.log(q);
         }
     })
 
