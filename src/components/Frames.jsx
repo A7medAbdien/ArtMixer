@@ -29,8 +29,17 @@ export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, po
 
     useFrame((state, dt) => {
         if (isActive || (isActive && params?.id && (params.id).includes(activeRoomName)) || activeRoomName == "init") {
-            easing.damp3(state.camera.position, p, 0.4, dt)
+            easing.damp3(state.camera.position,
+                [
+                    p.x + Math.sin(state.pointer.x / 4) * 0.8,
+                    p.y + state.pointer.y * 0.3,
+                    p.z
+                ]
+                , 0.4, dt)
+            // console.log(p.x);
+            // Math.sin(state.pointer.x / 4) * 9
             easing.dampQ(state.camera.quaternion, q, 0.4, dt)
+            // console.log(q);
         }
     })
 
