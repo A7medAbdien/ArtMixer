@@ -84,7 +84,7 @@ export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleI
 
             <Frames name={RoomName} activeRoomName={activeRoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
 
-            {buttonFrames.map((props, i) => userId && <ButtonFrame key={i} userId={userId} {...props} />)}
+            {/* {buttonFrames.map((props, i) => userId && <ButtonFrame key={i} userId={userId} {...props} />)} */}
         </group>
     </>
 }
