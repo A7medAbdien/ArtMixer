@@ -56,7 +56,7 @@ export default function Experience() {
 
             {/* <Perf position="top-left" /> */}
             <PerformanceMonitor onDecline={() => degrade(true)} />
-            <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" />
+            {/* <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" /> */}
             {/* <OrbitControls makeDefault /> */}
             {/* <axesHelper args={[2, 2, 2]} /> */}
             {/* <mesh scale={1.5}>
