@@ -56,7 +56,7 @@ export default function Experience() {
 
             <Perf position="top-left" />
             <PerformanceMonitor onDecline={() => degrade(true)} />
-            <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="warehouse" />
+            <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" />
             {/* <OrbitControls makeDefault /> */}
             {/* <axesHelper args={[2, 2, 2]} /> */}
             {/* <mesh scale={1.5}>
@@ -75,8 +75,6 @@ function Bg({ base, colorA, colorB }) {
     const mesh = useRef()
     const color = useRef()
     useFrame((state, delta) => {
-        // console.log(color.current.origin);
-        // color.current.colorB = { isColor: true, r: 0, g: 0, b: 0 }
         mesh.current.rotation.x = mesh.current.rotation.y = mesh.current.rotation.z += delta / 4.5
     })
     return (
