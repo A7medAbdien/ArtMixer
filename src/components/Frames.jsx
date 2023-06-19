@@ -57,7 +57,7 @@ export const HoverableFrame = ({ children, position, rotation, shrinkX = 0.9, sh
     const [hovered, setHovered] = useState(false)
     const [, params] = useRoute('/:id')
     const isActive = params?.id != null
-    console.log(isActive);
+
     useCursor(hovered)
     useFrame((state, dt) => {
         !colorNotScale && easing.damp3(meshRef.current.scale, [1 * (!isActive && hovered ? shrinkX : 1), 1 * (!isActive && hovered ? shrinkY : 1), 1], 0.1, dt)
