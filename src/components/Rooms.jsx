@@ -30,7 +30,7 @@ export const Rooms = ({ userId, setColorB }) => {
     const [isRolling, setRolling] = useState(false)
     const [activeRoomIndex, setActiveRoomIndex] = useState(0)
     const [activeRoomName, setActiveRoomName] = useState("init")
-
+    console.log(activeRoomName);
     const refs = useRef(
         Array.from({ length: count }).map(() => createRef())
     )
@@ -64,13 +64,13 @@ export const Rooms = ({ userId, setColorB }) => {
         setTimeout(() => {
             setColorB(RoomColors[temp])
         }, (DURATION * 900) / 2);
-        setActiveRoomName(roomList[temp].name)
+        setActiveRoomName(roomList[alignIndexWithTheta(temp)].name)
     }
 
     // Default Room
     useEffect(() => {
         setTimeout(() => {
-            setActiveRoomName(roomList[0].name)
+            setActiveRoomName(roomList[alignIndexWithTheta(0)].name)
         }, 1000);
     }, [])
 
@@ -84,7 +84,7 @@ export const Rooms = ({ userId, setColorB }) => {
     const roomList = [
         {
             id: 1,
-            name: 'Kitchen',
+            name: 'GreenRoom',
             component: <GRoom />,
             props: {
                 activeRoomName: activeRoomName,
@@ -94,7 +94,7 @@ export const Rooms = ({ userId, setColorB }) => {
         },
         {
             id: 2,
-            name: 'GreenRoom',
+            name: 'Kitchen',
             component: <Kitchen />,
             props: {
                 activeRoomName: activeRoomName, userId: userId,
@@ -102,8 +102,14 @@ export const Rooms = ({ userId, setColorB }) => {
             }
         },
         {
-            id: 3,
+            id: 5,
             name: 'Thanks',
+            component: <Box />,
+            props: { activeRoomName: activeRoomName }
+        },
+        {
+            id: 3,
+            name: 'BlueRoom',
             component: <BRoom />,
             props: {
                 activeRoomName: activeRoomName, userId: userId,
@@ -115,12 +121,6 @@ export const Rooms = ({ userId, setColorB }) => {
             id: 4,
             name: 'WhiteRoom',
             component: <WRoom />,
-            props: { activeRoomName: activeRoomName }
-        },
-        {
-            id: 5,
-            name: 'BlueRoom',
-            component: <Box />,
             props: { activeRoomName: activeRoomName }
         },
     ];
@@ -135,7 +135,6 @@ export const Rooms = ({ userId, setColorB }) => {
 
         {refs.current.map((ref, i) => {
             let { x, y } = getCoordinates(i * baseTheta)
-
 
             return <group
                 key={i}
@@ -184,3 +183,9 @@ const roll = (theta, ref) => {
     )
 }
 
+/** I think the theta is not aligned with the i so 
+ * either to fix the theta or to align i with the theta
+ * (4-i)%5 to move in the opposite direction
+ * + 2 to add padding
+ */
+const alignIndexWithTheta = (i) => (4 - i + 2) % 5
