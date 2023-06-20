@@ -30,7 +30,7 @@ export const Rooms = ({ userId, setColorB }) => {
     const [isRolling, setRolling] = useState(false)
     const [activeRoomIndex, setActiveRoomIndex] = useState(0)
     const [activeRoomName, setActiveRoomName] = useState("init")
-    console.log(activeRoomName);
+
     const refs = useRef(
         Array.from({ length: count }).map(() => createRef())
     )
