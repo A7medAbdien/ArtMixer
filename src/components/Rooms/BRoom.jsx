@@ -13,21 +13,21 @@ export default function BRoom({ activeRoomName, userId, isNotebookExecuted, isNo
     // userId = ID
     const images_main = [
         // Big Images
-        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750.jpg`, waitingTime: 1500, defaultImageURL: `${baseURL}/content.jpg` },
-        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250.jpg`, waitingTime: 2000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750.jpg`, waitingTime: 1500, defaultImageURL: `${resultURL}/mix_${defaultID}_750.jpg`, },
+        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250.jpg`, waitingTime: 2000, defaultImageURL: `${resultURL}/mix_${defaultID}_2250.jpg`, },
         // Small Images
-        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250.jpg`, waitingTime: 3000, defaultImageURL: `${baseURL}/content.jpg` },
-        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250.jpg`, waitingTime: 3000, defaultImageURL: `${baseURL}/content.jpg` },
-        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750.jpg`, waitingTime: 3000, defaultImageURL: `${baseURL}/content.jpg` }
+        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250.jpg`, waitingTime: 3000, defaultImageURL: `${resultURL}/mix_${defaultID}_250.jpg`, },
+        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250.jpg`, waitingTime: 3000, defaultImageURL: `${resultURL}/mix_${defaultID}_1250.jpg`, },
+        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750.jpg`, waitingTime: 3000, defaultImageURL: `${resultURL}/mix_${defaultID}_1750.jpg`, }
     ]
     const images = [
         // Big Images
-        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750.jpg`, waitingTime: 95000, defaultImageURL: `${baseURL}/content.jpg` },
-        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250.jpg`, waitingTime: 185000, defaultImageURL: `${baseURL}/content.jpg` },
+        { name: RoomName + "B", position: [-0.57, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_750.jpg`, waitingTime: 95000, defaultImageURL: `${resultURL}/mix_${defaultID}_750.jpg`, },
+        { name: RoomName + "E", position: [1.24, 1.245, 0.4], args: [0.76, 0.76], url: `${resultURL}/mix_${userId}_2250.jpg`, waitingTime: 185000, defaultImageURL: `${resultURL}/mix_${defaultID}_2250.jpg`, },
         // Small Images
-        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250.jpg`, waitingTime: 65000, defaultImageURL: `${baseURL}/content.jpg` },
-        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250.jpg`, waitingTime: 125000, defaultImageURL: `${baseURL}/content.jpg` },
-        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750.jpg`, waitingTime: 155000, defaultImageURL: `${baseURL}/content.jpg` }
+        { name: RoomName + "A", position: [-1.5, 1.27, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_250.jpg`, waitingTime: 65000, defaultImageURL: `${resultURL}/mix_${defaultID}_250.jpg`, },
+        { name: RoomName + "C", position: [0.36, 1.71, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1250.jpg`, waitingTime: 125000, defaultImageURL: `${resultURL}/mix_${defaultID}_1250.jpg`, },
+        { name: RoomName + "D", position: [0.36, 1, 0.4], args: [0.58, 0.58], url: `${resultURL}/mix_${userId}_1750.jpg`, waitingTime: 155000, defaultImageURL: `${resultURL}/mix_${defaultID}_1750.jpg`, }
     ]
 
     const { nodes } = useGLTF('./model/BRoom/BRoom.glb')
