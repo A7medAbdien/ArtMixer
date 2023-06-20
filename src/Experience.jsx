@@ -8,6 +8,7 @@ import { LayerMaterial, Depth, Color } from 'lamina'
 import { useControls } from 'leva';
 import { useRef } from 'react';
 import * as THREE from 'three'
+import WRoom from './components/Rooms/WRoom';
 
 export default function Experience() {
 
@@ -57,7 +58,7 @@ export default function Experience() {
             {/* <Perf position="top-left" /> */}
             <PerformanceMonitor onDecline={() => degrade(true)} />
             {/* <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" /> */}
-            {/* <OrbitControls makeDefault /> */}
+            <OrbitControls makeDefault />
             {/* <axesHelper args={[2, 2, 2]} /> */}
             {/* <mesh scale={1.5}>
                 <boxGeometry />
@@ -66,7 +67,8 @@ export default function Experience() {
 
             <Bg base={base} colorA={colorA} colorB={colorB} />
 
-            <Rooms userId={userId} setColorB={setColorB} />
+            {/* <Rooms userId={userId} setColorB={setColorB} /> */}
+            <WRoom />
         </Canvas >
     </>
 }

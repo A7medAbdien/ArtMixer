@@ -10,10 +10,11 @@ export default function WRoom({ activeRoomName }) {
 
 
     const url = 'https://fluid-threejs.netlify.app/'
-    const image = { name: "WhiteRoom", position: [-0.06879992675781248, 1.1583999862670897, 0.4], args: [53.4, -52.5], url: url, waitingTime: 95000 }
+    const image = { name: "WhiteRoom", position: [-0.08, 1.17, 0.4], args: [171, 6.8], url: url, waitingTime: 95000 }
 
     const [show, setShow] = useState(false);
-    const isActive = activeRoomName == RoomName
+    // const isActive = activeRoomName == RoomName
+    const isActive = true
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -33,34 +34,27 @@ export default function WRoom({ activeRoomName }) {
         <color args={['#201919']} attach="background" />
 
 
-        {/* <Center> */}
-
         <mesh
             geometry={nodes.baked.geometry}>
             <meshBasicMaterial map={bakedTexture} />
         </mesh>
-        {show && <mesh
-            geometry={nodes.image.geometry}>
 
-            <Html
-                transform
-                wrapperClass='htmlScreen'
-                distanceFactor={1.17}
-                position={image.position}
-            >
-                <div className={`zoom-in-out-fade-example ${show ? 'show' : 'hide'}`}>
+        <Html
+            transform
+            wrapperClass='htmlScreen'
+            distanceFactor={1.17}
+            position={image.position}
+        >
+            <div className={`zoom-in-out-fade-WRoom ${show ? 'show' : 'hide'}`}>
 
-                    <iframe
-                        style={{
-                            width: 1048 + image.args[0],
-                            height: 670 + image.args[1],
-                        }}
-                        src='https://fluid-threejs.netlify.app/' />
-                </div>
-            </Html>
-            <meshBasicMaterial transparent opacity={0} />
-        </mesh>}
+                <iframe
+                    style={{
+                        width: 1048 + image.args[0],
+                        height: 670 + image.args[1],
+                    }}
+                    src='https://fluid-threejs.netlify.app/' />
+            </div>
+        </Html>
 
-        {/* </Center> */}
     </>
 }
