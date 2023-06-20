@@ -23,7 +23,7 @@ const buttonFrames = [
     { name: "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
     { name: "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/style.jpg' }
 ]
-const bigImageFocus = 0.5
+const bigImageFocus = 0.8
 const basePOV = [0, 0, -3.5]
 
 export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
