@@ -55,10 +55,10 @@ export default function Experience() {
             }}
         >
 
-            {/* <Perf position="top-left" /> */}
+            <Perf position="top-left" />
             <PerformanceMonitor onDecline={() => degrade(true)} />
             {/* <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" /> */}
-            <OrbitControls makeDefault />
+            {/* <OrbitControls makeDefault /> */}
             {/* <axesHelper args={[2, 2, 2]} /> */}
             {/* <mesh scale={1.5}>
                 <boxGeometry />
@@ -67,8 +67,7 @@ export default function Experience() {
 
             <Bg base={base} colorA={colorA} colorB={colorB} />
 
-            {/* <Rooms userId={userId} setColorB={setColorB} /> */}
-            <WRoom />
+            <Rooms userId={userId} setColorB={setColorB} />
         </Canvas >
     </>
 }

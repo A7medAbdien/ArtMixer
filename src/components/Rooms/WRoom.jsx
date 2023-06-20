@@ -6,15 +6,15 @@ import { useRoute } from 'wouter';
 import { useEffect } from 'react';
 
 const RoomName = "WhiteRoom"
+const url = 'https://fluid-threejs.netlify.app/'
+const image = { name: "WhiteRoom", position: [-0.08, 1.17, 0.4], args: [171, 6.8], url: url, waitingTime: 95000 }
+
+
+// We can not adapt Frames structure cuz the degrading in FPS so no motion is better exp.
 export default function WRoom({ activeRoomName }) {
 
-
-    const url = 'https://fluid-threejs.netlify.app/'
-    const image = { name: "WhiteRoom", position: [-0.08, 1.17, 0.4], args: [171, 6.8], url: url, waitingTime: 95000 }
-
+    const isActive = activeRoomName == RoomName
     const [show, setShow] = useState(false);
-    // const isActive = activeRoomName == RoomName
-    const isActive = true
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -52,7 +52,7 @@ export default function WRoom({ activeRoomName }) {
                         width: 1048 + image.args[0],
                         height: 670 + image.args[1],
                     }}
-                    src='https://fluid-threejs.netlify.app/' />
+                    src={image.url} />
             </div>
         </Html>
 
