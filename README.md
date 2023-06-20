@@ -41,3 +41,24 @@
             },
         })
 ```
+
+
+# Welcome
+
+Hi, I am Time. A new type of blender.
+
+I will introduce myself until the image finch loading
+
+I mix Art... 
+
+Ya my developer has really nothing to do 🙄. So...
+
+You can enter an image like this...
+
+let us call it content
+
+And another one like this...
+
+let us call it style
+
+and I will give you something like that.

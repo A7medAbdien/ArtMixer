@@ -32,7 +32,7 @@ export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, po
             easing.damp3(state.camera.position,
                 [
                     p.x + Math.sin(state.pointer.x / 4) * 0.8,
-                    p.y + state.pointer.y * 0.3,
+                    p.y + state.pointer.y * 0.2,
                     p.z
                 ]
                 , 0.4, dt)
