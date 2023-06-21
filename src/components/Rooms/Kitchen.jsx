@@ -25,11 +25,7 @@ const massages = [
     { name: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [1.436, 1.43, 1.02], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg', left: false }
 ]
 
-const buttonFrames = [
-    // Small Images
-    { name: "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
-    { name: "style", position: [-0.07, 0.978, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/style.jpg' }
-]
+
 const bigImageFocus = 0.8
 const basePOV = [0, 0, -3.5]
 
@@ -176,35 +172,5 @@ const MassageBubble = ({ userId, name, position, rotation, left, setImageUrl }) 
                 </div>
             </div>
         </Html >
-    </>
-}
-
-const ButtonFrame = ({ setImageUrl, userId, ...props }) => {
-    const cloudinaryRef = useRef()
-    const widgetRef = useRef()
-
-
-    const handleImageUpload = (_, result) => {
-
-        if (result && result.event === 'success') {
-            setImageUrl(result.info.url);
-        }
-    };
-
-    useEffect(() => {
-        cloudinaryRef.current = window.cloudinary
-        widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: "dcmthd8bn",
-            uploadPreset: "utmds9zl",
-            publicId: props.name + userId,
-            sources: ['local', 'url', 'image_search'],
-            resourceType: 'image'
-        }, handleImageUpload)
-    }, [])
-
-    return <>
-        <group onClick={() => widgetRef.current.open()}>
-            <Frame {...props} />
-        </group>
     </>
 }
