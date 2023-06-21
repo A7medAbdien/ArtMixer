@@ -29,12 +29,11 @@ export default function Experience() {
     const date = Math.floor(newDate.getTime() / 1000)
     const [userId, setUserId] = useState(null)
 
-    // Set the value if it does not exist in local storage
     useEffect(() => {
-        const savedValue = localStorage.getItem("ID");
+        const savedValue = sessionStorage.getItem("ID");
         if (!savedValue) {
             const newValue = date;
-            localStorage.setItem("ID", newValue);
+            sessionStorage.setItem("ID", newValue);
             setUserId(newValue);
         } else {
             setUserId(savedValue);
@@ -55,7 +54,7 @@ export default function Experience() {
             }}
         >
 
-            <Perf position="top-left" />
+            {/* <Perf position="top-left" /> */}
             <PerformanceMonitor onDecline={() => degrade(true)} />
             {/* <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" /> */}
             {/* <OrbitControls makeDefault /> */}
