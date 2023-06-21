@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { Center, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
+import { Center, Html, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
 import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { baseURL } from '../../_';
 import { useControls } from 'leva';
+import { useRoute } from 'wouter';
 
 
 const RoomName = "Kitchen"
@@ -18,6 +19,12 @@ const images = [
     { name: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [0.85, 1.1, 0.81], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg' }
 ]
 
+const massages = [
+    { name: RoomName + "ContentImage", rotation: [-0.27, 0.34, 0.09], position: [-1.33, 1.42, 0.94], args: [0.862, 0.856], defaultImageURL: baseURL + '/content.jpg' },
+
+    { name: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [1.436, 1.43, 1.02], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg' }
+]
+
 const buttonFrames = [
     // Small Images
     { name: "content", position: [-0.07, 1.242, 0.5], args: [0.21, 0.21], defaultImageURL: baseURL + '/content.jpg' },
@@ -27,8 +34,6 @@ const bigImageFocus = 0.8
 const basePOV = [0, 0, -3.5]
 
 export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
-
-
 
     /**
      * Loading GLTF models
@@ -83,7 +88,8 @@ export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleI
             </mesh>
 
             <Frames name={RoomName} activeRoomName={activeRoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
-
+            <RightMassageBubble {...massages[0]} />
+            <LeftMassageBubble {...massages[1]} />
             {/* {buttonFrames.map((props, i) => userId && <ButtonFrame key={i} userId={userId} {...props} />)} */}
         </group>
     </>
@@ -107,6 +113,82 @@ const Frame = ({ imageUrl, name, position, rotation, args, defaultImageURL }) =>
     </>
 }
 
+
+
+const LeftMassageBubble = ({ name, position, rotation }) => {
+
+    const [show, setShow] = useState(false);
+    const [, params] = useRoute('/:id')
+    const isActive = true
+    // const isActive = params?.id == name
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            isActive && setShow(true);
+        }, 1000);
+        !isActive && setShow(false)
+
+        return () => clearTimeout(timeoutId);
+    }, [params]);
+
+
+    return <>
+        <Html
+            transform
+            scale={0.5}
+            distanceFactor={1.17}
+            position={position}
+            rotation={rotation}
+        >
+            <div onClick={(e) => (e.stopPropagation(), console.log("hi"))} className={`left-top zoom-in-out-fade-Kitchen ${show ? 'show' : 'hide'}`}>
+                <div className="talk-bubble-kitchen tri-left round left-top">
+                    <div className="talktext">
+                        <ol>
+                            Upload
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </Html >
+    </>
+}
+const RightMassageBubble = ({ name, position, rotation }) => {
+
+    const [show, setShow] = useState(false);
+    const [, params] = useRoute('/:id')
+    const isActive = true
+    // const isActive = params?.id == name
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            isActive && setShow(true);
+        }, 1000);
+        !isActive && setShow(false)
+
+        return () => clearTimeout(timeoutId);
+    }, [params]);
+
+
+    return <>
+        <Html
+            transform
+            scale={0.5}
+            distanceFactor={1.17}
+            position={position}
+            rotation={rotation}
+        >
+            <div onClick={(e) => (e.stopPropagation(), console.log("hi"))} className={`zoom-in-out-fade-example ${show ? 'show' : 'hide'}`}>
+                <div className="talk-bubble-kitchen tri-right round right-top">
+                    <div className="talktext">
+                        <ol>
+                            Upload
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </Html >
+    </>
+}
 
 const ButtonFrame = ({ setImageUrl, userId, ...props }) => {
     const cloudinaryRef = useRef()
