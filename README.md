@@ -42,6 +42,20 @@
         })
 ```
 
+# v0.3
+
+Notes: DO NOT UPLOAD ANY PERSONAL IMAGES
+
+Please rate the followings: from 1-5
+1. Overall esperance
+2. Colors
+3. Position
+4. Motion with moving your mouse
+
+Suggestions
+1. How would you suggest about the buttons shapes
+
+
 
 # Welcome
 
