@@ -59,12 +59,13 @@ const MassageBubble = ({ textPosition, setIsNotebookOpened, setIsNotebookExecute
 
     const [show, setShow] = useState(false);
     const [, params] = useRoute('/:id')
+    const isActive = params?.id == images[0].name
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            (params?.id == images[0].name) && setShow(true);
+            isActive && setShow(true);
         }, 1000);
-        !(params?.id == images[0].name) && setShow(false)
+        !isActive && setShow(false)
 
         return () => clearTimeout(timeoutId);
     }, [params]);
