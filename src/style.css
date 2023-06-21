@@ -25,11 +25,11 @@ canvas {
     transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-.right-top {
+.right-top-origin {
     transform-origin: right top;
 }
 
-.left-top {
+.left-top-origin {
     transform-origin: left top;
 }
 
