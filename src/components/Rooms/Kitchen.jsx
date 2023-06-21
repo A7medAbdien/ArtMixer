@@ -20,9 +20,9 @@ const images = [
 ]
 
 const massages = [
-    { name: RoomName + "ContentImage", rotation: [-0.27, 0.34, 0.09], position: [-1.33, 1.42, 0.94], args: [0.862, 0.856], defaultImageURL: baseURL + '/content.jpg', left: true },
+    { name: "content", active: RoomName + "ContentImage", rotation: [-0.27, 0.34, 0.09], position: [-1.33, 1.42, 0.94], args: [0.862, 0.856], defaultImageURL: baseURL + '/content.jpg', left: true },
 
-    { name: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [1.436, 1.43, 1.02], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg', left: false }
+    { name: "style", active: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [1.436, 1.43, 1.02], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg', left: false }
 ]
 
 
@@ -112,12 +112,12 @@ const Frame = ({ imageUrl, name, position, rotation, args, defaultImageURL }) =>
 
 
 
-const MassageBubble = ({ userId, name, position, rotation, left, setImageUrl }) => {
+const MassageBubble = ({ userId, name, active, position, rotation, left, setImageUrl }) => {
 
     const [show, setShow] = useState(false);
     const [, params] = useRoute('/:id')
     // const isActive = true
-    const isActive = params?.id == name
+    const isActive = params?.id == active
 
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
@@ -139,16 +139,14 @@ const MassageBubble = ({ userId, name, position, rotation, left, setImageUrl }) 
             sources: ['local', 'url', 'image_search'],
             resourceType: 'image'
         }, handleImageUpload)
-    }, [])
 
-    useEffect(() => {
         const timeoutId = setTimeout(() => {
             isActive && setShow(true);
         }, 1000);
         !isActive && setShow(false)
 
         return () => clearTimeout(timeoutId);
-    }, [params]);
+    }, [params])
 
 
     return <>
