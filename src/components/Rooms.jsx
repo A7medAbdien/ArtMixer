@@ -142,13 +142,6 @@ export const Rooms = forwardRef(({ userId, setColorB }, ref) => {
     ];
 
     return <>
-
-
-        <Arrows
-            rightAction={(e) => !isRolling && rollAll(true)}
-            leftAction={(e) => !isRolling && rollAll(false)}
-        />
-
         {refs.current.map((ref, i) => {
             let { x, y } = getCoordinates(i * baseTheta)
 

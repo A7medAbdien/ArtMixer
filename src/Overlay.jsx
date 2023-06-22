@@ -2,10 +2,10 @@ export function Overlay() {
   return (
     <>
       <div className="char" style={{ top: 40, left: 40 }}>
-        P
+        S
       </div>
       <div className="char" style={{ top: 40, left: '20vw' }}>
-        M
+        A
       </div>
       <div className="char" style={{ top: 40, left: '40vw' }}>
         N
@@ -14,16 +14,16 @@ export function Overlay() {
         D
       </div>
       <div className="char" style={{ bottom: 40, left: '40vw' }}>
-        R
+        O
       </div>
       <div className="char" style={{ bottom: 40, left: '60vw' }}>
-        S
+        O
       </div>
-      <div style={{ position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right' }}>
+      {/* <div style={{ position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right' }}>
         A DEV
         <br />
         COLLECTIVE
-      </div>
+      </div> */}
       <div style={{ position: 'absolute', top: 40, right: 40, fontSize: '15px', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
         —
         <br />
@@ -34,7 +34,7 @@ export function Overlay() {
         <line y1="11.5" x2="54" y2="11.5" stroke="black" strokeWidth="3" />
         <line y1="21.5" x2="54" y2="21.5" stroke="black" strokeWidth="3" />
       </svg>
-      <div style={{ position: 'absolute', bottom: 120, left: 120, fontSize: '18px' }}>
+      {/* <div style={{ position: 'absolute', bottom: 120, left: 120, fontSize: '18px' }}>
         Runtime caustics and soft shadows,
         <br />
         for more realism on the web.
@@ -47,7 +47,7 @@ export function Overlay() {
           <div style={{ marginTop: 6, height: 2.5, width: '100%', background: '#3e3e3d' }} />
         </div>
         <br />
-      </div>
+      </div> */}
     </>
   )
 }

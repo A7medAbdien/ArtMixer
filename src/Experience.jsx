@@ -11,6 +11,7 @@ import * as THREE from 'three'
 import WRoom from './components/Rooms/WRoom';
 import { forwardRef } from 'react';
 import { useImperativeHandle } from 'react';
+import { Arrows } from './components/Arrows';
 
 export default function Experience() {
 
@@ -48,7 +49,7 @@ export default function Experience() {
         test.current.rollNext();
     };
     const rollBack = () => {
-        // test.current.rollBack();
+        test.current.rollBack();
     };
 
     return <>
@@ -79,11 +80,7 @@ export default function Experience() {
             {/* <Child ref={test} /> */}
             <Rooms ref={test} userId={userId} setColorB={setColorB} />
         </Canvas >
-        <div onClick={rollNext} className="char"
-            style={{ bottom: 80, right: 100, fontSize: '50px', fontWeight: 600, letterSpacing: 2 }}
-        >
-            Next..
-        </div>
+        <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />
     </>
 }
 

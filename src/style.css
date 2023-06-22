@@ -1,6 +1,6 @@
 @import url('https://rsms.me/inter/inter.css');
 
-* {
+/* * {
     box-sizing: border-box;
 }
 
@@ -11,18 +11,18 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
-}
+} */
 
-body {
+/* body {
     background: #f0f0f0;
     color: #3e3e3d;
     font-family: 'Inter var', sans-serif;
     user-select: none;
     cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzNlM2UzZCIvPjwvc3ZnPg=='),
         auto;
-}
+} */
 
-/* html,
+html,
 body,
 #root {
     position: fixed;
@@ -31,7 +31,7 @@ body,
     width: 100%;
     height: 100%;
     background: ivory;
-} */
+}
 
 canvas {
     touch-action: none;
@@ -41,32 +41,41 @@ canvas {
 /* 
  * Arrows
  */
+:root {
+    --arrow-color: #0087ca;
+}
 
 .arrow {
-    font-size: 40px;
+    color: var(--arrow-color);
+    position: absolute;
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2;
+    padding: 0;
+    margin: 0;
+    line-height: 0.8em;
 }
 
 .arrow:hover {
     cursor: pointer;
 }
 
-
 /* hover-underline-animation */
 .hover-underline-animation {
     cursor: pointer;
     display: inline-block;
     position: relative;
-    color: #0087ca;
+    color: var(--arrow-color);
 }
 
 .hover-underline-animation::after {
     cursor: pointer;
     content: '';
     position: absolute;
-    width: 100%;
+    width: 101%;
     transform: scaleX(0);
     height: 2px;
-    background-color: #0087ca;
+    background-color: var(--arrow-color);
     transition: transform 0.25s ease-out;
 }
 
@@ -100,6 +109,13 @@ canvas {
 
 
 /* hover-vertical-animation */
+.hover-underline-animation2 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    color: var(--arrow-color);
+}
+
 .hover-underline-animation2::after {
     content: '';
     position: absolute;
@@ -107,7 +123,7 @@ canvas {
     transform: scaleY(0);
     width: 2px;
     top: 0;
-    background-color: #0087ca;
+    background-color: var(--arrow-color);
     transition-delay: 0.25s;
     transform-origin: bottom;
     transition: transform 0.25s ease-out;
