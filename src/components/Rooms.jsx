@@ -11,9 +11,11 @@ import { useLocation, useRoute } from 'wouter';
 import { useEffect } from 'react';
 import { Arrows } from './Arrows';
 import { cloneElement } from 'react';
+import { forwardRef } from 'react';
+import { useImperativeHandle } from 'react';
 
 
-export const Rooms = ({ userId, setColorB }) => {
+export const Rooms = forwardRef(({ userId, setColorB }, ref) => {
 
     /**
      * Rotation Action
@@ -60,6 +62,15 @@ export const Rooms = ({ userId, setColorB }) => {
         }, (DURATION * 900) / 2);
         setActiveRoomName(roomList[alignIndexWithTheta(temp)].name)
     }
+
+    useImperativeHandle(ref, () => ({
+        rollNext() {
+            !isRolling && rollAll(true)
+        },
+        rollBack() {
+            !isRolling && rollAll(false)
+        },
+    }));
 
     // Default Room
     useEffect(() => {
@@ -154,7 +165,7 @@ export const Rooms = ({ userId, setColorB }) => {
             </group>
         })}
     </>
-}
+})
 
 
 const DURATION = 2.5

@@ -9,6 +9,8 @@ import { useControls } from 'leva';
 import { useRef } from 'react';
 import * as THREE from 'three'
 import WRoom from './components/Rooms/WRoom';
+import { forwardRef } from 'react';
+import { useImperativeHandle } from 'react';
 
 export default function Experience() {
 
@@ -22,6 +24,8 @@ export default function Experience() {
     const base = '#201919'
     const colorA = '#000'
     const [colorB, setColorB] = useState('#937855')
+    const test = useRef()
+
     /**
      * Set User Identifier
      */
@@ -39,6 +43,13 @@ export default function Experience() {
             setUserId(savedValue);
         }
     }, []);
+
+    const rollNext = () => {
+        test.current.rollNext();
+    };
+    const rollBack = () => {
+        // test.current.rollBack();
+    };
 
     return <>
         {/* <Leva hidden /> */}
@@ -65,9 +76,14 @@ export default function Experience() {
             </mesh> */}
 
             <Bg base={base} colorA={colorA} colorB={colorB} />
-
-            <Rooms userId={userId} setColorB={setColorB} />
+            {/* <Child ref={test} /> */}
+            <Rooms ref={test} userId={userId} setColorB={setColorB} />
         </Canvas >
+        <div onClick={rollNext} className="char"
+            style={{ bottom: 80, right: 100, fontSize: '50px', fontWeight: 600, letterSpacing: 2 }}
+        >
+            Next..
+        </div>
     </>
 }
 
