@@ -52,10 +52,6 @@ Please rate the followings: from 1-5
 3. Position
 4. Motion with moving your mouse
 
-Suggestions
-1. How would you suggest about the buttons shapes
-
-
 
 # Welcome
 
