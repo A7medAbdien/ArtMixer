@@ -132,7 +132,7 @@ const MassageBubble = ({ userId, name, active, position, rotation, left, setImag
 
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary
-        widgetRef.current = cloudinaryRef.current.createUploadWidget({
+        widgetRef.current = cloudinaryRef.current?.createUploadWidget({
             cloudName: "dcmthd8bn",
             uploadPreset: "utmds9zl",
             publicId: name + userId,
@@ -158,7 +158,7 @@ const MassageBubble = ({ userId, name, active, position, rotation, left, setImag
             rotation={rotation}
         >
             <div
-                onClick={(e) => (e.stopPropagation(), widgetRef.current.open())}
+                onClick={(e) => (e.stopPropagation(), widgetRef.current?.open())}
                 className={`${!left ? 'left-top-origin' : 'right-top-origin'} zoom-in-out-fade-Kitchen ${show ? 'show' : 'hide'}`}
             >
                 <div className={`talk-bubble-kitchen round ${!left ? 'tri-left left-top' : 'tri-right right-top'}`}>
