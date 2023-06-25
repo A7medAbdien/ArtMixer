@@ -15,6 +15,14 @@ import { Arrows } from './components/Arrows';
 import { useRoute } from 'wouter';
 import { Overlay } from './Overlay';
 
+const roomsText = [
+    { title: "Upload images", instructions: ["Click the images to see the upload button"] },
+    { title: "Run mixer", instructions: ["Click the images to see the instructions"] },
+    { title: "Please wait", instructions: ["Your images are being processed."] },
+    { title: "Preview your mix", instructions: ["Your mix is ready!"] },
+    { title: "Credits Room", instructions: [""] },
+]
+
 export default function Experience() {
 
     const [perfSucks, degrade] = useState(false)
@@ -29,7 +37,9 @@ export default function Experience() {
     const base = '#201919'
     const colorA = '#000'
     const [colorB, setColorB] = useState('#937855')
-    const test = useRef()
+    const roomsRef = useRef()
+
+    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
 
     /**
      * Set User Identifier
@@ -50,10 +60,10 @@ export default function Experience() {
     }, []);
 
     const rollNext = () => {
-        test.current.rollNext();
+        roomsRef.current.rollNext();
     };
     const rollBack = () => {
-        test.current.rollBack();
+        roomsRef.current.rollBack();
     };
 
     return <>
@@ -82,11 +92,11 @@ export default function Experience() {
 
             <Bg base={base} colorA={colorA} colorB={colorB} />
             {/* <Child ref={test} /> */}
-            <Rooms ref={test} userId={userId} setColorB={setColorB} />
+            <Rooms ref={roomsRef} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} />
         </Canvas >
         {!params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
 
-        <Overlay color={colorB} />
+        {!params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />}
     </>
 }
 

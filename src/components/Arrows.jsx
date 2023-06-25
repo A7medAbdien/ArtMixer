@@ -2,8 +2,8 @@ import { Html, Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 
 export const Arrows = ({ rightAction, leftAction, color }) => {
-    const rightArrowPosition = { bottom: 80, right: 100, '--room-color': color }
-    const leftArrowPosition = { bottom: 80, left: 100, '--room-color': color }
+    const rightArrowPosition = { bottom: 80, right: 45, '--room-color': color }
+    const leftArrowPosition = { bottom: 80, left: 45, '--room-color': color }
     return <>
         <Arrow text={"NEXT.."} arrowPosition={rightArrowPosition} action={rightAction} right />
         <Arrow text={"..BACK"} arrowPosition={leftArrowPosition} action={leftAction} />
@@ -19,7 +19,7 @@ const Arrow = ({ text, arrowPosition, action, right = false }) => {
                 className={`hover-underline-animation ${right ? "left-to-right" : "right-to-left"}`}
             >
                 <div
-                    className={`arrow hover-underline-animation2 ${right ? "right-vertical" : "left-vertical"}`}
+                    className={`hover-underline-animation2 ${right ? "right-vertical" : "left-vertical"}`}
                 >
                     {text}
                 </div>

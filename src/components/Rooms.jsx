@@ -15,7 +15,7 @@ import { forwardRef } from 'react';
 import { useImperativeHandle } from 'react';
 
 
-export const Rooms = forwardRef(({ userId, setColorB }, ref) => {
+export const Rooms = forwardRef(({ userId, setColorB, activeRoomIndex, setActiveRoomIndex }, ref) => {
 
     /**
      * Rotation Action
@@ -24,7 +24,7 @@ export const Rooms = forwardRef(({ userId, setColorB }, ref) => {
     const baseTheta = 360 / count
     const [boxesTheta, setBoxesTheta] = useState(Array.from({ length: count }).map((_, i) => i * baseTheta))
     const [isRolling, setRolling] = useState(false)
-    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
+    // const [activeRoomIndex, setActiveRoomIndex] = useState(0)
     const [activeRoomName, setActiveRoomName] = useState("init")
 
     const refs = useRef(

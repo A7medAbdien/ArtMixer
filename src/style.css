@@ -100,6 +100,8 @@ canvas {
 
 /* right-to-left */
 .right-to-left::after {
+    bottom: 0;
+    left: 0;
     transform-origin: bottom left;
 }
 
@@ -327,9 +329,20 @@ canvas {
 .char {
     color: var(--room-color);
     position: absolute;
-    font-size: 14vw;
+    font-size: 9vw;
     font-weight: 800;
     padding: 0;
     margin: 0;
     line-height: 0.8em;
+}
+
+.instructions {
+    color: var(--room-color);
+    position: absolute;
+    font-size: 1.5vw;
+    font-weight: 800;
+    padding: 0;
+    margin: 0;
+    line-height: 1.5em;
+    max-width: 20vw;
 }
