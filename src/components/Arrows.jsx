@@ -2,8 +2,8 @@ import { Html, Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 
 export const Arrows = ({ rightAction, leftAction, color }) => {
-    const rightArrowPosition = { bottom: 80, right: 100, '--arrow-color': color }
-    const leftArrowPosition = { bottom: 80, left: 100, '--arrow-color': color }
+    const rightArrowPosition = { bottom: 80, right: 100, '--room-color': color }
+    const leftArrowPosition = { bottom: 80, left: 100, '--room-color': color }
     return <>
         <Arrow text={"NEXT.."} arrowPosition={rightArrowPosition} action={rightAction} right />
         <Arrow text={"..BACK"} arrowPosition={leftArrowPosition} action={leftAction} />

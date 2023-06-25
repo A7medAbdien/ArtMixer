@@ -12,6 +12,8 @@ import WRoom from './components/Rooms/WRoom';
 import { forwardRef } from 'react';
 import { useImperativeHandle } from 'react';
 import { Arrows } from './components/Arrows';
+import { useRoute } from 'wouter';
+import { Overlay } from './Overlay';
 
 export default function Experience() {
 
@@ -22,6 +24,8 @@ export default function Experience() {
     //     colorA: { value: '#000' },
     //     colorB: { value: RoomColors[activeRoomIndex] } // B 27455f - G 275e3f - W 386f7c
     // })
+
+    const [, params] = useRoute('/:id')
     const base = '#201919'
     const colorA = '#000'
     const [colorB, setColorB] = useState('#937855')
@@ -80,7 +84,9 @@ export default function Experience() {
             {/* <Child ref={test} /> */}
             <Rooms ref={test} userId={userId} setColorB={setColorB} />
         </Canvas >
-        <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />
+        {!params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
+
+        <Overlay color={colorB} />
     </>
 }
 

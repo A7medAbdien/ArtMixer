@@ -53,6 +53,7 @@ Please rate the followings: from 1-5
 4. Motion with moving your mouse
 
 
+
 # Welcome
 
 Hi, I am Time. A new type of blender.
@@ -72,3 +73,10 @@ And another one like this...
 let us call it style
 
 and I will give you something like that.
+
+# Instructions
+
+1. Upload Images
+2. Run Blender
+3. Wait Packing
+4. Volaa
