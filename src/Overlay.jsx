@@ -39,7 +39,7 @@ export function Overlay({ color, text }) {
       <div className="instructions" style={{ '--room-color': color, position: 'absolute', left: 40, top: '40%' }} >
         <ul>
           <li>
-            {text.instructions[0]}
+            {text.instructions && text.instructions.map((instruction) => instruction)}
           </li>
         </ul>
       </div>
