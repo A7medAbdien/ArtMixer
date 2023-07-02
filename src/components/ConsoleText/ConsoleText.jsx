@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ConsoleText.css';
 
-const ConsoleText = ({ words, colors }) => {
+const ConsoleText = ({ areRoomsReady, setIntroDone, words, colors }) => {
     useEffect(() => {
         if (colors === undefined) colors = ['#fff'];
         var visible = true;
@@ -9,43 +9,49 @@ const ConsoleText = ({ words, colors }) => {
         var letterCount = 1;
         var x = 1;
         var waiting = false;
-        var target = document.getElementById('text')
-        target.setAttribute('style', 'color:' + colors[0])
+        var target = document.getElementById('text');
+        target.setAttribute('style', 'color:' + colors[0]);
+
         const intervalId1 = setInterval(function () {
-            if (letterCount === 0 && waiting === false) {
+            if (areRoomsReady && words.length == 1) {
+                setIntroDone(true)
+                console.log("roomsReady");
+            } else if (words.length === 0) {
+                clearInterval(intervalId1);
+            } else if (letterCount === 0 && waiting === false) {
                 waiting = true;
-                target.innerHTML = words[0].substring(0, letterCount)
+                target.innerHTML = words[0].substring(0, letterCount);
                 setTimeout(function () {
-                    var usedColor = colors.shift();
-                    colors.push(usedColor);
-                    var usedWord = words.shift();
-                    words.push(usedWord);
+                    colors.shift();
+                    words.shift();
+                    // colors.push(usedColor);
+                    // words.push(usedWord);
                     x = 1;
-                    target.setAttribute('style', 'color:' + colors[0])
+                    target.setAttribute('style', 'color:' + colors[0]);
                     letterCount += x;
                     waiting = false;
-                }, 1000)
-            } else if (letterCount === words[0].length + 1 && waiting === false) {
+                }, 1000);
+            } else if (words.length > 1 && letterCount === words[0].length + 1 && waiting === false) {
                 waiting = true;
                 setTimeout(function () {
                     x = -1;
                     letterCount += x;
                     waiting = false;
-                }, 1000)
+                }, 1000);
             } else if (waiting === false) {
-                target.innerHTML = words[0].substring(0, letterCount)
+                target.innerHTML = words[0].substring(0, letterCount);
                 letterCount += x;
             }
-        }, 120)
+        }, 120);
         const intervalId2 = setInterval(function () {
             if (visible === true) {
-                con.className = 'console-underscore hidden'
+                con.className = 'console-underscore hidden';
                 visible = false;
             } else {
-                con.className = 'console-underscore'
+                con.className = 'console-underscore';
                 visible = true;
             }
-        }, 400)
+        }, 400);
         return () => {
             clearInterval(intervalId1);
             clearInterval(intervalId2);

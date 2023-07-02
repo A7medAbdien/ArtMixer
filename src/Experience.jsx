@@ -27,7 +27,7 @@ const roomsText = [
 export default function Experience() {
 
     const [introDone, setIntroDone] = useState(false)
-    console.log(introDone);
+    const [areRoomsReady, setAreRoomsReady] = useState(false)
     const [perfSucks, degrade] = useState(false)
 
     // const props = useControls({
@@ -52,6 +52,7 @@ export default function Experience() {
     const [userId, setUserId] = useState(null)
 
     useEffect(() => {
+        setAreRoomsReady(true)
         const savedValue = sessionStorage.getItem("ID");
         if (!savedValue) {
             const newValue = date;
@@ -73,8 +74,8 @@ export default function Experience() {
         {/* <Leva hidden /> */}
         {/* [0, -0.4, 1.3] */}
 
-        {/* <Suspense fallback={<Intro setIntroDone={setIntroDone} />}> */}
-        <Intro setIntroDone={setIntroDone} />
+        {!introDone && <Intro setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />}
+        {/* <Suspense fallback={<Intro setIntroDone={setareRoomsReady} />}> */}
         {introDone && <Canvas
             flat
             dpr={[1, perfSucks ? 1.5 : 2]}
