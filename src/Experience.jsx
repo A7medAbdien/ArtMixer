@@ -1,7 +1,7 @@
 import { AccumulativeShadows, Box, Center, Environment, OrbitControls, PerformanceMonitor, RandomizedLight, Text } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Rooms } from './components/Rooms';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Perf } from 'r3f-perf';
 import { LayerMaterial, Depth, Color } from 'lamina'
@@ -14,6 +14,7 @@ import { useImperativeHandle } from 'react';
 import { Arrows } from './components/Arrows';
 import { useRoute } from 'wouter';
 import { Overlay } from './Overlay';
+import { Intro } from './components/Intro';
 
 const roomsText = [
     { title: "Upload images", instructions: ["Click the images to see the upload button"] },
@@ -25,6 +26,8 @@ const roomsText = [
 
 export default function Experience() {
 
+    const [introDone, setIntroDone] = useState(false)
+    console.log(introDone);
     const [perfSucks, degrade] = useState(false)
 
     // const props = useControls({
@@ -69,7 +72,10 @@ export default function Experience() {
     return <>
         {/* <Leva hidden /> */}
         {/* [0, -0.4, 1.3] */}
-        <Canvas
+
+        {/* <Suspense fallback={<Intro setIntroDone={setIntroDone} />}> */}
+        <Intro setIntroDone={setIntroDone} />
+        {introDone && <Canvas
             flat
             dpr={[1, perfSucks ? 1.5 : 2]}
             eventSource={document.getElementById('root')}
@@ -93,10 +99,10 @@ export default function Experience() {
             <Bg base={base} colorA={colorA} colorB={colorB} />
             {/* <Child ref={test} /> */}
             <Rooms ref={roomsRef} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} />
-        </Canvas >
-        {!params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
-
-        {!params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />}
+        </Canvas >}
+        {introDone && !params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
+        {introDone && !params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />}
+        {/* </Suspense > */}
     </>
 }
 

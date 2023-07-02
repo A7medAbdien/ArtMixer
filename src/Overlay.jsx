@@ -2,48 +2,49 @@ export function Overlay({ color, text }) {
 
   return (
     <>
-      <div className="char" style={{ '--room-color': color, top: 40, left: 40 }}>
-        {text.title}
-      </div>
-      <div className="char" style={{ '--room-color': color, top: 40, left: '20vw' }}>
+      <div className="overlay">
+        <div className="char" style={{ '--room-color': color, top: 40, left: 40 }}>
+          {text.title}
+        </div>
+        <div className="char" style={{ '--room-color': color, top: 40, left: '20vw' }}>
 
-      </div>
-      <div className="char" style={{ '--room-color': color, top: 40, left: '40vw' }}>
+        </div>
+        <div className="char" style={{ '--room-color': color, top: 40, left: '40vw' }}>
 
-      </div>
-      <div className="char" style={{ '--room-color': color, top: '20vw', left: '20vw' }}>
+        </div>
+        <div className="char" style={{ '--room-color': color, top: '20vw', left: '20vw' }}>
 
-      </div>
-      <div className="char" style={{ '--room-color': color, bottom: 40, left: '40vw' }}>
+        </div>
+        <div className="char" style={{ '--room-color': color, bottom: 40, left: '40vw' }}>
 
-      </div>
-      <div className="char" style={{ '--room-color': color, bottom: 40, left: '60vw' }}>
+        </div>
+        <div className="char" style={{ '--room-color': color, bottom: 40, left: '60vw' }}>
 
-      </div>
-      {/* <div style={{ '--room-color': color, position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right' }}>
+        </div>
+        {/* <div style={{ '--room-color': color, position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right' }}>
         A DEV
         <br />
         COLLECTIVE
       </div> */}
-      {/* <div style={{ '--room-color': color, position: 'absolute', top: 40, right: 40, fontSize: '15px', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+        {/* <div style={{ '--room-color': color, position: 'absolute', top: 40, right: 40, fontSize: '15px', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
         —
         <br />
         08/01/23
       </div> */}
-      <svg style={{ '--room-color': color, position: 'absolute', right: 45, top: '50%' }} width="54" height="23" viewBox="0 0 54 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line y1="1.5" x2="54" y2="1.5" stroke={color} strokeWidth="3" />
-        <line y1="11.5" x2="54" y2="11.5" stroke={color} strokeWidth="3" />
-        <line y1="21.5" x2="54" y2="21.5" stroke={color} strokeWidth="3" />
-      </svg>
+        <svg style={{ '--room-color': color, position: 'absolute', right: 45, top: '50%' }} width="54" height="23" viewBox="0 0 54 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line y1="1.5" x2="54" y2="1.5" stroke={color} strokeWidth="3" />
+          <line y1="11.5" x2="54" y2="11.5" stroke={color} strokeWidth="3" />
+          <line y1="21.5" x2="54" y2="21.5" stroke={color} strokeWidth="3" />
+        </svg>
 
-      <div className="instructions" style={{ '--room-color': color, position: 'absolute', left: 40, top: '40%' }} >
-        <ul>
-          <li>
-            {text.instructions && text.instructions.map((instruction) => instruction)}
-          </li>
-        </ul>
-      </div>
-      {/* <div style={{ '--room-color': color, position: 'absolute', bottom: 120, left: 120, fontSize: '18px' }}>
+        <div className="instructions" style={{ '--room-color': color, position: 'absolute', left: 40, top: '40%' }} >
+          <ul>
+            <li>
+              {text.instructions && text.instructions.map((instruction) => instruction)}
+            </li>
+          </ul>
+        </div>
+        {/* <div style={{ '--room-color': color, position: 'absolute', bottom: 120, left: 120, fontSize: '18px' }}>
         Runtime caustics and soft shadows,
         <br />
         for more realism on the web.
@@ -57,6 +58,7 @@ export function Overlay({ color, text }) {
         </div>
         <br />
       </div> */}
+      </div>
     </>
   )
 }
