@@ -1,8 +1,10 @@
 import { useEffect } from "react"
 import ConsoleText from "./ConsoleText/ConsoleText";
+import { useState } from "react";
 
-export function Intro({ setIntroDone, areRoomsReady }) {
+export function Intro({ introDone, setIntroDone, areRoomsReady }) {
 
+  const [visible, setVisible] = useState(true);
   const massages = [
     'Hi, I am Tim. A new type of blenders.',
     'I mix Art... ',
@@ -21,9 +23,13 @@ export function Intro({ setIntroDone, areRoomsReady }) {
 
   return (
     <>
-      <div className="intro-container">
+      {visible && <div
+        onClick={(e) => e.stopPropagation()}
+        className={`intro-container ${!introDone ? "" : " fade-out"}`}
+        onAnimationEnd={() => introDone && setVisible(false)}
+      >
         {areRoomsReady && <div className="intro" >
-          <div style={{ left: -60, }} onClick={(e) => (e.stopPropagation(), setIntroDone(true))} className="arrow">
+          <div style={{ left: -60, bottom: '-65vh' }} onClick={(e) => (e.stopPropagation(), setIntroDone(true))} className="arrow">
             <div className={`hover-underline-animation left-to-right `}>
               Skip
             </div>
@@ -31,7 +37,7 @@ export function Intro({ setIntroDone, areRoomsReady }) {
         </div>}
 
         <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />
-      </div>
+      </div>}
     </>
   )
 }

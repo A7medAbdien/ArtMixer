@@ -366,6 +366,8 @@ canvas {
 }
 
 .intro-container {
+    opacity: 1;
+    transition: opacity 3s ease;
     text-align: center;
     border: #111 50px;
     position: absolute;
@@ -375,4 +377,9 @@ canvas {
     height: 100%;
     background-color: #111;
     z-index: 1;
+
+}
+
+.intro-container.fade-out {
+    opacity: 0;
 }
