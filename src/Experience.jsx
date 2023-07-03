@@ -27,7 +27,6 @@ const roomsText = [
 export default function Experience() {
 
     const [introDone, setIntroDone] = useState(false)
-    const [introHide, setIntroHide] = useState(false)
     const [areRoomsReady, setAreRoomsReady] = useState(false)
     const [perfSucks, degrade] = useState(false)
 
@@ -105,8 +104,8 @@ export default function Experience() {
                 <Rooms ref={roomsRef} setAreRoomsReady={setAreRoomsReady} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} introDone={introDone} />
             </Suspense >
         </Canvas >
-        !params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />
-        !params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />
+        {!params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
+        {!params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />}
         {<Intro introDone={introDone} setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />}
     </>
 }
