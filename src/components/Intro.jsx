@@ -21,12 +21,16 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
     '#937855', // Credit
   ]
 
+  useEffect(() => {
+    introDone && setVisible(false)
+  }, [introDone])
+
   return (
     <>
       {visible && <div
         onClick={(e) => e.stopPropagation()}
         className={`intro-container ${!introDone ? "" : " fade-out"}`}
-        onAnimationEnd={() => introDone && setVisible(false)}
+      // onAnimationEnd={() => introDone && setVisible(false)}
       >
         {areRoomsReady && <div className="intro" >
           <div style={{ left: -60, bottom: '-65vh' }} onClick={(e) => (e.stopPropagation(), setIntroDone(true))} className="arrow">
