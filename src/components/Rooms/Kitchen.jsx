@@ -65,7 +65,7 @@ export default function Kitchen({ setAreRoomsReady, userId, setIsContentImageUpl
         Promise.all([nodes, bakedTexture, Palette, FrameLeft, FrameRight]).then(() => {
             setTimeout(() => {
                 setAreRoomsReady(true);
-            }, 1500);
+            }, 2500);
         });
         contentImageUrl && setIsContentImageUploaded(true)
         styleImageUrl && setIsStyleImageUploaded(true)
