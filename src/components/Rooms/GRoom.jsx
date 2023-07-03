@@ -10,7 +10,7 @@ const RoomName = "GreenRoom"
 const images = [
     { name: RoomName + "A", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
 ]
-const textPosition = [-1.325, 1.645, 0.4]
+const textPosition = [-1.325, 1.48, 0.4]
 
 export default function GRoom({ activeRoomName, setIsNotebookOpened, setIsNotebookExecuted }) {
 
