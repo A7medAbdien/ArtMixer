@@ -82,7 +82,7 @@ export default function Experience() {
             eventPrefix="client"
             camera={{
                 fov: 75,
-                position: [0, 0, 4]
+                position: [0, 10, 4]
             }}
         >
 
@@ -100,7 +100,7 @@ export default function Experience() {
             {/* <Child ref={test} /> */}
             <Suspense fallback={<Box />}>
                 {/* {setAreRoomsReady(true)} */}
-                <Rooms ref={roomsRef} setAreRoomsReady={setAreRoomsReady} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} />
+                <Rooms ref={roomsRef} setAreRoomsReady={setAreRoomsReady} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} introDone={introDone} />
             </Suspense >
         </Canvas >
         !params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />

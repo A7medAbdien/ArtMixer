@@ -15,7 +15,7 @@ import { forwardRef } from 'react';
 import { useImperativeHandle } from 'react';
 
 
-export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRoomIndex, setActiveRoomIndex }, ref) => {
+export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRoomIndex, setActiveRoomIndex, introDone }, ref) => {
 
     /**
      * Rotation Action
@@ -112,7 +112,7 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
             props: {
                 activeRoomName: activeRoomName, userId: userId,
                 setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded,
-                setAreRoomsReady: setAreRoomsReady
+                setAreRoomsReady: setAreRoomsReady, introDone: introDone
             }
         },
         {

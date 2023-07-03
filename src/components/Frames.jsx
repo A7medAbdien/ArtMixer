@@ -7,7 +7,7 @@ import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
 const initRoom = "Kitchen"
-export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, 0, -3.5], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
+export const Frames = ({ Children, name: RoomName, introDone, activeRoomName, startTime, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, 0, -3.5], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
 
     const ref = useRef()
     const clicked = useRef()
@@ -28,7 +28,11 @@ export const Frames = ({ Children, name: RoomName, activeRoomName, startTime, po
     })
 
     useFrame((state, dt) => {
-        if (isActive || (isActive && params?.id && (params.id).includes(activeRoomName)) || activeRoomName == "init") {
+        if (activeRoomName == "init" && introDone) {
+            easing.damp3(state.camera.position, p, 1.8, dt)
+            easing.dampQ(state.camera.quaternion, q, 0.4, dt)
+        }
+        else if ((isActive || (isActive && params?.id && (params.id).includes(activeRoomName)))) {
             easing.damp3(state.camera.position,
                 [
                     p.x + Math.sin(state.pointer.x / 4) * 0.8,
