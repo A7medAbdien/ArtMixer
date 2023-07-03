@@ -74,10 +74,8 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
 
     // Default Room
     useEffect(() => {
-        setTimeout(() => {
-            setActiveRoomName(roomList[alignIndexWithTheta(0)].name)
-        }, 1000);
-    }, [])
+        introDone && setActiveRoomName(roomList[alignIndexWithTheta(0)].name)
+    }, [introDone])
 
 
     const [isContentImageUploaded, setIsContentImageUploaded] = useState(false)
