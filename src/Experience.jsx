@@ -74,9 +74,8 @@ export default function Experience() {
         {/* <Leva hidden /> */}
         {/* [0, -0.4, 1.3] */}
 
-        {!introDone && <Intro setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />}
-        {/* <Suspense fallback={<Intro setIntroDone={setareRoomsReady} />}> */}
-        {introDone && <Canvas
+        {/* {!introDone && <Intro setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />} */}
+        <Canvas
             flat
             dpr={[1, perfSucks ? 1.5 : 2]}
             eventSource={document.getElementById('root')}
@@ -99,11 +98,16 @@ export default function Experience() {
 
             <Bg base={base} colorA={colorA} colorB={colorB} />
             {/* <Child ref={test} /> */}
-            <Rooms ref={roomsRef} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} />
-        </Canvas >}
-        {introDone && !params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
-        {introDone && !params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />}
-        {/* </Suspense > */}
+            <Suspense fallback={<Box />}>
+                {/* {setAreRoomsReady(true)} */}
+                <Rooms ref={roomsRef} setAreRoomsReady={setAreRoomsReady} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} />
+            </Suspense >
+        </Canvas >
+        !params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />
+        !params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />
+
+        {!introDone && <Intro setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />}
+
     </>
 }
 

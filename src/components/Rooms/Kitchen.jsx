@@ -29,7 +29,7 @@ const massages = [
 const bigImageFocus = 0.8
 const basePOV = [0, 0, -3.5]
 
-export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
+export default function Kitchen({ setAreRoomsReady, userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
 
     /**
      * Loading GLTF models
@@ -62,6 +62,11 @@ export default function Kitchen({ userId, setIsContentImageUploaded, setIsStyleI
      * isImagesUploaded
      */
     useEffect(() => {
+        Promise.all([nodes]).then(() => {
+            setTimeout(() => {
+                setAreRoomsReady(true);
+            }, 1500);
+        });
         contentImageUrl && setIsContentImageUploaded(true)
         styleImageUrl && setIsStyleImageUploaded(true)
     }, [contentImageUrl, styleImageUrl])

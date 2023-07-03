@@ -7,7 +7,7 @@ export function Intro({ setIntroDone, areRoomsReady }) {
     'Hi, I am Tim. A new type of blenders.',
     'I mix Art... ',
     'Ya, my developer has really nothing to do 🙄. So...',
-    'Please, have fun 🎉',
+    'Have fun 🎉',
     'I am loading, pleas wait until I get ready 😊.'
   ]
 
@@ -21,15 +21,17 @@ export function Intro({ setIntroDone, areRoomsReady }) {
 
   return (
     <>
-      {areRoomsReady && <div className="intro" >
-        <div onClick={() => setIntroDone(true)} className="arrow">
-          <div className={`hover-underline-animation left-to-right `}>
-            Skip
+      <div className="intro-container">
+        {areRoomsReady && <div className="intro" >
+          <div style={{ left: -60, }} onClick={() => setIntroDone(true)} className="arrow">
+            <div className={`hover-underline-animation left-to-right `}>
+              Skip
+            </div>
           </div>
-        </div>
-      </div>}
+        </div>}
 
-      <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />
+        <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />
+      </div>
     </>
   )
 }

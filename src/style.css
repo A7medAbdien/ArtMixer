@@ -364,3 +364,15 @@ canvas {
     line-height: 1.5em;
     max-width: 20vw;
 }
+
+.intro-container {
+    text-align: center;
+    border: #111 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    z-index: 1;
+}
