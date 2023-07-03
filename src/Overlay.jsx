@@ -31,11 +31,11 @@ export function Overlay({ color, text }) {
         <br />
         08/01/23
       </div> */}
-        <svg style={{ '--room-color': color, position: 'absolute', right: 45, top: '50%' }} width="54" height="23" viewBox="0 0 54 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* <svg style={{ '--room-color': color, position: 'absolute', right: 45, top: '50%' }} width="54" height="23" viewBox="0 0 54 23" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line y1="1.5" x2="54" y2="1.5" stroke={color} strokeWidth="3" />
           <line y1="11.5" x2="54" y2="11.5" stroke={color} strokeWidth="3" />
           <line y1="21.5" x2="54" y2="21.5" stroke={color} strokeWidth="3" />
-        </svg>
+        </svg> */}
 
         <div className="instructions" style={{ '--room-color': color, position: 'absolute', left: 40, top: '40%' }} >
           <ul>
