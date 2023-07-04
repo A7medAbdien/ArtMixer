@@ -24,7 +24,7 @@ export default function Thanks({ activeRoomName }) {
             scale={0.2}
         >
             <PresentationControls
-                enabled={false}
+                enabled={true}
                 polar={[-0.4, 0.2]}
                 azimuth={[-1, 0.75]}
                 config={{ mass: 2, tension: 400 }}
