@@ -42,7 +42,7 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
           </div>
         </div>}
 
-        <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />
+        {areRoomsReady && <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />}
       </div>}
     </>
   )
