@@ -13,6 +13,7 @@ import { Arrows } from './Arrows';
 import { cloneElement } from 'react';
 import { forwardRef } from 'react';
 import { useImperativeHandle } from 'react';
+import Thanks from './Rooms/Thanks';
 
 
 export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRoomIndex, setActiveRoomIndex, introDone }, ref) => {
@@ -116,8 +117,8 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
         {
             id: 5,
             name: 'Thanks',
-            color: '#937855',
-            component: <Box />,
+            color: '#8f2a2a',
+            component: <Thanks />,
             props: { activeRoomName: activeRoomName }
         },
         {

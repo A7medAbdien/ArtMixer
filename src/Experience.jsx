@@ -21,7 +21,7 @@ const roomsText = [
     { title: "Run mixer", instructions: ["Click the images to see the instructions"] },
     { title: "Please wait", instructions: ["Your images are being processed."] },
     { title: "Preview your mix", instructions: ["Your mix is ready!"] },
-    { title: "Credits Room", instructions: [""] },
+    { title: "Credits", instructions: [""] },
 ]
 
 export default function Experience() {
@@ -100,7 +100,6 @@ export default function Experience() {
             <Bg base={base} colorA={colorA} colorB={colorB} />
             {/* <Child ref={test} /> */}
             <Suspense fallback={<Box />}>
-                {/* {setAreRoomsReady(true)} */}
                 <Rooms ref={roomsRef} setAreRoomsReady={setAreRoomsReady} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} introDone={introDone} />
             </Suspense >
         </Canvas >
