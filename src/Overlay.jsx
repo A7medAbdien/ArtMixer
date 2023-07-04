@@ -6,7 +6,7 @@ export function Overlay({ color, text }) {
         <div className="char" style={{ '--room-color': color, top: 40, left: 40 }}>
           {text.title}
         </div>
-        <div className="char" style={{ '--room-color': color, top: 40, left: '20vw' }}>
+        {/* <div className="char" style={{ '--room-color': color, top: 40, left: '20vw' }}>
 
         </div>
         <div className="char" style={{ '--room-color': color, top: 40, left: '40vw' }}>
@@ -20,7 +20,7 @@ export function Overlay({ color, text }) {
         </div>
         <div className="char" style={{ '--room-color': color, bottom: 40, left: '60vw' }}>
 
-        </div>
+        </div> */}
         {/* <div style={{ '--room-color': color, position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right' }}>
         A DEV
         <br />
@@ -37,13 +37,13 @@ export function Overlay({ color, text }) {
           <line y1="21.5" x2="54" y2="21.5" stroke={color} strokeWidth="3" />
         </svg> */}
 
-        <div className="instructions" style={{ '--room-color': color, position: 'absolute', left: 40, top: '40%' }} >
+        {text.instructions && <div className="instructions" style={{ '--room-color': color, position: 'absolute', left: 40, top: '40%' }} >
           <ul>
             <li>
-              {text.instructions && text.instructions.map((instruction) => instruction)}
+              {text.instructions.map((instruction) => instruction)}
             </li>
           </ul>
-        </div>
+        </div>}
         {/* <div style={{ '--room-color': color, position: 'absolute', bottom: 120, left: 120, fontSize: '18px' }}>
         Runtime caustics and soft shadows,
         <br />

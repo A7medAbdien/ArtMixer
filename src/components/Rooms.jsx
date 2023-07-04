@@ -117,7 +117,7 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
         {
             id: 5,
             name: 'Thanks',
-            color: '#8f2a2a',
+            color: '#612b8d',
             component: <Thanks />,
             props: { activeRoomName: activeRoomName }
         },

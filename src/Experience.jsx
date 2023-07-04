@@ -21,7 +21,7 @@ const roomsText = [
     { title: "Run mixer", instructions: ["Click the images to see the instructions"] },
     { title: "Please wait", instructions: ["Your images are being processed."] },
     { title: "Preview your mix", instructions: ["Your mix is ready!"] },
-    { title: "Credits", instructions: [""] },
+    { title: "Credits", instructions: null },
 ]
 
 export default function Experience() {
