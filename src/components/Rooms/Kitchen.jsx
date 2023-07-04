@@ -63,9 +63,7 @@ export default function Kitchen({ setAreRoomsReady, userId, setIsContentImageUpl
      */
     useEffect(() => {
         Promise.all([nodes, bakedTexture, Palette, FrameLeft, FrameRight]).then(() => {
-            setTimeout(() => {
-                setAreRoomsReady(true);
-            }, 2500);
+            setAreRoomsReady(true);
         });
         contentImageUrl && setIsContentImageUploaded(true)
         styleImageUrl && setIsStyleImageUploaded(true)

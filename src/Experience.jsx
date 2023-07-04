@@ -52,7 +52,6 @@ export default function Experience() {
     const [userId, setUserId] = useState(null)
 
     useEffect(() => {
-        setAreRoomsReady(true)
         const savedValue = sessionStorage.getItem("ID");
         if (!savedValue) {
             const newValue = date;
