@@ -22,7 +22,9 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
   ]
 
   useEffect(() => {
-    introDone && setVisible(false)
+    setTimeout(() => {
+      introDone && setVisible(false)
+    }, 700);
   }, [introDone])
 
   return (
