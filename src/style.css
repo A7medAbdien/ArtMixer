@@ -73,14 +73,14 @@ body,
 
 /* hover-underline-animation */
 .hover-underline-animation {
-    cursor: pointer;
+    /* cursor: pointer; */
     display: inline-block;
     position: relative;
     color: var(--room-color);
 }
 
 .hover-underline-animation::after {
-    cursor: pointer;
+    /* cursor: pointer; */
     content: '';
     position: absolute;
     width: 101%;
@@ -123,7 +123,7 @@ body,
 
 /* hover-vertical-animation */
 .hover-underline-animation2 {
-    cursor: pointer;
+    /* cursor: pointer; */
     display: inline-block;
     position: relative;
     color: var(--room-color);
