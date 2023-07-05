@@ -24,7 +24,7 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
   useEffect(() => {
     setTimeout(() => {
       introDone && setVisible(false)
-    }, 700);
+    }, 1500);
   }, [introDone])
 
   return (
@@ -32,7 +32,6 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
       {visible && <div
         onClick={(e) => e.stopPropagation()}
         className={`intro-container ${!introDone ? "" : " fade-out"}`}
-      // onAnimationEnd={() => introDone && setVisible(false)}
       >
         {areRoomsReady && <div className="intro" >
           <div style={{ left: -60, bottom: '-65vh' }} onClick={(e) => (e.stopPropagation(), setIntroDone(true))} className="arrow">
@@ -42,7 +41,7 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
           </div>
         </div>}
 
-        {areRoomsReady && <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />}
+        {areRoomsReady && !introDone && <ConsoleText areRoomsReady={areRoomsReady} setIntroDone={setIntroDone} words={massages} colors={RoomColors} />}
       </div>}
     </>
   )
