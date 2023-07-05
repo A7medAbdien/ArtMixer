@@ -37,7 +37,7 @@ export default function Thanks({ activeRoomName }) {
 
                     <Text3D
                         position={[0, 0.5, 0]}
-                        curveSegments={32}
+                        curveSegments={5}
                         bevelEnabled
                         bevelSize={0.04}
                         bevelThickness={0.1}
