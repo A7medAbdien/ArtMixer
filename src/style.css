@@ -52,9 +52,9 @@ body,
     line-height: 0.8em;
 }
 
-.skip:hover {
+/* .skip:hover {
     cursor: pointer;
-}
+} */
 
 .arrow {
     color: var(--room-color);
@@ -67,9 +67,9 @@ body,
     line-height: 0.8em;
 }
 
-.arrow:hover {
+/* .arrow:hover {
     cursor: pointer;
-}
+} */
 
 /* hover-underline-animation */
 .hover-underline-animation {
