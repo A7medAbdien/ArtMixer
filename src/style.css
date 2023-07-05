@@ -41,6 +41,21 @@ body,
     --bg: #1e1c29;
 }
 
+.skip {
+    color: var(--room-color);
+    position: absolute;
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2;
+    padding: 0;
+    margin: 0;
+    line-height: 0.8em;
+}
+
+.skip:hover {
+    cursor: pointer;
+}
+
 .arrow {
     color: var(--room-color);
     position: absolute;
@@ -337,6 +352,13 @@ canvas {
     opacity: 0;
     touch-action: none;
     animation: fade-in 5s ease 1s forwards;
+}
+
+.skip {
+    opacity: 0;
+    touch-action: none;
+    animation: fade-in 5s ease 1s forwards;
+    animation-delay: 7s;
 }
 
 .char {

@@ -34,7 +34,7 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
         className={`intro-container ${!introDone ? "" : " fade-out"}`}
       >
         {areRoomsReady && <div className="intro" >
-          <div style={{ left: -60, bottom: '-65vh' }} onClick={(e) => (e.stopPropagation(), setIntroDone(true))} className="arrow">
+          <div style={{ left: -60, bottom: '-65vh' }} onClick={(e) => (e.stopPropagation(), setIntroDone(true))} className="skip">
             <div className={`hover-underline-animation left-to-right `}>
               Skip
             </div>
