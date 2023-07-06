@@ -82,13 +82,8 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
     const [isStyleImageUploaded, setIsStyleImageUploaded] = useState(false)
     const [isNotebookOpened, setIsNotebookOpened] = useState(false)
     const [isNotebookExecuted, setIsNotebookExecuted] = useState(false)
-    const RoomColors = [
-        '#937855', // K
-        '#275e3f', // G
-        '#937855', // T
-        '#386f7c', // W
-        '#27455f', // B
-    ]
+
+
     // base theta shows the room on the right + rolling goes in the oboist direction of theta or i
     const roomList = [
         {
