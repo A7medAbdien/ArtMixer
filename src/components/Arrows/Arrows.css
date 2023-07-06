@@ -7,8 +7,10 @@
     padding: 0;
     margin: 0;
     line-height: 0.8em;
+    opacity: 0;
+    touch-action: none;
+    animation: fade-in 5s ease 1s forwards;
 }
-
 
 /* hover-underline-animation */
 .hover-underline-animation {

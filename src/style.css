@@ -55,13 +55,6 @@ a:hover {
 }
 
 
-.arrow {
-    opacity: 0;
-    touch-action: none;
-    animation: fade-in 5s ease 1s forwards;
-}
-
-
 /* 
  * CSS talk bubble, in Uploading and Colab
  */
