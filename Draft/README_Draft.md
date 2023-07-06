@@ -35,7 +35,7 @@ However, I learned a lot, some of those many things:
 # edit frame
 
 ```jsx
-    const { position, rotation, scale } = useControls('GRoom',
+    const { position, rotation, scale } = useControls('Colab',
         {
             position:
             {

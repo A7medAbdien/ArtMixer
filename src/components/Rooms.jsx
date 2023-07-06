@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { createRef, useRef } from 'react';
 
 import Uploading from './Rooms/Uploading/Uploading'
-import GRoom from './Rooms/Colab/Colab'
+import Colab from './Rooms/Colab/Colab'
 import BRoom from './Rooms/Results/Results'
 import WRoom from './Rooms/Waiting/Waiting'
 import Thanks from './Rooms/Credits/Credits';
@@ -95,7 +95,7 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
             id: 2,
             name: 'GreenRoom',
             color: '#275e3f',
-            component: <GRoom />,
+            component: <Colab />,
             props: {
                 activeRoomName: activeRoomName,
                 setIsNotebookOpened: setIsNotebookOpened, setIsNotebookExecuted: setIsNotebookExecuted,

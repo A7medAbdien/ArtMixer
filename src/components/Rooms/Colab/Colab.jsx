@@ -1,5 +1,4 @@
-import { Center, Html, Text, useGLTF, useTexture, useVideoTexture } from '@react-three/drei'
-import { useControls } from 'leva';
+import { Html, useGLTF, useTexture, } from '@react-three/drei'
 import { Frames, HoverableFrame, VideoFrame } from '../../Frames';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -9,16 +8,16 @@ import './Colab.css'
 const ColabURL = 'https://colab.research.google.com/drive/1OXlnwQFJnGY0eFIsFIUDvIn6BwewCDyS'
 const RoomName = "GreenRoom"
 const images = [
-    { name: RoomName + "A", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
+    { name: RoomName + "Video", position: [0.227, 1.13, 0.4], args: [2.2, 1.4], url: '10.mp4' },
 ]
-const textPosition = [-1.355, 1.48, 0.4]
+const textPosition = [-1.355, 1.55, 0.4]
 
-export default function GRoom({ activeRoomName, setIsNotebookOpened, setIsNotebookExecuted }) {
+export default function Colab({ activeRoomName, setIsNotebookOpened, setIsNotebookExecuted }) {
 
-    const { nodes } = useGLTF('./model//GRoom/GRoom2.glb')
-    const { nodes: vaseNodes } = useGLTF('./model/GRoom/Vase.glb')
-    const bakedTexture = useTexture('./model/GRoom/GRoom2.jpg')
-    const vaseTexture = useTexture('./model/GRoom/Vase.jpg')
+    const { nodes } = useGLTF('./model//Colab/Colab.glb')
+    const { nodes: vaseNodes } = useGLTF('./model/Colab/Vase.glb')
+    const bakedTexture = useTexture('./model/Colab/Colab.jpg')
+    const vaseTexture = useTexture('./model/Colab/Vase.jpg')
     bakedTexture.flipY = false
     vaseTexture.flipY = false
 
