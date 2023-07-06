@@ -10,7 +10,7 @@ import { useRef } from 'react';
 import * as THREE from 'three'
 import { Arrows } from './components/Arrows/Arrows';
 import { useRoute } from 'wouter';
-import { Overlay } from './Overlay';
+import { Overlay } from './components/Overlay';
 import { Intro } from './components/Intro';
 
 const roomsText = [
@@ -23,27 +23,30 @@ const roomsText = [
 
 export default function Experience() {
 
+    /**
+     * handel intro
+     */
     const [introDone, setIntroDone] = useState(false)
     const [areRoomsReady, setAreRoomsReady] = useState(false)
-    const [perfSucks, degrade] = useState(false)
 
-    // const props = useControls({
-    //     base: { value: '#201919' },
-    //     colorA: { value: '#000' },
-    //     colorB: { value: RoomColors[activeRoomIndex] } // B 27455f - G 275e3f - W 386f7c
-    // })
 
-    const [, params] = useRoute('/:id')
+    /**
+     * set background color
+     */
     const base = '#201919'
     const colorA = '#000'
     const [colorB, setColorB] = useState('#937855')
-    const roomsRef = useRef()
 
-    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
+
+    /**
+     * handel degrade in performance
+     */
+    const [perfSucks, degrade] = useState(false)
+
 
     /**
      * Set User Identifier
-     */
+    */
     const newDate = new Date()
     const date = Math.floor(newDate.getTime() / 1000)
     const [userId, setUserId] = useState(null)
@@ -60,6 +63,17 @@ export default function Experience() {
     }, []);
 
 
+    /**
+     * needed so when any images get focused 
+     */
+    const [, params] = useRoute('/:id')
+
+
+    /**
+     * handel arrows action
+    */
+    const [activeRoomIndex, setActiveRoomIndex] = useSState(0)
+    const roomsRef = useRef()
     const rollNext = () => {
         roomsRef.current.rollNext();
     };
@@ -67,11 +81,10 @@ export default function Experience() {
         roomsRef.current.rollBack();
     };
 
+
     return <>
         {/* <Leva hidden /> */}
-        {/* [0, -0.4, 1.3] */}
 
-        {/* {!introDone && <Intro setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />} */}
         <Canvas
             flat
             dpr={[1, perfSucks ? 1.5 : 2]}
@@ -84,24 +97,29 @@ export default function Experience() {
         >
 
             {/* <Perf position="top-left" /> */}
-            <PerformanceMonitor onDecline={() => degrade(true)} />
-            {/* <Environment frames={perfSucks ? 1 : Infinity} resolution={256} background blur={0.8} preset="city" /> */}
             {/* <OrbitControls makeDefault /> */}
-            {/* <axesHelper args={[2, 2, 2]} /> */}
-            {/* <mesh scale={1.5}>
-                <boxGeometry />
-                <meshNormalMaterial />
-            </mesh> */}
+            <PerformanceMonitor onDecline={() => degrade(true)} />
 
             <Bg base={base} colorA={colorA} colorB={colorB} />
-            {/* <Child ref={test} /> */}
+
             <Suspense fallback={<Box />}>
-                <Rooms ref={roomsRef} setAreRoomsReady={setAreRoomsReady} userId={userId} setColorB={setColorB} activeRoomIndex={activeRoomIndex} setActiveRoomIndex={setActiveRoomIndex} introDone={introDone} />
+                <Rooms
+                    ref={roomsRef}
+                    userId={userId}
+                    setColorB={setColorB}
+                    introDone={introDone}
+                    setAreRoomsReady={setAreRoomsReady}
+                    activeRoomIndex={activeRoomIndex}
+                    setActiveRoomIndex={setActiveRoomIndex}
+                />
             </Suspense >
+
         </Canvas >
+
         {!params && <Arrows rightAction={rollNext} leftAction={rollBack} color={colorB} />}
         {!params && <Overlay color={colorB} text={roomsText[activeRoomIndex]} />}
-        {<Intro introDone={introDone} setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />}
+
+        <Intro introDone={introDone} setIntroDone={setIntroDone} areRoomsReady={areRoomsReady} />
     </>
 }
 
