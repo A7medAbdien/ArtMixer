@@ -10,8 +10,6 @@ import './Uploading.css';
 
 const RoomName = "Uploading"
 const images = [
-    // // Big Images
-    // { name: RoomName + "ContentImage", rotation: [rotation.x, rotation.y, rotation.z], position: [position.x, position.y, position.z], args: [scale.x, scale.y], defaultImageURL: baseURL + '/content.jpg' },
     { name: RoomName + "ContentImage", rotation: [-0.27, 0.34, 0.09], position: [-0.71, 1.1, 0.81], args: [0.862, 0.856], defaultImageURL: baseURL + '/content.jpg' },
 
     { name: RoomName + "StyleImage", rotation: [-0.28, -0.455, -0.128], position: [0.85, 1.1, 0.81], args: [0.862, 0.856], defaultImageURL: baseURL + '/style.jpg' }
@@ -85,10 +83,7 @@ export default function Uploading({ setAreRoomsReady, userId, setIsContentImageU
             </mesh>
 
             <Frames name={RoomName} activeRoomName={activeRoomName} Children={Frame} bigImageFocus={bigImageFocus} basePOV={basePOV} images={images} />
-            {/* <MassageBubble {...massages[0]} />
-            <MassageBubble {...massages[1]} /> */}
             {massages.map((props, i) => userId && <MassageBubble key={i} userId={userId} {...props} />)}
-            {/* {buttonFrames.map((props, i) => userId && <ButtonFrame key={i} userId={userId} {...props} />)} */}
         </group>
     </>
 }
