@@ -1,10 +1,10 @@
 /* 
- * Kitchen
+ * Uploading
  */
 
 /* Zoom in effect */
 
-.zoom-in-out-fade-Kitchen {
+.zoom-in-out-fade-Uploading {
     transform: scale(0);
     opacity: 1;
     transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
@@ -23,12 +23,12 @@
     transform-origin: left top;
 }
 
-.zoom-in-out-fade-Kitchen.show {
+.zoom-in-out-fade-Uploading.show {
     transform: scale(1);
     /* opacity: 1; */
 }
 
-.zoom-in-out-fade-Kitchen.hide {
+.zoom-in-out-fade-Uploading.hide {
     transform: scale(0.5);
     opacity: 0;
 }

@@ -1,6 +1,4 @@
-import * as THREE from 'three'
-import { Center, Html, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber';
+import { Html, useGLTF, useTexture } from '@react-three/drei'
 import { Frames, HoverableFrame, ImageFrame } from '../../Frames';
 import { useState } from 'react';
 import { useRef } from 'react';
@@ -10,7 +8,7 @@ import { useControls } from 'leva';
 import { useRoute } from 'wouter';
 import './Uploading.css';
 
-const RoomName = "Kitchen"
+const RoomName = "Uploading"
 const images = [
     // // Big Images
     // { name: RoomName + "ContentImage", rotation: [rotation.x, rotation.y, rotation.z], position: [position.x, position.y, position.z], args: [scale.x, scale.y], defaultImageURL: baseURL + '/content.jpg' },
@@ -29,7 +27,7 @@ const massages = [
 const bigImageFocus = 0.8
 const basePOV = [0, 0, -3.5]
 
-export default function Kitchen({ setAreRoomsReady, userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
+export default function Uploading({ setAreRoomsReady, userId, setIsContentImageUploaded, setIsStyleImageUploaded, activeRoomName }) {
 
     /**
      * Loading GLTF models
@@ -162,7 +160,7 @@ const MassageBubble = ({ userId, name, active, position, rotation, left, setImag
         >
             <div
                 onClick={(e) => (e.stopPropagation(), widgetRef.current?.open())}
-                className={`${!left ? 'left-top-origin' : 'right-top-origin'} zoom-in-out-fade-Kitchen ${show ? 'show' : 'hide'}`}
+                className={`${!left ? 'left-top-origin' : 'right-top-origin'} zoom-in-out-fade-Uploading ${show ? 'show' : 'hide'}`}
             >
                 <div className={`talk-bubble-kitchen round ${!left ? 'tri-left left-top' : 'tri-right right-top'}`}>
                     <div className="talktext">

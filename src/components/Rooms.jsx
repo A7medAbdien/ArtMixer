@@ -2,7 +2,7 @@ import { Box, Center } from '@react-three/drei'
 import gsap from 'gsap';
 import { createRef, useRef } from 'react';
 
-import Kitchen from './Rooms/Uploading/Uploading'
+import Uploading from './Rooms/Uploading/Uploading'
 import GRoom from './Rooms/Colab/Colab'
 import BRoom from './Rooms/Results/Results'
 import WRoom from './Rooms/Waiting/Waiting'
@@ -104,9 +104,9 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
         },
         {
             id: 1,
-            name: 'Kitchen',
+            name: 'Uploading',
             color: '#937855',
-            component: <Kitchen />,
+            component: <Uploading />,
             props: {
                 activeRoomName: activeRoomName, userId: userId,
                 setIsContentImageUploaded: setIsContentImageUploaded, setIsStyleImageUploaded: setIsStyleImageUploaded,

@@ -14,7 +14,7 @@ export function Intro({ introDone, setIntroDone, areRoomsReady }) {
   ]
 
   const RoomColors = [
-    '#937855', // Kitchen
+    '#937855', // Uploading
     '#275e3f', // Green
     '#386f7c', // Waiting
     '#27455f', // Blue

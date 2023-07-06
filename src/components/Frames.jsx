@@ -6,7 +6,7 @@ import { easing } from 'maath';
 import { useRoute, useLocation } from 'wouter';
 import { useControls } from 'leva';
 
-const initRoom = "Kitchen"
+const initRoom = "Uploading"
 export const Frames = ({ Children, name: RoomName, introDone, activeRoomName, startTime, pointerMissDeactivate = false, bigImageFocusX = 0, bigImageFocus = 0.6, smallImageFocus = 0.5, basePOV = [0, 0, -3.5], images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) => {
 
     const ref = useRef()
