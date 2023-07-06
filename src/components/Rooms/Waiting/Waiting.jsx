@@ -1,9 +1,7 @@
-import * as THREE from 'three'
-import { Center, Html, Image, useGLTF, useTexture } from '@react-three/drei'
-import { useControls } from 'leva'
+import { Html, useGLTF, useTexture } from '@react-three/drei'
 import { useState } from 'react';
-import { useRoute } from 'wouter';
 import { useEffect } from 'react';
+import './Waiting.css'
 
 const RoomName = "WhiteRoom"
 const url = 'https://fluid-threejs.netlify.app/'

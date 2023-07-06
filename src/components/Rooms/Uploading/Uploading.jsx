@@ -1,14 +1,14 @@
 import * as THREE from 'three'
 import { Center, Html, OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
-import { Frames, HoverableFrame, ImageFrame } from '../Frames';
+import { Frames, HoverableFrame, ImageFrame } from '../../Frames';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { baseURL } from '../../_';
+import { baseURL } from '../../../_';
 import { useControls } from 'leva';
 import { useRoute } from 'wouter';
-
+import './Uploading.css';
 
 const RoomName = "Kitchen"
 const images = [

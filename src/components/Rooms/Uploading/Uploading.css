@@ -1,0 +1,60 @@
+/* 
+ * Kitchen
+ */
+
+/* Zoom in effect */
+
+.zoom-in-out-fade-Kitchen {
+    transform: scale(0);
+    opacity: 1;
+    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.talk-bubble-kitchen:hover {
+    cursor: pointer;
+}
+
+
+.right-top-origin {
+    transform-origin: right top;
+}
+
+.left-top-origin {
+    transform-origin: left top;
+}
+
+.zoom-in-out-fade-Kitchen.show {
+    transform: scale(1);
+    /* opacity: 1; */
+}
+
+.zoom-in-out-fade-Kitchen.hide {
+    transform: scale(0.5);
+    opacity: 0;
+}
+
+
+/* CSS talk bubble */
+.talk-bubble-kitchen {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    width: 180px;
+    height: 110px;
+    /* color: #729c65; */
+    background-color: #c3c4c1;
+}
+
+.tri-left.left-top:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: auto;
+    left: -18px;
+    top: 0px;
+    bottom: auto;
+    border: 25px solid;
+    border-color: #c3c4c1 transparent transparent transparent;
+}

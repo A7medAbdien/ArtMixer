@@ -2,18 +2,17 @@ import { Box, Center } from '@react-three/drei'
 import gsap from 'gsap';
 import { createRef, useRef } from 'react';
 
-import Kitchen from './Rooms/Kitchen'
-import GRoom from './Rooms/GRoom'
-import BRoom from './Rooms/BRoom'
-import WRoom from './Rooms/WRoom'
+import Kitchen from './Rooms/Uploading/Uploading'
+import GRoom from './Rooms/Colab/Colab'
+import BRoom from './Rooms/Results/Results'
+import WRoom from './Rooms/Waiting/Waiting'
+import Thanks from './Rooms/Credits/Credits';
+
 import { useState } from 'react';
-import { useLocation, useRoute } from 'wouter';
 import { useEffect } from 'react';
-import { Arrows } from './Arrows';
 import { cloneElement } from 'react';
 import { forwardRef } from 'react';
 import { useImperativeHandle } from 'react';
-import Thanks from './Rooms/Thanks';
 
 
 export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRoomIndex, setActiveRoomIndex, introDone }, ref) => {

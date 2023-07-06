@@ -52,216 +52,6 @@ body,
     line-height: 0.8em;
 }
 
-/* .skip:hover {
-    cursor: pointer;
-} */
-
-.arrow {
-    color: var(--room-color);
-    position: absolute;
-    font-size: 50px;
-    font-weight: 600;
-    letter-spacing: 2;
-    padding: 0;
-    margin: 0;
-    line-height: 0.8em;
-}
-
-/* .arrow:hover {
-    cursor: pointer;
-} */
-
-/* hover-underline-animation */
-.hover-underline-animation {
-    /* cursor: pointer; */
-    display: inline-block;
-    position: relative;
-    color: var(--room-color);
-}
-
-.hover-underline-animation::after {
-    /* cursor: pointer; */
-    content: '';
-    position: absolute;
-    width: 101%;
-    transform: scaleX(0);
-    height: 2px;
-    background-color: var(--room-color);
-    transition: transform 0.25s ease-out;
-}
-
-.hover-underline-animation:hover::after {
-    bottom: 0;
-    left: 0;
-    transform: scaleX(1);
-}
-
-
-/* left-to-right */
-.left-to-right::after {
-    bottom: 0;
-    right: 0;
-    transform-origin: bottom right;
-}
-
-.left-to-right:hover::after {
-    transform-origin: bottom left;
-}
-
-
-/* right-to-left */
-.right-to-left::after {
-    bottom: 0;
-    left: 0;
-    transform-origin: bottom left;
-}
-
-.right-to-left:hover::after {
-    transform-origin: bottom right;
-}
-
-
-/* hover-vertical-animation */
-.hover-underline-animation2 {
-    /* cursor: pointer; */
-    display: inline-block;
-    position: relative;
-    color: var(--room-color);
-}
-
-.hover-underline-animation2::after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    transform: scaleY(0);
-    width: 2px;
-    top: 0;
-    background-color: var(--room-color);
-    transition-delay: 0.25s;
-    transform-origin: bottom;
-    transition: transform 0.25s ease-out;
-}
-
-.hover-underline-animation2:hover::after {
-    transform: scaleY(1);
-    transition-delay: 0.25s;
-}
-
-.right-vertical::after {
-    right: -2px;
-}
-
-.left-vertical::after {
-    left: -2px;
-}
-
-/* 
- * Kitchen
- */
-
-/* Zoom in effect */
-
-.zoom-in-out-fade-Kitchen {
-    transform: scale(0);
-    opacity: 1;
-    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
-}
-
-.talk-bubble-kitchen:hover {
-    cursor: pointer;
-}
-
-
-.right-top-origin {
-    transform-origin: right top;
-}
-
-.left-top-origin {
-    transform-origin: left top;
-}
-
-.zoom-in-out-fade-Kitchen.show {
-    transform: scale(1);
-    /* opacity: 1; */
-}
-
-.zoom-in-out-fade-Kitchen.hide {
-    transform: scale(0.5);
-    opacity: 0;
-}
-
-
-/* CSS talk bubble */
-.talk-bubble-kitchen {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    position: relative;
-    width: 180px;
-    height: 110px;
-    /* color: #729c65; */
-    background-color: #c3c4c1;
-}
-
-.tri-left.left-top:after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    right: auto;
-    left: -18px;
-    top: 0px;
-    bottom: auto;
-    border: 25px solid;
-    border-color: #c3c4c1 transparent transparent transparent;
-}
-
-/* 
- * WRoom
- */
-
-/* Zoom in effect */
-
-.zoom-in-out-fade-WRoom {
-    transform: scale(0);
-    opacity: 1;
-    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
-    transform-origin: center;
-}
-
-.zoom-in-out-fade-WRoom.show {
-    transform: scale(1);
-    /* opacity: 1; */
-}
-
-.zoom-in-out-fade-WRoom.hide {
-    transform: scale(0.5);
-    opacity: 0;
-}
-
-
-/* 
- * Message Bubble in Groom
- */
-
-/* Zoom in effect */
-
-.zoom-in-out-fade-example {
-    transform: scale(0);
-    opacity: 1;
-    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
-    transform-origin: top right;
-}
-
-.zoom-in-out-fade-example.show {
-    transform: scale(1);
-    /* opacity: 1; */
-}
-
-.zoom-in-out-fade-example.hide {
-    transform: scale(0.5);
-    opacity: 0;
-}
 
 /* Link color */
 
@@ -275,16 +65,6 @@ a:hover {
 }
 
 /* CSS talk bubble */
-.talk-bubble {
-    margin: 40px;
-    padding: 0;
-    display: inline-block;
-    position: relative;
-    width: 450px;
-    height: auto;
-    background-color: #c3c4c1;
-}
-
 .round {
     border-radius: 20px;
     -webkit-border-radius: 20px;
@@ -337,6 +117,14 @@ canvas {
     animation: fade-in 5s ease 1s forwards;
 }
 
+
+.arrow,
+.overlay {
+    opacity: 0;
+    touch-action: none;
+    animation: fade-in 5s ease 1s forwards;
+}
+
 .intro {
     color: var(--room-color);
     position: absolute;
@@ -347,12 +135,6 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
-.arrow,
-.overlay {
-    opacity: 0;
-    touch-action: none;
-    animation: fade-in 5s ease 1s forwards;
-}
 
 .skip {
     opacity: 0;

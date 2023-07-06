@@ -1,0 +1,95 @@
+.arrow {
+    color: var(--room-color);
+    position: absolute;
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2;
+    padding: 0;
+    margin: 0;
+    line-height: 0.8em;
+}
+
+
+/* hover-underline-animation */
+.hover-underline-animation {
+    /* cursor: pointer; */
+    display: inline-block;
+    position: relative;
+    color: var(--room-color);
+}
+
+.hover-underline-animation::after {
+    /* cursor: pointer; */
+    content: '';
+    position: absolute;
+    width: 101%;
+    transform: scaleX(0);
+    height: 2px;
+    background-color: var(--room-color);
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+    bottom: 0;
+    left: 0;
+    transform: scaleX(1);
+}
+
+
+/* left-to-right */
+.left-to-right::after {
+    bottom: 0;
+    right: 0;
+    transform-origin: bottom right;
+}
+
+.left-to-right:hover::after {
+    transform-origin: bottom left;
+}
+
+
+/* right-to-left */
+.right-to-left::after {
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom left;
+}
+
+.right-to-left:hover::after {
+    transform-origin: bottom right;
+}
+
+
+/* hover-vertical-animation */
+.hover-underline-animation2 {
+    /* cursor: pointer; */
+    display: inline-block;
+    position: relative;
+    color: var(--room-color);
+}
+
+.hover-underline-animation2::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    transform: scaleY(0);
+    width: 2px;
+    top: 0;
+    background-color: var(--room-color);
+    transition-delay: 0.25s;
+    transform-origin: bottom;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation2:hover::after {
+    transform: scaleY(1);
+    transition-delay: 0.25s;
+}
+
+.right-vertical::after {
+    right: -2px;
+}
+
+.left-vertical::after {
+    left: -2px;
+}

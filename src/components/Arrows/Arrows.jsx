@@ -1,5 +1,6 @@
 import { Html, Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
+import './Arrows.css'
 
 export const Arrows = ({ rightAction, leftAction, color }) => {
     const rightArrowPosition = { bottom: 80, right: 45, '--room-color': color }

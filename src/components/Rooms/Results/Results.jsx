@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import { Center, Text, useGLTF, useTexture } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber';
-import { Frames, HoverableFrame, ImageFrame } from '../Frames';
+import { Frames, HoverableFrame, ImageFrame } from '../../Frames';
 import { useEffect, useState } from 'react';
-import { ID, baseURL, defaultID, resultURL } from '../../_';
+import { ID, baseURL, defaultID, resultURL } from '../../../_';
 
 
 const RoomName = "BlueRoom"

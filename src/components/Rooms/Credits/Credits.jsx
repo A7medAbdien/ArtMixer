@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { useRoute } from 'wouter';
 import { useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { ImageFrame } from '../Frames';
+import { ImageFrame } from '../../Frames';
 
 const RoomName = "Thanks"
 // const url = 'https://fluid-threejs.netlify.app/'

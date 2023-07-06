@@ -1,9 +1,10 @@
 import { Center, Html, Text, useGLTF, useTexture, useVideoTexture } from '@react-three/drei'
 import { useControls } from 'leva';
-import { Frames, HoverableFrame, VideoFrame } from '../Frames';
+import { Frames, HoverableFrame, VideoFrame } from '../../Frames';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useRoute } from 'wouter';
+import './Colab.css'
 
 const ColabURL = 'https://colab.research.google.com/drive/1OXlnwQFJnGY0eFIsFIUDvIn6BwewCDyS'
 const RoomName = "GreenRoom"
@@ -78,8 +79,8 @@ const MassageBubble = ({ textPosition, setIsNotebookOpened, setIsNotebookExecute
             distanceFactor={1.17}
             position={textPosition}
         >
-            <div onClick={(e) => (e.stopPropagation())} className={`zoom-in-out-fade-example ${show ? 'show' : 'hide'}`}>
-                <div className="talk-bubble tri-right round right-top">
+            <div onClick={(e) => (e.stopPropagation())} className={`zoom-in-out-fade-colab ${show ? 'show' : 'hide'}`}>
+                <div className="talk-bubble-colab tri-right round right-top">
                     <div className="talktext">
                         <ol>
                             <li>Open <a target="_blank" onClick={() => setIsNotebookOpened(true)} href={ColabURL}> ArtMixer Notebook</a></li>

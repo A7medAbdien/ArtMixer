@@ -8,10 +8,7 @@ import { LayerMaterial, Depth, Color } from 'lamina'
 import { useControls } from 'leva';
 import { useRef } from 'react';
 import * as THREE from 'three'
-import WRoom from './components/Rooms/WRoom';
-import { forwardRef } from 'react';
-import { useImperativeHandle } from 'react';
-import { Arrows } from './components/Arrows';
+import { Arrows } from './components/Arrows/Arrows';
 import { useRoute } from 'wouter';
 import { Overlay } from './Overlay';
 import { Intro } from './components/Intro';
