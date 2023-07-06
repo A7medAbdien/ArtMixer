@@ -1,3 +1,5 @@
+import './Overlay.css'
+
 export function Overlay({ color, text }) {
 
   return (

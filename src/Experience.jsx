@@ -10,7 +10,7 @@ import { useRef } from 'react';
 import * as THREE from 'three'
 import { Arrows } from './components/Arrows/Arrows';
 import { useRoute } from 'wouter';
-import { Overlay } from './components/Overlay';
+import { Overlay } from './components/Overlay/Overlay';
 import { Intro } from './components/Intro/Intro';
 
 const roomsText = [

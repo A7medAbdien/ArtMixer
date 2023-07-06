@@ -1,17 +1,10 @@
 @import url('https://rsms.me/inter/inter.css');
 @import url(https://fonts.googleapis.com/css?family=Khula:700);
-/* * {
-    box-sizing: border-box;
-}
 
-html,
-body,
-#root {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-} */
+:root {
+    --room-color: #3e3e3d;
+    --bg: #1e1c29;
+}
 
 html,
 body,
@@ -33,17 +26,23 @@ body,
 }
 
 
-
 canvas {
     opacity: 0;
     touch-action: none;
     animation: fade-in 5s ease 1s forwards;
 }
 
-:root {
-    --room-color: #3e3e3d;
-    --bg: #1e1c29;
+
+/* Link color */
+a {
+    text-decoration: none;
+    color: #729c65;
 }
+
+a:hover {
+    color: #556481;
+}
+
 
 @keyframes fade-in {
     from {
@@ -55,49 +54,16 @@ canvas {
     }
 }
 
-/* Link color */
 
-a {
-    text-decoration: none;
-    color: #729c65;
-}
-
-a:hover {
-    color: #556481;
-}
-
-
-.arrow,
-.overlay {
+.arrow {
     opacity: 0;
     touch-action: none;
     animation: fade-in 5s ease 1s forwards;
 }
 
-.char {
-    color: var(--room-color);
-    position: absolute;
-    font-size: 9vw;
-    font-weight: 800;
-    padding: 0;
-    margin: 0;
-    line-height: 0.8em;
-}
-
-.instructions {
-    color: var(--room-color);
-    position: absolute;
-    font-size: 1.5vw;
-    font-weight: 800;
-    padding: 0;
-    margin: 0;
-    line-height: 1.5em;
-    max-width: 20vw;
-}
-
 
 /* 
- * CSS talk bubble
+ * CSS talk bubble, in Uploading and Colab
  */
 .round {
     border-radius: 20px;
