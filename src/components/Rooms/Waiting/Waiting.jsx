@@ -9,7 +9,7 @@ const image = { name: "WhiteRoom", position: [-0.08, 1.17, 0.4], args: [171, 6.8
 
 
 // We can not adapt Frames structure cuz the degrading in FPS so no motion is better exp.
-export default function WRoom({ activeRoomName }) {
+export default function Waiting({ activeRoomName }) {
 
     const isActive = activeRoomName == RoomName
     const [show, setShow] = useState(false);
@@ -24,8 +24,8 @@ export default function WRoom({ activeRoomName }) {
     }, [isActive]);
 
 
-    const { nodes } = useGLTF('./model//WRoom/WRoom.glb')
-    const bakedTexture = useTexture('./model/WRoom/WRoom.jpg')
+    const { nodes } = useGLTF('./model//Waiting/Waiting.glb')
+    const bakedTexture = useTexture('./model/Waiting/Waiting.jpg')
     bakedTexture.flipY = false
 
     return <>
@@ -43,7 +43,7 @@ export default function WRoom({ activeRoomName }) {
             distanceFactor={1.17}
             position={image.position}
         >
-            <div className={`zoom-in-out-fade-WRoom ${show ? 'show' : 'hide'}`}>
+            <div className={`zoom-in-out-fade-Waiting ${show ? 'show' : 'hide'}`}>
 
                 <iframe
                     style={{

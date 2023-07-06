@@ -5,7 +5,7 @@ import { createRef, useRef } from 'react';
 import Uploading from './Rooms/Uploading/Uploading'
 import Colab from './Rooms/Colab/Colab'
 import BRoom from './Rooms/Results/Results'
-import WRoom from './Rooms/Waiting/Waiting'
+import Waiting from './Rooms/Waiting/Waiting'
 import Thanks from './Rooms/Credits/Credits';
 
 import { useState } from 'react';
@@ -136,7 +136,7 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
             id: 3,
             name: 'WhiteRoom',
             color: '#386f7c',
-            component: <WRoom />,
+            component: <Waiting />,
             props: { activeRoomName: activeRoomName }
         },
     ];
