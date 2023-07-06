@@ -1,6 +1,9 @@
 import { useEffect } from "react"
-import ConsoleText from "./ConsoleText/ConsoleText";
+import ConsoleText from "../ConsoleText/ConsoleText";
 import { useState } from "react";
+
+import './Intro.css'
+
 
 export function Intro({ introDone, setIntroDone, areRoomsReady }) {
 

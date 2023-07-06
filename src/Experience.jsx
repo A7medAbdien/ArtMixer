@@ -11,7 +11,7 @@ import * as THREE from 'three'
 import { Arrows } from './components/Arrows/Arrows';
 import { useRoute } from 'wouter';
 import { Overlay } from './components/Overlay';
-import { Intro } from './components/Intro';
+import { Intro } from './components/Intro/Intro';
 
 const roomsText = [
     { title: "Upload images", instructions: ["Click the images to see the upload button"] },
@@ -72,7 +72,7 @@ export default function Experience() {
     /**
      * handel arrows action
     */
-    const [activeRoomIndex, setActiveRoomIndex] = useSState(0)
+    const [activeRoomIndex, setActiveRoomIndex] = useState(0)
     const roomsRef = useRef()
     const rollNext = () => {
         roomsRef.current.rollNext();
