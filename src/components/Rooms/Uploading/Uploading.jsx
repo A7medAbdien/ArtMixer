@@ -34,11 +34,11 @@ export default function Kitchen({ setAreRoomsReady, userId, setIsContentImageUpl
     /**
      * Loading GLTF models
      */
-    const { nodes } = useGLTF('./model/Kitchen/MRoom.glb')
-    const bakedTexture = useTexture('./model/Kitchen/MRoom.jpg')
-    const Palette = useTexture('./model/Kitchen/Palette.jpg')
-    const FrameLeft = useTexture('./model/Kitchen/FrameLeft.jpg')
-    const FrameRight = useTexture('./model/Kitchen/FrameRight.jpg')
+    const { nodes } = useGLTF('./model/Uploading/Uploading.glb')
+    const bakedTexture = useTexture('./model/Uploading/Uploading.jpg')
+    const Palette = useTexture('./model/Uploading/Palette.jpg')
+    const FrameLeft = useTexture('./model/Uploading/FrameLeft.jpg')
+    const FrameRight = useTexture('./model/Uploading/FrameRight.jpg')
 
     bakedTexture.flipY = false
     Palette.flipY = false
