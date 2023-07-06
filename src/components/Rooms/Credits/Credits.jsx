@@ -1,17 +1,10 @@
-import * as THREE from 'three'
-import { Center, Html, Image, PresentationControls, Text, Text3D, useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
+import { Center, PresentationControls, Text3D, } from '@react-three/drei'
 import { useControls } from 'leva'
-import { useRef, useState } from 'react';
-import { useRoute } from 'wouter';
-import { useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
 import { ImageFrame } from '../../Frames';
 
-const RoomName = "Thanks"
-// const url = 'https://fluid-threejs.netlify.app/'
-// const image = { name: "WhiteRoom", position: [-0.08, 1, 0], args: [171, 6.8], url: url, waitingTime: 95000 }
+const RoomName = "Credits"
 
-export default function Thanks({ activeRoomName }) {
+export default function Credits({ activeRoomName }) {
 
     const isActive = activeRoomName == RoomName
     const andrewNgImageURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/330px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg"
@@ -64,10 +57,6 @@ export default function Thanks({ activeRoomName }) {
                         <planeGeometry args={[3, 3, 1]} />
                         <ImageFrame url={misakiNakanoImageUrl} />
                     </mesh>
-                    {/* <mesh position={[position.x, position.y, position.z]} >
-                        <planeGeometry args={[scale.x, scale.x, 1]} />
-                        <ImageFrame url={imageUrl} />
-                    </mesh> */}
 
                 </Center>
             </PresentationControls>

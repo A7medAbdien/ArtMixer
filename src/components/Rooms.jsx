@@ -6,7 +6,7 @@ import Uploading from './Rooms/Uploading/Uploading'
 import Colab from './Rooms/Colab/Colab'
 import Results from './Rooms/Results/Results'
 import Waiting from './Rooms/Waiting/Waiting'
-import Thanks from './Rooms/Credits/Credits';
+import Credits from './Rooms/Credits/Credits';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -115,10 +115,10 @@ export const Rooms = forwardRef(({ setAreRoomsReady, userId, setColorB, activeRo
         },
         {
             id: 5,
-            name: 'Thanks',
+            name: 'Credits',
             color: '#612b8d',
             // component: <Box />,
-            component: <Thanks />,
+            component: <Credits />,
             props: { activeRoomName: activeRoomName }
         },
         {

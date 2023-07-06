@@ -28,7 +28,7 @@ export const Frames = ({ Children, name: RoomName, introDone, activeRoomName, st
     })
 
     useFrame((state, dt) => {
-        if ((activeRoomName == "init" && introDone) || activeRoomName == "Thanks") {
+        if ((activeRoomName == "init" && introDone) || activeRoomName == "Credits") {
             easing.damp3(state.camera.position, p, 1.8, dt)
             easing.dampQ(state.camera.quaternion, q, 0.4, dt)
         }
