@@ -2,11 +2,11 @@ import { Box, Center } from '@react-three/drei'
 import gsap from 'gsap';
 import { createRef, useRef } from 'react';
 
-import Uploading from './Rooms/Uploading/Uploading'
-import Colab from './Rooms/Colab/Colab'
-import Results from './Rooms/Results/Results'
-import Waiting from './Rooms/Waiting/Waiting'
-import Credits from './Rooms/Credits/Credits';
+import Uploading from './Uploading/Uploading'
+import Colab from './Colab/Colab'
+import Results from './Results/Results'
+import Waiting from './Waiting/Waiting'
+import Credits from './Credits/Credits';
 
 import { useState } from 'react';
 import { useEffect } from 'react';

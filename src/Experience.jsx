@@ -1,6 +1,6 @@
 import { AccumulativeShadows, Box, Center, Environment, OrbitControls, PerformanceMonitor, RandomizedLight, Text } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Rooms } from './components/Rooms';
+import { Rooms } from './components/Rooms/Rooms';
 import { Suspense, useEffect } from 'react';
 import { useState } from 'react';
 import { Perf } from 'r3f-perf';

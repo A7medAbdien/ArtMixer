@@ -1,5 +1,5 @@
 import { Html, useGLTF, useTexture } from '@react-three/drei'
-import { Frames, HoverableFrame, ImageFrame } from '../../Frames';
+import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';

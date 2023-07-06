@@ -1,6 +1,6 @@
 import { Center, PresentationControls, Text3D, } from '@react-three/drei'
 import { useControls } from 'leva'
-import { ImageFrame } from '../../Frames';
+import { ImageFrame } from '../Frames';
 
 const RoomName = "Credits"
 

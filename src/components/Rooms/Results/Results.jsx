@@ -1,5 +1,5 @@
 import { useGLTF, useTexture } from '@react-three/drei'
-import { Frames, HoverableFrame, ImageFrame } from '../../Frames';
+import { Frames, HoverableFrame, ImageFrame } from '../Frames';
 import { useEffect, useState } from 'react';
 import { defaultID, resultURL } from '../../../_';
 
